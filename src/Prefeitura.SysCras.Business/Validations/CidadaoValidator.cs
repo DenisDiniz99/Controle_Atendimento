@@ -63,6 +63,10 @@ namespace Prefeitura.SysCras.Business.Validations
             RuleFor(cidadao => cidadao.DataNasc)
                 .NotEmpty()
                 .WithMessage("O campo Data de Nascimento não pode ser vazio.");
+
+            //Validação do campo Endereco
+            RuleFor(cidadao => cidadao.Endereco)
+                .SetValidator(new EnderecoValidator());
         }
     }
 }

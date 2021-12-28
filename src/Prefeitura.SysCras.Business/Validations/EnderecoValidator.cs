@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using Prefeitura.SysCras.Business.ValueObjects;
 
 namespace Prefeitura.SysCras.Business.Validations
@@ -60,6 +57,16 @@ namespace Prefeitura.SysCras.Business.Validations
             RuleFor(endereco => endereco.Cidade)
                 .MinimumLength(2)
                 .WithMessage("A Cidade deve ter ao menos 2 caracteres.");
+
+            //Validação do campo CEP
+            RuleFor(endereco => endereco.Cep)
+                .Length(8)
+                .WithMessage("O CEP deve ter 8 caracteres.");
+
+            //Validação do campo Estado
+            RuleFor(endereco => endereco.Estado)
+                .Length(2)
+                .WithMessage("O Estado deve ter 2 caracteres.");
         }
     }
 }
