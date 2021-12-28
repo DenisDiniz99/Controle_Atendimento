@@ -22,6 +22,8 @@ namespace Prefeitura.SysCras.Data.Maps
                 .IsRequired();
             builder.Property(a => a.StatusAtendimento)
                 .IsRequired();
+            builder.Property(a => a.Observacao)
+                .HasMaxLength(200);
             builder.HasOne(a => a.AssuntoAtendimento)
                 .WithMany(x => x.Atendimentos);
             builder.HasOne(a => a.Colaborador)

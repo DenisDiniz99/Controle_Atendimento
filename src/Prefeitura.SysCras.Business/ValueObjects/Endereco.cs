@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Prefeitura.SysCras.Business.ValueObjects
+﻿namespace Prefeitura.SysCras.Business.ValueObjects
 {
     public class Endereco
     {
