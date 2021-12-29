@@ -5,7 +5,6 @@ namespace Prefeitura.SysCras.Data.Context
 {
     public class SysContext : DbContext
     {
-        public SysContext() { }
         public SysContext(DbContextOptions<SysContext> options) : base(options) 
         {
             ChangeTracker.AutoDetectChangesEnabled = false;
