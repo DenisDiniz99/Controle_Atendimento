@@ -25,8 +25,7 @@ namespace Prefeitura.SysCras.Data.Maps
                 .HasMaxLength(1)
                 .IsRequired();
             builder.Property(c => c.TelefoneFixo)
-                .HasMaxLength(15)
-                .IsRequired();
+                .HasMaxLength(15);
             builder.Property(c => c.Celular)
                 .HasMaxLength(15)
                 .IsRequired();

@@ -13,7 +13,7 @@ namespace Prefeitura.SysCras.Business.ValueObjects
         private int GerarProtocolo()
         {
             var randon = new Random();
-            return randon.Next(0, 100);
+            return randon.Next();
         }
     }
 }

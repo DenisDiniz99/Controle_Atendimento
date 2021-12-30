@@ -5,8 +5,8 @@ namespace Prefeitura.SysCras.Business.Entities
 {
     public class Atendimento : Entidade
     {
-        public DateTime DataAtend => DateTime.Now.Date;
-        public DateTime HoraAtend => DateTime.Now.ToLocalTime();
+        public DateTime DataAtend { get; set; }
+        public DateTime HoraAtend { get; set; }
         public TipoAtendimento TipoAtendimento { get; set; }
         public string Descricao { get; set; }
         public Protocolo Protocolo { get; set; }

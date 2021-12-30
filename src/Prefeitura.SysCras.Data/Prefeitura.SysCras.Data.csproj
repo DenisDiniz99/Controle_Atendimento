@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Prefeitura.SysCras.Business\Prefeitura.SysCras.Business.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>
