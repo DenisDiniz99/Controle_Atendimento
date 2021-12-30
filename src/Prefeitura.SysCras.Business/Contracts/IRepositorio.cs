@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Business.Contracts
 {
-    public interface IRepositorio<T> where T: BaseEntidade
+    public interface IRepositorio<T> where T: Entidade
     {
         Task Adicionar(T entidade);
         Task Atualizar(T entidade);

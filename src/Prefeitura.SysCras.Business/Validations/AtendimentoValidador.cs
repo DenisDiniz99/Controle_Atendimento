@@ -3,9 +3,9 @@ using Prefeitura.SysCras.Business.Entities;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
-    public class AtendimentoValidator : AbstractValidator<Atendimento>
+    public class AtendimentoValidador : AbstractValidator<Atendimento>
     {
-        public AtendimentoValidator()
+        public AtendimentoValidador()
         {
             //Validação do campo TipoAtendimento
             RuleFor(atendimento => atendimento.TipoAtendimento)

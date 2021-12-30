@@ -6,9 +6,9 @@ using Prefeitura.SysCras.Business.Entities;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
-    public class ColaboradorValidator : AbstractValidator<Colaborador>
+    public class ColaboradorValidador : AbstractValidator<Colaborador>
     {
-        public ColaboradorValidator()
+        public ColaboradorValidador()
         {
             //Validação do campo Nome
             RuleFor(colaborador => colaborador.Nome)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Prefeitura.SysCras.Business.Entities
 {
-    public class Cidadao : BaseEntidade
+    public class Cidadao : Entidade
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }

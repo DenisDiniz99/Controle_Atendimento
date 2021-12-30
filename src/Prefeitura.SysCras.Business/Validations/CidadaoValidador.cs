@@ -3,9 +3,9 @@ using Prefeitura.SysCras.Business.Entities;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
-    public class CidadaoValidator : AbstractValidator<Cidadao>
+    public class CidadaoValidador : AbstractValidator<Cidadao>
     {
-        public CidadaoValidator()
+        public CidadaoValidador()
         {
             //Validação do campo Nome
             RuleFor(cidadao => cidadao.Nome)
@@ -66,7 +66,7 @@ namespace Prefeitura.SysCras.Business.Validations
 
             //Validação do campo Endereco
             RuleFor(cidadao => cidadao.Endereco)
-                .SetValidator(new EnderecoValidator());
+                .SetValidator(new EnderecoValidador());
         }
     }
 }

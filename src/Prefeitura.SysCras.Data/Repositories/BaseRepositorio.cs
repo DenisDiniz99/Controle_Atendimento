@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Data.Repositories
 {
-    public abstract class BaseRepositorio<T> : IRepositorio<T> where T : BaseEntidade
+    public abstract class BaseRepositorio<T> : IRepositorio<T> where T : Entidade
     {
         private readonly SysContext _context;
         private readonly DbSet<T> _dbSet;

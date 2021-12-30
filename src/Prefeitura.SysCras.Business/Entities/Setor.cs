@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prefeitura.SysCras.Business.Entities
 {
-    public class Setor : BaseEntidade
+    public class Setor : Entidade
     {
         public string TituloSetor { get; set; }
         public Endereco Endereco { get; set; }

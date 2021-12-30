@@ -3,9 +3,9 @@ using Prefeitura.SysCras.Business.ValueObjects;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
-    public class EnderecoValidator : AbstractValidator<Endereco>
+    public class EnderecoValidador : AbstractValidator<Endereco>
     { 
-        public EnderecoValidator()
+        public EnderecoValidador()
         {
             //Validação do campo Rua
             RuleFor(endereco => endereco.Rua)

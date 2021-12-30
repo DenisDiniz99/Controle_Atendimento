@@ -2,9 +2,9 @@
 
 namespace Prefeitura.SysCras.Business.Entities
 {
-    public abstract class BaseEntidade
+    public abstract class Entidade
     {
-        public BaseEntidade()
+        public Entidade()
         {
             Id = Guid.NewGuid();
         }

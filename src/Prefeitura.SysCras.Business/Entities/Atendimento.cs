@@ -3,7 +3,7 @@ using System;
 
 namespace Prefeitura.SysCras.Business.Entities
 {
-    public class Atendimento : BaseEntidade
+    public class Atendimento : Entidade
     {
         public DateTime DataAtend => DateTime.Now.Date;
         public DateTime HoraAtend => DateTime.Now.ToLocalTime();

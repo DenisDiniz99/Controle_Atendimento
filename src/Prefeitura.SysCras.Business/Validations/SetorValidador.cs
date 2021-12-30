@@ -3,9 +3,9 @@ using Prefeitura.SysCras.Business.Entities;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
-    public class SetorValidator : AbstractValidator<Setor>
+    public class SetorValidador : AbstractValidator<Setor>
     {
-        public SetorValidator()
+        public SetorValidador()
         {
             //Validação do campo TituloSetor
             RuleFor(setor => setor.TituloSetor)
