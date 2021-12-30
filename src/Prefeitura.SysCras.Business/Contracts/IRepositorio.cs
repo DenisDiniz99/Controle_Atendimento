@@ -14,5 +14,6 @@ namespace Prefeitura.SysCras.Business.Contracts
         Task<T> ObterPorId(Guid id);
 
         Task<int> SaveChange();
+        void Dispose();
     }
 }
