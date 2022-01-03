@@ -38,6 +38,9 @@ namespace Prefeitura.SysCras.Web
             services.AddControllersWithViews();
             services.AddDbContext<SysContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<SysContext>();
+
+            //Identity
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
