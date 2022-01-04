@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Prefeitura.SysCras.Data\Prefeitura.SysCras.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
 </Project>

@@ -1,21 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Prefeitura.SysCras.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Prefeitura.SysCras.Web.Configurations;
 
 namespace Prefeitura.SysCras.Web
 {
     public class Startup
     {
-        public IConfiguration configuration;
+        public IConfiguration Configuration { get; }
+
         public Startup(IHostEnvironment hostEnvironment)
         {
             var builder = new ConfigurationBuilder()
@@ -31,16 +26,19 @@ namespace Prefeitura.SysCras.Web
             Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<SysContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<SysContext>();
+
+            //Contexto
+            services.AddAppConfig(Configuration);
+
+            //Injeção de Dependência
+            services.AddDependencyInjectionConfig();
 
             //Identity
-            
+            services.AddIdentityConfig();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,6 +57,7 @@ namespace Prefeitura.SysCras.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
