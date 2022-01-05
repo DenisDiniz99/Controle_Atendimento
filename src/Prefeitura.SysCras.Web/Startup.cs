@@ -38,7 +38,7 @@ namespace Prefeitura.SysCras.Web
             services.AddDependencyInjectionConfig();
 
             //Identity
-            services.AddIdentityConfig();
+            services.AddIdentityConfig(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

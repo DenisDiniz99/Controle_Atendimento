@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Prefeitura.SysCras.Web.Data;
@@ -8,8 +9,13 @@ namespace Prefeitura.SysCras.Web.Configurations
 {
     public static class IdentityConfig
     {
-        public static IServiceCollection AddIdentityConfig(this IServiceCollection services)
+        public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDbContext>();
 
