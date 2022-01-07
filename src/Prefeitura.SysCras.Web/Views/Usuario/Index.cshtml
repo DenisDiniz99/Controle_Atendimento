@@ -1,0 +1,31 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto" style="width: 400px">
+        <div class="card-body">
+            <h5 class="card-title text-center text-secondary">
+                Entrar
+            </h5>
+            <hr />
+            <vc:summary></vc:summary>
+            <form method="post">
+                <div class="form-group">
+                    <input asp-for="Email" class="form-control form-text text-dark" placeholder="E-mail de acesso" id="email" />
+                    <label for="email" class="col-form-label"></label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Senha" class="form-control form-text text-dark" placeholder="Senha de acesso" id="password" />
+                    <label for="senha" class="col-form-label"></label>
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary mr-1" style="width: 173px">Entrar</button>
+                <a class="btn btn-outline-primary" style="width: 173px" asp-action="Register" asp-controller="User">Nova Conta</a>
+            </form>
+        </div>
+    </div>
+</div>

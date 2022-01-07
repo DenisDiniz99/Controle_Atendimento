@@ -7,8 +7,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
     {
         [DisplayName("E-mail")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [MaxLength(50, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
-        [EmailAddress(ErrorMessage = "O campo {0} não está em um formato válido.")]
+        [EmailAddress(ErrorMessage = "O campo E-mail está em um formato inválido")]
         public string Email { get; set; }
 
         [DisplayName("Senha")]
@@ -16,5 +15,8 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [StringLength(6, ErrorMessage = "O campo {0} deve conter {1} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+
+        [DisplayName("Lembrar-me")]
+        public bool LembrarLogin { get; set; }
     }
 }

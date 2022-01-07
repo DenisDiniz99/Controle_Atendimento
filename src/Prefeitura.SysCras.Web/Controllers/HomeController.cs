@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,9 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        public HomeController(INotificador notificador) : base(notificador) { }
 
         public IActionResult Index()
         {
@@ -28,10 +24,9 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Sobre()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

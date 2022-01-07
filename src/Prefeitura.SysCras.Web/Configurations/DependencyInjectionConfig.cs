@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Prefeitura.SysCras.Business.Contracts;
+using Prefeitura.SysCras.Business.Notifications;
 using Prefeitura.SysCras.Data.Context;
 using Prefeitura.SysCras.Data.Repositories;
 
@@ -19,6 +20,9 @@ namespace Prefeitura.SysCras.Web.Configurations
             services.AddScoped<ICidadaoRepositorio, CidadaoRepositorio>();
             services.AddScoped<IColaboradorRepositorio, ColaboradorRepositorio>();
             services.AddScoped<ISetorRepositorio, SetorRepositorio>();
+
+            //Notificador
+            services.AddScoped<INotificador, Notificador>();
 
             return services;
         }
