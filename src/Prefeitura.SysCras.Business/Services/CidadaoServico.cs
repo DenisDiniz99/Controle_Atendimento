@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Business.Services
 {
-    public class CidadaoServico : BaseServico
+    public class CidadaoServico : BaseServico, ICidadaoServico
     {
         private readonly ICidadaoRepositorio _cidadaoRepositorio;
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Business.Services
 {
-    public class ColaboradorServico : BaseServico
+    public class ColaboradorServico : BaseServico, IColaboradorServico
     {
         private readonly IColaboradorRepositorio _colaboradorRepositorio;
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Business.Services
 {
-    public class AssuntoAtendimentoServico : BaseServico
+    public class AssuntoAtendimentoServico : BaseServico, IAssuntoAtendimentoServico
     {
         private readonly IAssuntoAtendimentoRepositorio _assuntoAtendimentoRepositorio;
 
