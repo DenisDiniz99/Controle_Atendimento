@@ -35,6 +35,9 @@ namespace Prefeitura.SysCras.Web.Configurations
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
+                //Configuração para não requerer confirmação de e-mail
+                options.SignIn.RequireConfirmedEmail = true;
+
                 //Configurações de Usuário
                 options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;

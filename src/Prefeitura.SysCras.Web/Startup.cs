@@ -39,6 +39,8 @@ namespace Prefeitura.SysCras.Web
 
             //Identity
             services.AddIdentityConfig(Configuration);
+
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,6 +61,8 @@ namespace Prefeitura.SysCras.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseGlobalizationConfig();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prefeitura.SysCras.Business.Contracts;
+using Prefeitura.SysCras.Business.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace Prefeitura.SysCras.Web.Controllers
         protected bool OperacaoValida()
         {
             return _notificador.TemNotificacao();
+        }
+
+        protected void AdicionarErros(string mensagem)
+        {
+            ModelState.AddModelError(string.Empty, mensagem);
         }
     }
 }

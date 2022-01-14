@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+<!--Menu principal-->
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item"><a class="nav-link active" aria-current="page" asp-action="Login" asp-controller="Usuario">Entrar</a></li>
+        <li class="nav-item"><a class="nav-link" asp-action="Registro" asp-controller="Usuario">Registrar</a></li>
+    }
+    else 
+    { 
+        <li class="nav-item"><a class="nav-link text-dark">@User.Identity.Name</a></li>
+        <li class="nav-item"><a class="nav-link text-dark" asp-action="Logout" asp-controller="Usuario">Sair</a></li>
+    }
+</ul>

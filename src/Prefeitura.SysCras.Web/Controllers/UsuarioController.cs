@@ -19,27 +19,65 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
         
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
 
             if (!ModelState.IsValid) return View(model);
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Senha, model.LembrarLogin, false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Senha, model.LembrarLogin, true);
 
-            if (result.Succeeded) return RedirectToAction("Index", "Home");
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, "Usuário ou Senha inválida!");
+                return View(model);
+            }
 
-            ModelState.AddModelError(string.Empty, "Usuário ou senha inválida");
-
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
-        
+        [HttpGet]
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Registro(RegistroViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
+            if (!ModelState.IsValid) return View(model);
+
+            var user = new IdentityUser
+            {
+                UserName = model.Email,
+                Email = model.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Senha);
+
+            if (!result.Succeeded)
+            {
+                foreach(var erro in result.Errors)
+                {
+                    AdicionarErros(erro.Description);
+                }
+
+                return View(model);
+            }
+
+            await _signInManager.PasswordSignInAsync(user, model.Senha, true, false);
+
+            if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
+
+            return LocalRedirect(returnUrl);
+        }
     }
 }
