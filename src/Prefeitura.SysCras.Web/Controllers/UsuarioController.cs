@@ -29,6 +29,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
+            //Verifica a ModelState
             if (!ModelState.IsValid) return View(model);
 
             //Verifica se existe um usuário com o nome informado
@@ -51,7 +52,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             } 
 
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [HttpGet]
@@ -87,7 +88,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             await _signInManager.PasswordSignInAsync(user, model.Senha, true, false);
 
-            if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
+            if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Dashboard", "Home");
 
             return LocalRedirect(returnUrl);
         }

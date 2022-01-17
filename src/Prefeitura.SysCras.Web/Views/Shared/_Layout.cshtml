@@ -11,30 +11,34 @@
 <body>
     <header>
         <!--Menu principal-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container px-5">
-                <a class="navbar-brand" asp-action="Index" asp-controller="Home">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3 jus">
+            <div class="container">
+                <a class="navbar-brand text-white" asp-action="Index" asp-controller="Home">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarSupportedContent">
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+
     <!--Renderização do conteúdo principal do sistema-->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
     <!--Rodapé-->
-    <footer class="footer bg-primary">
-        <div class="container px-4 px-lg-5">
-            <p class="m-0 text-center text-white">
-                &copy; 2022 - Prefeitura Municipal de Capetinga - Departamento de Informática - <a href="http://www.capetinga.mg.gov.br" target="_blank" class="link-dark">Site Oficial</a>
-            </p>
+    <footer class="border-top footer text-muted bg-primary">
+        <div class="container text-white">
+            &copy; 2022 - Prefeitura Municipal de Capetinga - Departamento de Informática - <a href="http://www.capetinga.mg.gov.br" target="_blank" class="link-light">Site Oficial</a>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

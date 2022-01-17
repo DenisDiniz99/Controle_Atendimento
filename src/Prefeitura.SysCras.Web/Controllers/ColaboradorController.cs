@@ -27,13 +27,13 @@ namespace Prefeitura.SysCras.Web.Controllers
 
 
         //Retorna a View com Inicial de Colaboradores
-        [Route("colaboradores")]
+        [HttpGet]
         public async Task<IActionResult> Detalhes()
         {
             return View(_mapper.Map<IEnumerable<ColaboradorViewModel>>(await _repositorio.ObterTodos()));
         }
 
-        [Route("colaborador-id/{id:guid}")]
+        [HttpGet]
         public async Task<IActionResult> DetalhesPorId(Guid id)
         {
             var model = await _repositorio.ObterPorId(id);
@@ -43,7 +43,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View(model);
         }
 
-        [Route("adicionar-colaborador")]
+        [HttpPost]
         public async Task<IActionResult> Adicionar(ColaboradorViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -53,7 +53,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return RedirectToAction("Detalhes", "Colaborador");
         }
 
-        [Route("atualizar-colaborador")]
+        [HttpPost]
         public async Task<IActionResult> Atualizar(ColaboradorViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -63,7 +63,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return RedirectToAction("Detalhes", "Colaborador");
         }
 
-        [Route("excluir-colaborador")]
+        [HttpPost]
         public async Task<IActionResult> Excluir(ColaboradorViewModel model)
         {
             if (!ModelState.IsValid) return View(model);

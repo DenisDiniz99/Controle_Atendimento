@@ -23,4 +23,12 @@
     <ProjectReference Include="..\Prefeitura.SysCras.Data\Prefeitura.SysCras.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Cidadao\" />
+    <Folder Include="Views\Atendimento\" />
+    <Folder Include="Views\Assunto\" />
+    <Folder Include="Views\Cargo\" />
+    <Folder Include="Views\Setor\" />
+  </ItemGroup>
+
 </Project>
