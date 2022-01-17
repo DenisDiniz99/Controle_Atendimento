@@ -31,17 +31,26 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            //Verifica se existe um usuário com e-mail informado
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            //Verifica se existe um usuário com o nome informado
+            var user = await _userManager.FindByNameAsync(model.Nome);
             //Tenta realizar login com o usuário e senha informados
             var result = await _signInManager.PasswordSignInAsync(user, model.Senha, model.LembrarLogin, true);
 
+            //Verifica se houve falha durante o login
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Usuário ou Senha inválida!");
                 return View(model);
             }
 
+            //Verifica se o usuário esta bloqueado por tentativas incorretas de acesso
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError(string.Empty, $"Usuário {model.Nome} temporariamente bloqueado por tentativas de acesso inválidas");
+                return View(model);
+            } 
+
+            
             return RedirectToAction("Index", "Home");
         }
 
@@ -60,7 +69,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             var user = new IdentityUser
             {
-                UserName = model.Email,
+                UserName = model.Nome,
                 Email = model.Email
             };
 
@@ -81,6 +90,13 @@ namespace Prefeitura.SysCras.Web.Controllers
             if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
 
             return LocalRedirect(returnUrl);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Sair()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

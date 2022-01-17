@@ -11,6 +11,11 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [EmailAddress(ErrorMessage = "O campo {0} não é válido")]
         public string Email { get; set; }
 
+        [DisplayName("Usuário")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [StringLength(20, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres", MinimumLength = 3)]
+        public string Nome { get; set; }
+
         [DisplayName("Senha")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(6, ErrorMessage = "O campo {0} deve conter {1} caracteres", MinimumLength = 6)]

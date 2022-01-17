@@ -5,10 +5,9 @@ namespace Prefeitura.SysCras.Web.ViewModels
 {
     public class LoginViewModel
     {
-        [DisplayName("E-mail")]
+        [DisplayName("Usuário")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [EmailAddress(ErrorMessage = "O campo E-mail está em um formato inválido")]
-        public string Email { get; set; }
+        public string Nome { get; set; }
 
         [DisplayName("Senha")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]

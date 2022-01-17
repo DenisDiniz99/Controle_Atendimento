@@ -11920,3 +11920,8 @@ textarea.form-control-lg {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
 }
+
+.header-user{
+    width: 100px;
+    height: auto;
+}
