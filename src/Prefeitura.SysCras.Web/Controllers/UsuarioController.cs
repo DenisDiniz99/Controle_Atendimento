@@ -31,7 +31,10 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Senha, model.LembrarLogin, true);
+            //Verifica se existe um usuário com e-mail informado
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            //Tenta realizar login com o usuário e senha informados
+            var result = await _signInManager.PasswordSignInAsync(user, model.Senha, model.LembrarLogin, true);
 
             if (!result.Succeeded)
             {
