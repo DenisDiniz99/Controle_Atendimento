@@ -28,7 +28,6 @@
     <Folder Include="Views\Atendimento\" />
     <Folder Include="Views\Assunto\" />
     <Folder Include="Views\Cargo\" />
-    <Folder Include="Views\Setor\" />
   </ItemGroup>
 
 </Project>

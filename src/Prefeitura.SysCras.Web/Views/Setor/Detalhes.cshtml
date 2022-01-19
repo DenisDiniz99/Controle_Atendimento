@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SetorViewModel>
+
+@{ 
+    ViewData["Title"] = "Setores";
+}
+
+
+<div class="container">
+    <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar" asp-controller="Setor">
+        <i class="fas fa-plus-circle"></i>Novo
+    </a>
+</div>
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-4">Setores</h1>
+        <p class="lead">Manutenção de dados dos Setores do Cras.</p>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table table-striped text-sm-left">
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th>Setor</th>
+                <th>Rua</th>
+                <th>Número</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td></td>
+                    <td>@Html.DisplayFor(modelItem => item.TituloSetor)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Endereco.Rua)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Endereco.Numero)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Endereco.Bairro)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Endereco.Cidade)</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary mr-2" asp-action="DetalhesPorId" asp-controller="Setor">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Atualizar" asp-controller="Setor">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-primary" asp-action="Excluir" asp-controller="Setor">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

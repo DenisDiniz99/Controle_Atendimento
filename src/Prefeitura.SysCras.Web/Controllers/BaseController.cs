@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Prefeitura.SysCras.Business.Contracts;
-using Prefeitura.SysCras.Business.Notifications;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
 {

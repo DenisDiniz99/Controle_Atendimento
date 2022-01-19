@@ -1,0 +1,26 @@
+﻿@model SetorViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Setores";
+}
+
+<form asp-action="Cadastrar">
+
+    <vc:summary></vc:summary>
+
+    <div class="form-group">
+        <input asp-for="TituloSetor" class="form-control form-text text-dark" placeholder="Título do setor" id="titulo" />
+        <label for="titulo" class="col-form-label"></label>
+        <span asp-validation-for="TituloSetor" class="text-danger"></span>
+    </div>
+
+    <h4>Endereço</h4>
+
+    <partial name="_Endereco" />
+
+    <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-sm btn-outline-primary" />
+        <a class="btn btn-info" asp-action="Index">Voltar</a>
+    </div>
+
+</form>
