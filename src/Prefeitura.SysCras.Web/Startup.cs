@@ -31,6 +31,8 @@ namespace Prefeitura.SysCras.Web
         {
             services.AddControllersWithViews();
 
+            services.AddRazorPages();
+
             //Contexto
             services.AddAppConfig(Configuration);
 
@@ -67,8 +69,9 @@ namespace Prefeitura.SysCras.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

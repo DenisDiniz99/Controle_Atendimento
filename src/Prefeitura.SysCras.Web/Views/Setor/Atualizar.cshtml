@@ -1,27 +1,26 @@
 ﻿@model SetorViewModel
 
 @{
-    ViewData["Title"] = "Cadastro de Setor";
+    ViewData["Title"] = "Atualização de Setor";
 }
 
 <div class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
         <div class="card-body" style="width: 800px;">
             <h5 class="card-title text-center text-secondary">
-                Cadastro de Setor
+                Atualização de Setor
             </h5>
             <hr />
             <vc:summary></vc:summary>
-            <form asp-action="Cadastrar">
+            <form asp-action="Atualizar">
                 <div class="form-group">
                     <label for="titulo" class="form-label" title="Setor"></label>
                     <input asp-for="TituloSetor" class="form-control form-text text-dark" placeholder="Título do setor" id="titulo" />
                     <span asp-validation-for="TituloSetor" class="text-danger"></span>
                 </div>
-                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Cadastrar"/>
-                <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>
+                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Atualizar" />
+                <button type="button" class="btn btn-sm btn-outline-danger btn-form" asp-action="Detalhes">Cancelar</button>
             </form>
         </div>
     </div>
 </div>
-

@@ -11925,3 +11925,7 @@ textarea.form-control-lg {
     width: 100px;
     height: auto;
 }
+
+.btn-form{
+    width: 173px;
+}

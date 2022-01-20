@@ -22,30 +22,32 @@ namespace Prefeitura.SysCras.Web.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Detalhes()
+        //Index - Setores
+        //Retorna a View com os dados dos Setores cadastrados
+        public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<SetorViewModel>>(await _repositorio.ObterTodos()));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> DetalhesPorId(Guid id)
+
+        //Retorna a View com os dados do Setor selecionado pelo Id
+        public async Task<IActionResult> Detalhes(Guid id)
         {
-            return View(_mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id)));
+            var setor = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+
+            if (setor == null) return NotFound();
+
+            return View(setor);
         }
 
-        [HttpGet]
+
+        //Retorna a View de Cadastro de Setor
         public IActionResult Cadastrar()
         {
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Atualizar()
-        {
-            return View();
-        }
-
+        //Cadastro de Setor
         [HttpPost]
         public async Task<IActionResult> Cadastrar(SetorViewModel model)
         {
@@ -53,15 +55,35 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             await _servico.Adicionar(_mapper.Map<Setor>(model));
 
-            if (!OperacaoValida()) return View(model);
+            if (!OperacaoValida())
+            {
+                var notificacoes = _notificador.ObterNotificacoes();
+                foreach (var item in notificacoes)
+                {
+                    AdicionarErros(item.Mensagem);
+                }
+                return View(model);
+            }
 
-            return RedirectToAction("Detalhes");
+            return RedirectToAction("Index");
         }
 
+
+        //Retorna a View de Atualização de Setor com os dados do setor selecionado pelo Id
+        public async Task<IActionResult> Atualizar(Guid id)
+        {
+            var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+
+            if (model == null) return NotFound();
+
+            return View(model);
+        }
+
+        //Atualização de Setor
         [HttpPost]
         public async Task<IActionResult> Atualizar(Guid id, SetorViewModel model)
         {
-            if (id != model.Id) return NotFound();
+            if (id != model.Id) return BadRequest();
 
             if (!ModelState.IsValid) return View(model);
 
@@ -69,11 +91,23 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!OperacaoValida()) return View(model);
 
-            return RedirectToAction("Detalhes");
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
+
+        //Retorna a View de confirmação de exclusão do Setor selecionado pelo Id
         public async Task<IActionResult> Excluir(Guid id)
+        {
+            var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+
+            if (model == null) return NotFound();
+
+            return View(model);
+        }
+
+        //Exclusão de Setor
+        [HttpPost, ActionName("excluir")]
+        public async Task<IActionResult> ConfirmarExcluao(Guid id)
         {
             var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
 
@@ -83,7 +117,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!OperacaoValida()) return View(model);
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

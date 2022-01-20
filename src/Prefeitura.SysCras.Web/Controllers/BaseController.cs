@@ -5,7 +5,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 {
     public abstract class BaseController : Controller
     {
-        private readonly INotificador _notificador;
+        protected readonly INotificador _notificador;
 
         public BaseController(INotificador notificador)
         {
@@ -14,7 +14,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         protected bool OperacaoValida()
         {
-            return _notificador.TemNotificacao();
+            return !_notificador.TemNotificacao();
         }
 
         protected void AdicionarErros(string mensagem)

@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Cidadao\" />
     <Folder Include="Views\Atendimento\" />
     <Folder Include="Views\Assunto\" />
     <Folder Include="Views\Cargo\" />
