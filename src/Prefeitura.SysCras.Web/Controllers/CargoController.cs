@@ -47,7 +47,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View();
         }
 
-        //Cadastro de Setor
+        //Cadastro de Cargo
         [HttpPost]
         public async Task<IActionResult> Cadastrar(SetorViewModel model, string returnUrl = null)
         {

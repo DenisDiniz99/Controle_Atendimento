@@ -26,51 +26,121 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        //Retorna a View com Inicial de Colaboradores
-        [HttpGet]
-        public async Task<IActionResult> Detalhes()
+        //Index - Colaborador
+        //Retorna a View com os dados dos Colaboradores cadastrados
+        public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ColaboradorViewModel>>(await _repositorio.ObterTodos()));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> DetalhesPorId(Guid id)
+        //Retorna a View com os dados do Colaborador selecionado pelo Id
+        public async Task<IActionResult> Detalhes(Guid id)
         {
-            var model = await _repositorio.ObterPorId(id);
+            var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
 
             return View(model);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Adicionar(ColaboradorViewModel model)
+
+        //Retorna a View de Cadastro de Colaborador
+        public IActionResult Cadastrar()
         {
+            return View();
+        }
+
+
+        //Cadastro de Colaborador
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(ColaboradorViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+
             if (!ModelState.IsValid) return View(model);
 
             await _servico.Adicionar(_mapper.Map<Colaborador>(model));
 
-            return RedirectToAction("Detalhes", "Colaborador");
+            if (!OperacaoValida())
+            {
+                var notificacoes = _notificador.ObterNotificacoes();
+                foreach(var item in notificacoes)
+                {
+                    AdicionarErros(item.Mensagem);
+                }
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Atualizar(ColaboradorViewModel model)
+
+        //Retorna a View de Atualização de Colaborador com os dados do colaborador selecionado pelo Id
+        public async Task<IActionResult> Atualizar(Guid id)
         {
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
+
+            return View(model);
+        }
+
+
+        //Atualização do Colaborador
+        [HttpPost]
+        public async Task<IActionResult> Atualizar(Guid id, ColaboradorViewModel model)
+        {
+            if (id != model.Id) return BadRequest();
+
             if (!ModelState.IsValid) return View(model);
 
             await _servico.Atualizar(_mapper.Map<Colaborador>(model));
 
-            return RedirectToAction("Detalhes", "Colaborador");
+            if (!OperacaoValida())
+            {
+                var notificacoes = _notificador.ObterNotificacoes();
+                foreach(var item in notificacoes)
+                {
+                    AdicionarErros(item.Mensagem);
+                }
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Excluir(ColaboradorViewModel model)
+
+        //Retorna a View de confirmação de exclusão do Colaborador selecionado pelo Id
+        public async Task<IActionResult> Excluir(Guid id)
         {
-            if (!ModelState.IsValid) return View(model);
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
+
+            return View(model);
+        }
+
+
+        //Exclui o Colaborador selecionado
+        [HttpPost, ActionName("excluir")]
+        public async Task<IActionResult> ConfirmarExclusao(Guid id)
+        {
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
 
             await _servico.Excluir(_mapper.Map<Colaborador>(model));
 
-            return RedirectToAction("Detalhes", "Colaborador");
+            if (!OperacaoValida()) return BadRequest();
+
+            return RedirectToAction("Index");
+        }
+
+
+        //Método privado para pesquisar dados pelo Id
+        private async Task<ColaboradorViewModel> ObterPorId(Guid id)
+        {
+            return _mapper.Map<ColaboradorViewModel>(await _repositorio.ObterPorId(id));
         }
     }
 }
