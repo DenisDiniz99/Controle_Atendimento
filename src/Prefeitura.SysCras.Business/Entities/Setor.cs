@@ -1,5 +1,4 @@
-﻿using Prefeitura.SysCras.Business.ValueObjects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Prefeitura.SysCras.Business.Entities
 {

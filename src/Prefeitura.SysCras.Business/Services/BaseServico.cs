@@ -18,7 +18,7 @@ namespace Prefeitura.SysCras.Business.Services
         //Recebe uma mensagem de erro e adiciona as notificações
         public void Notificar(string mensagem)
         {
-            _notificador.AdicionaNotificacao(new Notificacao(mensagem));
+            _notificador.AdicionarNotificacao(new Notificacao(mensagem));
         }
 
         //Recebe uma ValidationResult, verifica a existencia de erros

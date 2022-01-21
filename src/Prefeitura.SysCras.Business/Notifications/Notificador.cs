@@ -16,7 +16,7 @@ namespace Prefeitura.SysCras.Business.Notifications
         }
 
         //Adiciona uma Notificação à lista de notificações
-        public void AdicionaNotificacao(Notificacao notificacao)
+        public void AdicionarNotificacao(Notificacao notificacao)
         {
             _notificacoes.Add(notificacao);
         }

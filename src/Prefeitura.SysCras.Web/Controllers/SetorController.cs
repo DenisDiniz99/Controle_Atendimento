@@ -33,7 +33,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         //Retorna a View com os dados do Setor selecionado pelo Id
         public async Task<IActionResult> Detalhes(Guid id)
         {
-            var setor = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+            var setor = await ObterPorId(id);
 
             if (setor == null) return NotFound();
 
@@ -72,7 +72,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         //Retorna a View de Atualização de Setor com os dados do setor selecionado pelo Id
         public async Task<IActionResult> Atualizar(Guid id)
         {
-            var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+            var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
 
@@ -89,7 +89,15 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             await _servico.Atualizar(_mapper.Map<Setor>(model));
 
-            if (!OperacaoValida()) return View(model);
+            if (!OperacaoValida())
+            {
+                var notificacoes = _notificador.ObterNotificacoes();
+                foreach(var item in notificacoes)
+                {
+                    AdicionarErros(item.Mensagem);
+                }
+                return View(model);
+            }
 
             return RedirectToAction("Index");
         }
@@ -98,18 +106,18 @@ namespace Prefeitura.SysCras.Web.Controllers
         //Retorna a View de confirmação de exclusão do Setor selecionado pelo Id
         public async Task<IActionResult> Excluir(Guid id)
         {
-            var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+            var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
 
             return View(model);
         }
 
-        //Exclusão de Setor
+        //Exclui o Setor selecionado
         [HttpPost, ActionName("excluir")]
         public async Task<IActionResult> ConfirmarExcluao(Guid id)
         {
-            var model = _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
+            var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
 
@@ -118,6 +126,13 @@ namespace Prefeitura.SysCras.Web.Controllers
             if (!OperacaoValida()) return View(model);
 
             return RedirectToAction("Index");
+        }
+
+
+        //Método privado para pesquisar dados pelo Id
+        private async Task<SetorViewModel> ObterPorId(Guid id)
+        {
+            return _mapper.Map<SetorViewModel>(await _repositorio.ObterPorId(id));
         }
     }
 }
