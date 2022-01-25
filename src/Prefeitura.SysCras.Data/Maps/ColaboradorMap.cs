@@ -16,6 +16,8 @@ namespace Prefeitura.SysCras.Data.Maps
                 .IsRequired();
             builder.Property(c => c.DataCad)
                 .IsRequired();
+            builder.Property(c => c.Situacao)
+                .IsRequired();
             builder.HasOne(c => c.Cargo)
                 .WithMany(x => x.Colaboradores);
         }

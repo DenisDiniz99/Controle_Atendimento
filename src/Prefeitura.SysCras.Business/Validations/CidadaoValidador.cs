@@ -64,6 +64,11 @@ namespace Prefeitura.SysCras.Business.Validations
                 .NotEmpty()
                 .WithMessage("O campo Data de Nascimento não pode ser vazio.");
 
+            //Validação do campo E-mail
+            RuleFor(cidadao => cidadao.Email)
+                .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
+                .WithMessage("E-mail em formato incorreto.");
+
             //Validação do campo Endereco
             RuleFor(cidadao => cidadao.Endereco)
                 .SetValidator(new EnderecoValidador());

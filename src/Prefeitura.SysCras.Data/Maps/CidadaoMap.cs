@@ -33,6 +33,8 @@ namespace Prefeitura.SysCras.Data.Maps
                 .IsRequired();
             builder.Property(c => c.DataCad)
                 .IsRequired();
+            builder.Property(c => c.Situacao)
+                .IsRequired();
             builder.OwnsOne(c => c.Endereco, endereco =>
             {
                 endereco.Property(e => e.Rua).IsRequired();

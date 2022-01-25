@@ -10,7 +10,7 @@ namespace Prefeitura.SysCras.Business.Entities
         public DateTime DataCad { get; set; }
         public Guid CargoId { get; set; }
         public Cargo Cargo { get; set; }
-        public bool Status { get; set; }
+        public bool Situacao { get; set; }
 
         public IEnumerable<Atendimento> Atendimentos { get; set; }
     }

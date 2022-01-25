@@ -5,8 +5,10 @@ namespace Prefeitura.SysCras.Business.Entities
 {
     public class Atendimento : Entidade
     {
-        public DateTime DataAtend { get; set; }
-        public DateTime HoraAtend { get; set; }
+        public DateTime DataAtendimento { get; set; }
+        public DateTime HoraAtendimento { get; set; }
+        public DateTime HoraAtualizacao { get; set; }
+        public DateTime DataAtualizacao { get; set; }
         public TipoAtendimento TipoAtendimento { get; set; }
         public string Descricao { get; set; }
         public Protocolo Protocolo { get; set; }
@@ -26,15 +28,14 @@ namespace Prefeitura.SysCras.Business.Entities
         Piscicologa,
         Assistencia,
         Direcao,
-        Avaliacao
+        Avaliacao,
+        Outros
     }
 
     public enum StatusAtendimento
     {
         Aberto,
         Cancelado,
-        Finalizado,
-        Parado,
-        Analise 
+        Finalizado
     }
 }

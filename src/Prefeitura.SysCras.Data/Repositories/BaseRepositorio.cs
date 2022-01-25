@@ -10,8 +10,8 @@ namespace Prefeitura.SysCras.Data.Repositories
 {
     public abstract class BaseRepositorio<T> : IRepositorio<T> where T : Entidade
     {
-        private readonly SysContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly SysContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseRepositorio(SysContext context)
         {
