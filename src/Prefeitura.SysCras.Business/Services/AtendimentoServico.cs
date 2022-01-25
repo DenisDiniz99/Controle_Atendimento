@@ -1,6 +1,7 @@
 ﻿using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Business.Validations;
+using System;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Business.Services
@@ -24,20 +25,10 @@ namespace Prefeitura.SysCras.Business.Services
             await _atendimentoRepositorio.Adicionar(atendimento);
         }
 
-        //Método de serviço para atualizar um atendimento
-        public async Task Atualizar(Atendimento atendimento)
+        //Método de serviço para atualizar o status do atendimento
+        public async Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
         {
-            //Executa o método de validação passando um novo Validador e uma Entidade
-            //Se for encontrado erros na validação, retorna os mesmos
-            //Senão, chama o repositório e atualiza um atendimento
-            if (!ExecutaValidacao(new AtendimentoValidador(), atendimento)) return;
-            await _atendimentoRepositorio.Atualizar(atendimento);
-        }
-
-        //Método de serviço para excluir um atendimento
-        public async Task Excluir(Atendimento atendimento)
-        {
-            await _atendimentoRepositorio.Excluir(atendimento);
+            await _atendimentoRepositorio.AtualizarStatus(id, statusAtendimento);
         }
 
         public void Dispose()

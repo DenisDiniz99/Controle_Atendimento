@@ -8,5 +8,6 @@ namespace Prefeitura.SysCras.Business.Contracts
     public interface IAtendimentoRepositorio : IRepositorio<Atendimento>
     {
         Task<IEnumerable<Atendimento>> ObterTodosPorColaborador(Guid colaboradorId);
+        Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento);
     }
 }

@@ -5,7 +5,6 @@ using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
@@ -68,6 +67,35 @@ namespace Prefeitura.SysCras.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> AtualizarStatus(Guid id)
+        {
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
+        {
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
+
+            await _servico.AtualizarStatus(id, statusAtendimento);
+
+            if (!OperacaoValida())
+            {
+                var notificacoes = _notificador.ObterNotificacoes();
+                foreach(var item in notificacoes)
+                {
+                    AdicionarErros(item.Mensagem);
+                }
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
+        }
 
         //Método privado para pesquisar dados pelo Id
         private async Task<AtendimentoViewModel> ObterPorId(Guid id)

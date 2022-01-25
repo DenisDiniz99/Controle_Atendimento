@@ -7,7 +7,6 @@ namespace Prefeitura.SysCras.Business.Contracts
     public interface IAtendimentoServico : IDisposable
     {
         Task Adicionar(Atendimento atendimento);
-        Task Atualizar(Atendimento atendimento);
-        Task Excluir(Atendimento atendimento);
+        Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento);
     }
 }
