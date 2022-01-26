@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.ViewModels;
@@ -12,12 +13,18 @@ namespace Prefeitura.SysCras.Web.Controllers
     public class CargoController : BaseController
     {
         private readonly ICargoRepositorio _repositorio;
+        private readonly ISetorRepositorio _setorRepositorio;
         private readonly ICargoServico _servico;
         private readonly IMapper _mapper;
 
-        public CargoController(ICargoRepositorio repositorio, ICargoServico servico, IMapper mapper, INotificador notificado) : base(notificado)
+        public CargoController(ICargoRepositorio repositorio, 
+                                ISetorRepositorio setorRepositorio,
+                                ICargoServico servico, 
+                                IMapper mapper, 
+                                INotificador notificado) : base(notificado)
         {
             _repositorio = repositorio;
+            _setorRepositorio = setorRepositorio;
             _servico = servico;
             _mapper = mapper;
         }
@@ -42,14 +49,16 @@ namespace Prefeitura.SysCras.Web.Controllers
 
 
         //Retorna a View de Cadastro de Cargo
-        public IActionResult Cadastrar()
+        public async Task<IActionResult> Cadastrar()
         {
+            var setores = _mapper.Map<IEnumerable<SetorViewModel>>(await _setorRepositorio.ObterTodos());
+            ViewBag.Setores = new SelectList(setores, "Id", "TituloSetor");
             return View();
         }
 
         //Cadastro de Cargo
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(SetorViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Cadastrar(CargoViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
 
@@ -78,12 +87,15 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (model == null) return NotFound();
 
+            var setores = _mapper.Map<IEnumerable<SetorViewModel>>(await _setorRepositorio.ObterTodos());
+            ViewBag.Setores = new SelectList(setores, "Id", "TituloSetor");
+
             return View(model);
         }
 
         //Atualização de Cargo
         [HttpPost]
-        public async Task<IActionResult> Atualizar(Guid id, SetorViewModel model)
+        public async Task<IActionResult> Atualizar(Guid id, CargoViewModel model)
         {
             if (id != model.Id) return BadRequest();
 

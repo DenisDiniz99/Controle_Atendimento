@@ -1,37 +1,33 @@
-﻿@model IEnumerable<ColaboradorViewModel>
+﻿@model ColaboradorViewModel
+
+@{ 
+    ViewData["Title"] = "Detalhes do Colaborador";
+}
 
 <div class="container">
-    <table class="table table-hover">
+    <h5 class="text-center text-secondary">Colaborador(a)</h5>
+    <table class="table table-striped text-sm-left">
         <thead>
             <tr>
-                <th>Colaborador</th>
+                <th>Código</th>
+                <th>Colaborador(a)</th>
                 <th>Matrícula</th>
+                <th>Data Cadastro</th>
+                <th>Situação</th>
                 <th>Cargo</th>
-                <th>Ativo?</th>
                 <th>Quantidade de Atendimentos</th>
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Matricula)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CargoId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Atendimentos.Count())
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Nome</td>
+                <td>@Model.Matricula</td>
+                <td>@Model.DataCad</td>
+                <td>@Model.Situacao</td>
+                <td>@Model.Cargo</td>
+                <td>@Model.Atendimentos.Count()</td>
+            </tr>
         </tbody>
     </table>
 </div>

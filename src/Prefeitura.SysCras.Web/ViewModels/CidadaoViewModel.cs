@@ -15,6 +15,9 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
         public string Nome { get; set; }
 
+        [DisplayName("NIS")]
+        public string Nis { get; set; }
+
         [DisplayName("CPF")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [StringLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres", MinimumLength = 11)]
@@ -44,6 +47,13 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [ScaffoldColumn(false)]
         public DateTime DataCad { get; set; }
+
+        [DisplayName("Situação")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        public bool Situacao { get; set; }
+
+        [DisplayName("E-mail")]
+        public string Email { get; set; }
 
         public EnderecoViewModel Endereco { get; set; }
 

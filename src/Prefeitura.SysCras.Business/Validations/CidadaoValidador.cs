@@ -52,8 +52,8 @@ namespace Prefeitura.SysCras.Business.Validations
 
             //Validação do campo Sexo
             RuleFor(cidadao => cidadao.Sexo)
-                .Length(1)
-                .WithMessage("O campo Sexo deve ter 1 caracter: M ou F.");
+                .NotEmpty()
+                .WithMessage("O campo Sexo não pode ser vazio");
 
             //Validação do campo DataNasc
             RuleFor(cidadao => cidadao.DataNasc)

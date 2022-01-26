@@ -43,6 +43,16 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View(model);
         }
 
+        //Retorna a View de Perfil do Colaborador
+        public async Task<IActionResult> Perfil(Guid id)
+        {
+            var model = await ObterPorId(id);
+
+            if (model == null) return NotFound();
+
+            return View();
+        }
+
 
         //Retorna a View de Cadastro de Colaborador
         public IActionResult Cadastrar()

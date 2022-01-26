@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ColaboradorViewModel>
+
+<div class="container">
+    <table class="table table-light text-sm-left">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Colaborador(a)</th>
+                <th>Situação</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.ToList())
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Situacao</td>
+                    <td>
+                        <div class="container justify-content-around">
+                            <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id">
+                                <span class="fas fa-search"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

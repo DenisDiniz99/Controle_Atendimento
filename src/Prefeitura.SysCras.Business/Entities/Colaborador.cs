@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prefeitura.SysCras.Business.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace Prefeitura.SysCras.Business.Entities
@@ -7,6 +8,9 @@ namespace Prefeitura.SysCras.Business.Entities
     {
         public string Nome { get; set; }
         public string Matricula { get; set; }
+        public ESexo Sexo { get; set; }
+        public DateTime DataNasc { get; set; }
+        public string Pasep { get; set; }
         public DateTime DataCad { get; set; }
         public Guid CargoId { get; set; }
         public Cargo Cargo { get; set; }

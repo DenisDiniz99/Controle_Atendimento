@@ -12,12 +12,14 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [DisplayName("Cargo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e  {1} caracteres.")]
+        [StringLength(50, ErrorMessage = "O campo {0} deve conter entre {2} e  {1} caracteres.", MinimumLength = 2)]
         public string TituloCargo { get; set; }
 
         [DisplayName("Setor")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public Guid SrtorId { get; set; }
+        public Guid SetorId { get; set; }
+
+        public SetorViewModel Setor { get; set; }
 
         public IEnumerable<ColaboradorViewModel> Colaboradores { get; set; }
     }

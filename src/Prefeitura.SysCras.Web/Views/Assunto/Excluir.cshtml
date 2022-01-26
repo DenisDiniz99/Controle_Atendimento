@@ -1,0 +1,29 @@
+﻿@model AssuntoAtendimentoViewModel
+
+@{ 
+    ViewData["Title"] = "Exclusão de Assunto";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width: 800px;">
+            <h5 class="card-title text-center text-secondary">
+                Exclusão de Assunto
+            </h5>
+            <partial name="_MsgExcluirPartial" />
+            <hr />
+            <form asp-action="Excluir">
+                <div class="form-group">
+                    <label for="id" class="form-label" title="Codigo">Código</label>
+                    <input asp-for="Id" class="form-control form-text text-dark" id="titulo" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label for="titulo" class="form-label" title="Assunto">Assunto</label>
+                    <input asp-for="TituloAssunto" class="form-control form-text text-dark" id="titulo" readonly="readonly" />
+                </div>
+                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Excluir" />
+                <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

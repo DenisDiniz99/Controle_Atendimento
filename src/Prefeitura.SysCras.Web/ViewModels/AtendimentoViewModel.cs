@@ -11,14 +11,20 @@ namespace Prefeitura.SysCras.Web.ViewModels
         public Guid Id { get; set; }
 
         [DisplayName("Data Atendimento")]
-        public DateTime DataAtend { get; set; }
+        public DateTime DataAtendimento { get; set; }
 
         [DisplayName("Hora Atendimento")]
-        public DateTime HoraAtend { get; set; }
+        public DateTime HoraAtendimento { get; set; }
+
+        [DisplayName("Data Atualização")]
+        public DateTime DataAtualizacao { get; set; }
+
+        [DisplayName("Hora Atualização")]
+        public DateTime HoraAtualizacao { get; set; }
 
         [DisplayName("Tipo Atendimento")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public TipoAtendimento TipoAtendimento { get; set; }
+        public string TipoAtendimento { get; set; }
 
         [DisplayName("Descrição")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]

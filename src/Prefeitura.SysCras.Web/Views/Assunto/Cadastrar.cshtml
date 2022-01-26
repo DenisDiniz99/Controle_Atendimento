@@ -1,0 +1,26 @@
+﻿@model AssuntoAtendimentoViewModel
+
+@{ 
+    ViewData["Title"] = "Cadastro de Assunto";
+}
+
+<div  class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width:800px">
+            <h5 class="card-title text-center text-secondary">
+                Cadastro de Assunto
+            </h5>
+            <hr />
+            <vc:summary></vc:summary>
+            <form asp-action="Cadastrar">
+                <div class="form-group">
+                    <label for="Titulo" class="form-label" title="Assunto">Assunto</label>
+                    <input asp-for="TituloAssunto" class="form-control form-text text-dark" placeholder="Título do Assunto" />
+                    <span asp-validation-for="TituloAssunto" class="text-danger"></span>
+                </div>
+                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Cadastrar" />
+                <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

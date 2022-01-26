@@ -88,7 +88,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             await _signInManager.PasswordSignInAsync(user, model.Senha, true, false);
 
-            if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Dashboard", "Home");
+            if(string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Cadastrar", "Colaborador");
 
             return LocalRedirect(returnUrl);
         }

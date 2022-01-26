@@ -1,0 +1,23 @@
+﻿@model AssuntoAtendimentoViewModel
+
+@{ 
+    ViewData["Title"] = "Detalhes do Assunto";
+}
+
+<div class="container">
+    <h5 class="text-secondary text-center">Assunto</h5>
+    <table class="table table-light text-sm-left">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Assunto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.TituloAssunto</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

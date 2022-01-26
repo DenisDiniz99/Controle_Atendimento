@@ -1,28 +1,28 @@
-﻿@model IEnumerable<SetorViewModel>
+﻿@model IEnumerable<CargoViewModel>
 
 @{ 
-    ViewData["Title"] = "Setores";
+    ViewData["Title"] = "Cargos";
 }
 
-
 <div class="container">
-    <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar" asp-controller="Setor">
+    <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar">
         <i class="fas fa-plus-circle"></i>Novo
     </a>
-    <table class="table table-striped text-sm-left">
-        <thead class="thead-dark">
+
+    <table class="table table-light text-sm-left">
+        <thead>
             <tr>
-                <th></th>
-                <th>Setor</th>
+                <th>Código</th>
+                <th>Cargo</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ToList())
+            @foreach(var item in Model.ToList())
             {
                 <tr>
                     <td>@item.Id</td>
-                    <td>@item.TituloSetor</td>
+                    <td>@item.TituloCargo</td>
                     <td>
                         <div class="container justify-content-around">
                             <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id">

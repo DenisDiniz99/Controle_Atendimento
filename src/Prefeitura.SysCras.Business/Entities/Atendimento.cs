@@ -9,7 +9,7 @@ namespace Prefeitura.SysCras.Business.Entities
         public DateTime HoraAtendimento { get; set; }
         public DateTime HoraAtualizacao { get; set; }
         public DateTime DataAtualizacao { get; set; }
-        public TipoAtendimento TipoAtendimento { get; set; }
+        public ETipoAtendimento TipoAtendimento { get; set; }
         public string Descricao { get; set; }
         public Protocolo Protocolo { get; set; }
         public Guid CidadaoId { get; set; }
@@ -20,22 +20,5 @@ namespace Prefeitura.SysCras.Business.Entities
         public Colaborador Colaborador { get; set; }
         public StatusAtendimento StatusAtendimento { get; set; }
         public string Observacao { get; set; }
-    }
-
-    public enum TipoAtendimento
-    {
-        PBF,
-        Piscicologa,
-        Assistencia,
-        Direcao,
-        Avaliacao,
-        Outros
-    }
-
-    public enum StatusAtendimento
-    {
-        Aberto,
-        Cancelado,
-        Finalizado
     }
 }

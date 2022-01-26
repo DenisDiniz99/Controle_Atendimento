@@ -1,0 +1,33 @@
+﻿@model CargoViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Cargo";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width: 800px;">
+            <h5 class="card-title text-center text-secondary">
+                Cadastro de Cargo
+            </h5>
+            <hr />
+            <vc:summary></vc:summary>
+            <form asp-action="Cadastrar">
+                <div class="form-group">
+                    <label for="titulo" class="form-label" title="Cargo">Cargo</label>
+                    <input asp-for="TituloCargo" class="form-control form-text text-dark" placeholder="Título do cargo" id="titulo" />
+                    <span asp-validation-for="TituloCargo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="titulo" class="form-label" title="Setor">Setor</label>
+                    <select class="form-select" aria-label="SetorId" asp-for="SetorId" asp-items=ViewBag.Setores>
+                        <option selected>Escolha um Setor</option>
+                    </select>
+                    <span asp-validation-for="SetorId" class="text-danger"></span>
+                </div>
+                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Cadastrar" />
+                <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

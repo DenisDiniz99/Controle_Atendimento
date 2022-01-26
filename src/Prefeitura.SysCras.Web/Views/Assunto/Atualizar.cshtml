@@ -1,22 +1,22 @@
-﻿@model SetorViewModel
+﻿@model AssuntoAtendimentoViewModel
 
-@{
-    ViewData["Title"] = "Atualização de Setor";
+@{ 
+    ViewData["Title"] = "Atualização de Assunto";
 }
 
 <div class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
         <div class="card-body" style="width: 800px;">
             <h5 class="card-title text-center text-secondary">
-                Atualização de Setor
+                Atualização de Assunto
             </h5>
             <hr />
             <vc:summary></vc:summary>
             <form asp-action="Atualizar">
                 <div class="form-group">
-                    <label for="titulo" class="form-label" title="Setor">Setor</label>
-                    <input asp-for="TituloSetor" class="form-control form-text text-dark" placeholder="Título do setor" id="titulo" />
-                    <span asp-validation-for="TituloSetor" class="text-danger"></span>
+                    <label for="titulo" class="form-label" title="Assunto">Assunto</label>
+                    <input asp-for="TituloAssunto" class="form-control form-text text-dark" placeholder="Título do assunto" id="titulo" />
+                    <span asp-validation-for="TituloAssunto" class="text-danger"></span>
                 </div>
                 <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Atualizar" />
                 <a type="button" class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>

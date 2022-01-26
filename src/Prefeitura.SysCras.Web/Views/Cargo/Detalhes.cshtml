@@ -1,0 +1,46 @@
+﻿@model CargoViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Cargo";
+}
+
+<div class="container">
+    <h5 class="text-center text-secondary">Cargo</h5>
+    <table class="table table-striped text-sm-left">
+        <thead class="thead-dark">
+            <tr>
+                <th>Código</th>
+                <th>Setor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.TituloCargo</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <h5 class="text-center text-secondary">Colaboradores</h5>
+    <table class="table table-striped text-sm-left">
+        <thead class="thead-dark">
+            <tr>
+                <th>Código</th>
+                <th>Colaborador</th>
+                <th>Matrícula</th>
+                <th>Situação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Colaboradores.ToList())
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Matricula</td>
+                    <td>@item.Situacao</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
