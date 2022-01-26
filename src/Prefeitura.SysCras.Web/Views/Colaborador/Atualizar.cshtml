@@ -28,6 +28,22 @@
                     <span asp-validation-for="Matricula" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label for="sexo" class="form-label" title="Sexo">Sexo</label>
+                    <select class="form-select" aria-label="SetorId" asp-for="Sexo">
+                        <option selected>Escolha uma opção</option>
+                        <option>Feminino</option>
+                        <option>Masculino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dataNasc" class="form-label" title="Data de Nascimento">Data de Nascimento</label>
+                    <input asp-for="DataNasc" class="form-control form-text text-dark" />
+                </div>
+                <div class="form-group">
+                    <label for="pasep" class="form-label" title="Número do Pasep">Pasep</label>
+                    <input asp-for="Pasep" class="form-control form-text text-dark" placeholder="Número do Pasep" />
+                </div>
+                <div class="form-group">
                     <label for="cargo" class="form-label" title="Cargo">Cargo</label>
                     <select class="form-select" aria-label="CargoId" asp-for="CargoId" asp-items=ViewBag.Cargos>
                         <option selected>Escolha um Cargo</option>

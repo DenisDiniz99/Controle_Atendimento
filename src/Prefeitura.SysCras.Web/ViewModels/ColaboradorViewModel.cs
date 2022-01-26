@@ -12,7 +12,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [DisplayName("Nome")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
+        [StringLength(50, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 2)]
         public string Nome { get; set; }
 
         [DisplayName("Matrícula")]
@@ -27,15 +27,13 @@ namespace Prefeitura.SysCras.Web.ViewModels
         public DateTime DataNasc { get; set; }
 
         [DisplayName("Pasep")]
-        public string Pasep { get; set; }
+        public int Pasep { get; set; }
 
         [ScaffoldColumn(false)]
         public DateTime DataCad { get; set; }
 
         [DisplayName("Cargo")]
         public Guid CargoId { get; set; }
-
-        public CargoViewModel Cargo { get; set; }
 
         [DisplayName("Situação")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]

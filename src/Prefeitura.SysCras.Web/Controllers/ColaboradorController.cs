@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.ViewModels;
@@ -12,15 +13,18 @@ namespace Prefeitura.SysCras.Web.Controllers
     public class ColaboradorController :  BaseController
     {
         private readonly IColaboradorRepositorio _repositorio;
+        private readonly ICargoRepositorio _cargoRepositorio;
         private readonly IColaboradorServico _servico;
         private readonly IMapper _mapper;
-        
-        public ColaboradorController(INotificador notificador, 
+
+        public ColaboradorController(INotificador notificador,
                                         IColaboradorRepositorio repositorio,
+                                        ICargoRepositorio cargoRepositorio,
                                         IColaboradorServico servico,
                                         IMapper mapper) : base(notificador) 
         {
             _repositorio = repositorio;
+            _cargoRepositorio = cargoRepositorio;
             _servico = servico;
             _mapper = mapper;
         }
@@ -55,8 +59,10 @@ namespace Prefeitura.SysCras.Web.Controllers
 
 
         //Retorna a View de Cadastro de Colaborador
-        public IActionResult Cadastrar()
+        public async Task<IActionResult> Cadastrar()
         {
+            var cargos = _mapper.Map<IEnumerable<CargoViewModel>>(await _cargoRepositorio.ObterTodos());
+            ViewBag.Cargos = new SelectList(cargos, "Id", "TituloCargo");
             return View();
         }
 
@@ -68,6 +74,8 @@ namespace Prefeitura.SysCras.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
 
             if (!ModelState.IsValid) return View(model);
+
+            model.DataCad = DateTime.Now;
 
             await _servico.Adicionar(_mapper.Map<Colaborador>(model));
 
@@ -81,7 +89,7 @@ namespace Prefeitura.SysCras.Web.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Perfil");
         }
 
 

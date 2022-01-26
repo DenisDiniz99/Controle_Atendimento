@@ -14,7 +14,6 @@
                 <th>Matrícula</th>
                 <th>Data Cadastro</th>
                 <th>Situação</th>
-                <th>Cargo</th>
                 <th>Quantidade de Atendimentos</th>
             </tr>
         </thead>
@@ -24,8 +23,16 @@
                 <td>@Model.Nome</td>
                 <td>@Model.Matricula</td>
                 <td>@Model.DataCad</td>
-                <td>@Model.Situacao</td>
-                <td>@Model.Cargo</td>
+                @{
+                    if(Model.Situacao == true)
+                    {
+                        <td>Ativo</td>
+                    }
+                    else
+                    {
+                        <td>Inativo</td>
+                    }
+                }
                 <td>@Model.Atendimentos.Count()</td>
             </tr>
         </tbody>
