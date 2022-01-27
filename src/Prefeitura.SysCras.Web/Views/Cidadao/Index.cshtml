@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CidadaoViewModel>
+
+@{
+    ViewData["Title"] = "Cadastro de Cidadão";
+}
+
+<div class="container">
+    <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar">
+        <i class="fas fa-plus-circle"></i>Novo
+    </a>
+
+    <table class="table table-light text-sm-left">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cidadão</th>
+                <th>CPF</th>
+                <th>Situação</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ToList())
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Cpf</td>
+                    @{
+                        if (item.Situacao)
+                        {
+                            <td>Ativo</td>
+                        }
+                        else
+                        {
+                            <td>Inativo</td>
+                        }
+                    }
+                    <td>
+                        <div class="container justify-content-around">
+                            <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id">
+                                <span class="fas fa-search"></span>
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Atualizar" asp-route-id="@item.Id">
+                                <span class="fas fa-edit"></span>
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Excluir" asp-route-id="@item.Id">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

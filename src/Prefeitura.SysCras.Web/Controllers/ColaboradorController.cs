@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
+using Prefeitura.SysCras.Web.Extensions;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
@@ -15,17 +19,23 @@ namespace Prefeitura.SysCras.Web.Controllers
         private readonly IColaboradorRepositorio _repositorio;
         private readonly ICargoRepositorio _cargoRepositorio;
         private readonly IColaboradorServico _servico;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUser _user;
         private readonly IMapper _mapper;
 
         public ColaboradorController(INotificador notificador,
                                         IColaboradorRepositorio repositorio,
                                         ICargoRepositorio cargoRepositorio,
                                         IColaboradorServico servico,
+                                        UserManager<IdentityUser> userManager,
+                                        IUser user,
                                         IMapper mapper) : base(notificador) 
         {
             _repositorio = repositorio;
             _cargoRepositorio = cargoRepositorio;
             _servico = servico;
+            _userManager = userManager;
+            _user = user;
             _mapper = mapper;
         }
 
@@ -75,6 +85,12 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
+            //Obtem os dados do usuário, passando o nome do usuário logado
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
+
+            //Atribui ao Colaborador o mesmo Id do Usuário cadastrado
+            model.Id = Guid.Parse(user.Id);
+            //Atribui Data atual ao DataCad
             model.DataCad = DateTime.Now;
 
             await _servico.Adicionar(_mapper.Map<Colaborador>(model));

@@ -12,7 +12,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [DisplayName("Nome")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
+        [StringLength(50, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 2)]
         public string Nome { get; set; }
 
         [DisplayName("NIS")]
@@ -20,12 +20,12 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [DisplayName("CPF")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres", MinimumLength = 11)]
+        [StringLength(11, ErrorMessage = "O campo {0} deve conter {1} caracteres.", MinimumLength = 11)]
         public string Cpf { get; set; }
 
         [DisplayName("RG")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(15, ErrorMessage = "O campo {0} deve conter {1} caracteres", MinimumLength = 15)]
+        [StringLength(8, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 15)]
         public string Rg { get; set; }
 
         [DisplayName("Sexo")]

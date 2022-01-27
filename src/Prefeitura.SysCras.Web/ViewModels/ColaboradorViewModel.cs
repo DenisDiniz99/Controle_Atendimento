@@ -16,10 +16,10 @@ namespace Prefeitura.SysCras.Web.ViewModels
         public string Nome { get; set; }
 
         [DisplayName("Matrícula")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public string Matricula { get; set; }
 
         [DisplayName("Gênero")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public string Sexo { get; set; }
 
         [DisplayName("Data de Nascimento")]
@@ -27,7 +27,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
         public DateTime DataNasc { get; set; }
 
         [DisplayName("Pasep")]
-        public int Pasep { get; set; }
+        public int? Pasep { get; set; }
 
         [ScaffoldColumn(false)]
         public DateTime DataCad { get; set; }

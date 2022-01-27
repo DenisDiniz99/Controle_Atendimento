@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Web.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
@@ -10,12 +12,20 @@ namespace Prefeitura.SysCras.Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IColaboradorRepositorio _colaboradorRepositorio;
+        private readonly IMapper _mapper;
 
 
-        public UsuarioController(INotificador notificador, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager) : base(notificador)
+        public UsuarioController(INotificador notificador, 
+                                    UserManager<IdentityUser> userManager, 
+                                    SignInManager<IdentityUser> signInManager,
+                                    IColaboradorRepositorio colaboradorRepositorio,
+                                    IMapper mapper) : base(notificador)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _colaboradorRepositorio = colaboradorRepositorio;
+            _mapper = mapper;
         }
         
         [HttpGet]
@@ -36,6 +46,13 @@ namespace Prefeitura.SysCras.Web.Controllers
             var user = await _userManager.FindByNameAsync(model.Nome);
             //Tenta realizar login com o usuário e senha informados
             var result = await _signInManager.PasswordSignInAsync(user, model.Senha, model.LembrarLogin, true);
+            //Verifica se existe cadastro de colaborador com o mesmo Id do usuário logado
+            var colaborador = _mapper.Map<ColaboradorViewModel>(await _colaboradorRepositorio.ObterPorId(Guid.Parse(user.Id)));
+            //Se não existir colaborador cadastrado, redireciona para o cadastro de colaborador
+            if(colaborador == null)
+            {
+                return RedirectToAction("Cadastrar", "Colaborador");
+            }
 
             //Verifica se houve falha durante o login
             if (!result.Succeeded)

@@ -12,8 +12,8 @@ namespace Prefeitura.SysCras.Data.Maps
             builder.Property(c => c.Nome)
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(c => c.Matricula)
-                .IsRequired();
+            builder.Property(c => c.Matricula);
+            builder.Property(c => c.Pasep);
             builder.Property(c => c.DataCad)
                 .IsRequired();
             builder.Property(c => c.Situacao)

@@ -27,18 +27,17 @@ namespace Prefeitura.SysCras.Business.Validations
                 .MinimumLength(2)
                 .WithMessage("O Nome do Colaborador deve ter ao menos 2 caracteres.");
 
-            //Validação do camppo Matricula
-            RuleFor(colaborador => colaborador.Matricula)
+            //Validação do campo Sexo (Gênero)
+            RuleFor(colaborador => colaborador.Sexo)
                 .NotNull()
-                .WithMessage("A Matrícula não pode ser nula.");
+                .WithMessage("O Gênero do Colaborador não pode ser vazio.");
 
-            RuleFor(colaborador => colaborador.Matricula)
-                .NotEmpty()
-                .WithMessage("A Matrícula não pode ser vazia.");
+            //Validação do campo CargoId
+            RuleFor(colaborador => colaborador.CargoId)
+                .NotNull()
+                .WithMessage("O Cargo do Colaborador precisa ser informado.");
 
-            RuleFor(colaborador => colaborador.Matricula)
-                .Length(12)
-                .WithMessage("A Matrícula deve conter 12 caracteres.");
+            
         }
     }
 }

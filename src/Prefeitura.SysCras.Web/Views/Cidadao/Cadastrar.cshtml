@@ -1,0 +1,89 @@
+﻿@model CidadaoViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Cidadão";
+}
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width: 800px;">
+            <h5 class="card-title text-center text-secondary">
+                Cadastro de Cidadão
+            </h5>
+            <hr />
+            <vc:summary></vc:summary>
+            <form asp-action="Cadastrar">
+                <div class="form-group">
+                    <label for="nome" class="form-label" title="Nome">Nome</label>
+                    <input asp-for="Nome" class="form-control form-text text-dark" placeholder="Nome do cidadão" id="nome" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nis" class="form-label" title="NIS">NIS</label>
+                    <input asp-for="Nis" class="form-control form-text text-dark" placeholder="Número do NIS" id="nis" />
+                    <span asp-validation-for="Nis" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cpf" class="form-label" title="CPF">CPF</label>
+                    <input asp-for="Cpf" class="form-control form-text text-dark" placeholder="Número do CPF" id="cpf" />
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="rg" class="form-label" title="RG">RG</label>
+                    <input asp-for="Rg" class="form-control form-text text-dark" placeholder="Número do RG" id="rg" />
+                    <span asp-validation-for="Rg" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="sexo" class="form-label" title="Sexo">Sexo</label>
+                    <select class="form-select" aria-label="Sexo" asp-for="Sexo">
+                        <option selected>Escolha uma opção</option>
+                        <option>Feminino</option>
+                        <option>Masculino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dataNasc" class="form-label" title="Data de Nascimento">Data de Nascimento</label>
+                    <input asp-for="DataNasc" class="form-control form-text text-dark" />
+                    <span asp-validation-for="DataNasc" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="telefone" class="form-label" title="Telefone">Telefone(Fixo)</label>
+                    <input asp-for="TelefoneFixo" class="form-control form-text text-dark" placeholder="Número do telefone" id="telefone" />
+                    <span asp-validation-for="TelefoneFixo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="celular" class="form-label" title="Celular">Celular</label>
+                    <input asp-for="Celular" class="form-control form-text text-dark" placeholder="Número do celular" id="celular" />
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Situacao" value="true" id="ativo" checked>
+                        <label class="form-check-label" for="ativo">
+                            Ativo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Situacao" value="false" id="inativo">
+                        <label class="form-check-label" for="inativo">
+                            Inativo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label" title="E-mail">E-mail</label>
+                    <input asp-for="Email" class="form-control form-text text-dark" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <hr />
+                <h5 class="card-title text-center text-secondary">
+                    Endereço
+                </h5>
+                <hr />
+                <partial name="_Endereco" />
+                <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Cadastrar" />
+                <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
