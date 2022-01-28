@@ -6,13 +6,23 @@
 
 
 <div class="container">
-    <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar" asp-controller="Setor">
-        <i class="fas fa-plus-circle"></i>Novo
-    </a>
+    <div class="row">
+        <h5 class="text-secondary">
+            <i class="fas fa-kaaba"></i>
+            Setores
+        </h5>
+    </div>
+    <div class="row mt-2">
+        <div class="col-4">
+            <a class="btn btn-sm btn-primary mb-2" asp-action="Cadastrar">
+                <i class="fas fa-plus-circle"></i>Novo Setor
+            </a>
+        </div>
+    </div>
     <table class="table table-striped text-sm-left">
         <thead class="thead-dark">
             <tr>
-                <th></th>
+                <th>Código</th>
                 <th>Setor</th>
                 <th></th>
             </tr>

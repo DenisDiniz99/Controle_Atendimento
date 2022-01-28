@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<ColaboradorViewModel>
 
 <div class="container">
+    <div class="row">
+        <h5 class="text-secondary">
+            <i class="fas fa-user-tie"></i>
+            Lista de Colaboradores
+        </h5>
+    </div>
     <table class="table table-light text-sm-left">
         <thead>
             <tr>
@@ -10,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Model.ToList())
+            @foreach (var item in Model.ToList())
             {
                 <tr>
                     <td>@item.Id</td>
