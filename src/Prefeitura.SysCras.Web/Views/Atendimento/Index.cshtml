@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AtendimentoViewModel>
+
+@{
+    ViewData["Title"] = "Atendimentos";
+}
+
+<div class="container">
+    <div class="row">
+        <h5 class="text-secondary">
+            <i class="fas fa-comments"></i>
+            Lista de Atendimentos
+        </h5>
+    </div>
+    <div class="row mt-2">
+        <div class="col-4">
+            <a class="btn btn-sm btn-outline-primary mb-2" asp-action="Cadastrar">
+                <i class="fas fa-plus-circle"></i>Adicionar atendimento
+            </a>
+            <a class="btn btn-sm btn-outline-success mb-2" asp-action="Perfil">
+                <i class="fas fa-user-circle"></i>Perfil
+            </a>
+        </div>
+    </div>
+    <table class="table table-light text-sm-left">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cidadão</th>
+                <th>Assunto</th>
+                <th>Colaborador</th>
+                <th>Status do Atendimento</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ToList())
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.CidadaoId</td>
+                    <td>@item.AssuntoId</td>
+                    <td>@item.ColaboradorId</td>
+                    <td>@item.StatusAtendimento</td>
+                    <td>
+                        <div class="container justify-content-around">
+                            <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id">
+                                <span class="fas fa-search"></span>
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Atualizar" asp-route-id="@item.Id">
+                                <span class="fas fa-edit"></span>
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Excluir" asp-route-id="@item.Id">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

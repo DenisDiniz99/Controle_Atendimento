@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Prefeitura.SysCras.Business.Entities;
+using Prefeitura.SysCras.Business.ValueObjects;
 using Prefeitura.SysCras.Web.ViewModels;
 
 namespace Prefeitura.SysCras.Web.AutoMapper
@@ -13,6 +14,7 @@ namespace Prefeitura.SysCras.Web.AutoMapper
             CreateMap<CargoViewModel, Cargo>().ReverseMap();
             CreateMap<CidadaoViewModel, Cidadao>().ReverseMap();
             CreateMap<ColaboradorViewModel, Colaborador>().ReverseMap();
+            CreateMap<EnderecoViewModel, Endereco>().ReverseMap();
             CreateMap<SetorViewModel, Setor>().ReverseMap();
         }
     }

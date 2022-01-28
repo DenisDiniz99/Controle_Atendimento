@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,7 +8,6 @@ using Prefeitura.SysCras.Web.Extensions;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
@@ -58,19 +56,33 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
         //Retorna a View de Perfil do Colaborador
-        public async Task<IActionResult> Perfil(Guid id)
+        public async Task<IActionResult> Perfil()
         {
-            var model = await ObterPorId(id);
+            if (!_user.Autenticado()) return NotFound();
 
-            if (model == null) return NotFound();
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
 
-            return View();
+            var colaborador = _mapper.Map<ColaboradorViewModel>(await ObterPorId(Guid.Parse(user.Id)));
+
+            if (Guid.Parse(user.Id) != colaborador.Id) return BadRequest();
+
+            return View(colaborador);
         }
 
 
         //Retorna a View de Cadastro de Colaborador
         public async Task<IActionResult> Cadastrar()
         {
+            //Verifica se existe usuário autenticado
+            if (!_user.Autenticado()) return NotFound();
+            //Se existir usuário autenticado, retorna os dados deste usuário
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
+            //Verifica se existe colaborador vinculado ao usuário autenticado
+            var colaborador = _mapper.Map<ColaboradorViewModel>(await ObterPorId(Guid.Parse(user.Id)));
+            //Se existir colaborador, não retorna a página de cadastro
+            if (colaborador != null) return BadRequest();
+            //Se não existir colaborador, mas existir usuário autenticado
+            //Libera a página de cadastro para criar um colaborador vinculado ao usuário logado
             var cargos = _mapper.Map<IEnumerable<CargoViewModel>>(await _cargoRepositorio.ObterTodos());
             ViewBag.Cargos = new SelectList(cargos, "Id", "TituloCargo");
             return View();
@@ -79,9 +91,9 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         //Cadastro de Colaborador
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(ColaboradorViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Cadastrar(ColaboradorViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            if (!_user.Autenticado()) return NotFound();
 
             if (!ModelState.IsValid) return View(model);
 
@@ -105,7 +117,7 @@ namespace Prefeitura.SysCras.Web.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Perfil");
+            return RedirectToAction("Index", "Atendimento");
         }
 
 
@@ -115,6 +127,9 @@ namespace Prefeitura.SysCras.Web.Controllers
             var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
+
+            var cargos = _mapper.Map<IEnumerable<CargoViewModel>>(await _cargoRepositorio.ObterTodos());
+            ViewBag.Cargos = new SelectList(cargos, "Id", "TituloCargo");
 
             return View(model);
         }
@@ -140,7 +155,7 @@ namespace Prefeitura.SysCras.Web.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Perfil");
         }
 
 

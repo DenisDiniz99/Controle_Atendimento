@@ -25,7 +25,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
         [DisplayName("RG")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(8, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 15)]
+        [StringLength(15, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 8)]
         public string Rg { get; set; }
 
         [DisplayName("Sexo")]

@@ -1,5 +1,76 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CidadaoViewModel
+
 @{
+    ViewData["Title"] = "Detalhes do Cidadão";
 }
+
+<div class="container">
+    <h5 class="text-center text-secondary">Cidadão</h5>
+    <table class="table table-striped text-sm-left">
+        <thead class="thead-dark">
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>NIS</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th>Sexo</th>
+                <th>Data Nasc.</th>
+                <th>Data Cad.</th>
+                <th>Telefone</th>
+                <th>Celular</th>
+                <th>Situação</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Nome</td>
+                <td>@Model.Nis</td>
+                <td>@Model.Cpf</td>
+                <td>@Model.Rg</td>
+                <td>@Model.Sexo</td>
+                <td>@Model.DataNasc</td>
+                <td>@Model.DataCad</td>
+                <td>@Model.TelefoneFixo</td>
+                <td>@Model.Celular</td>
+                @{
+                    if (Model.Situacao)
+                    {
+                        <td>Ativo</td>
+                    }
+                    else
+                    {
+                        <td>Inativo</td>
+                    }
+                }
+                <td>@Model.Email</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <h5 class="text-center text-secondary">Endereço</h5>
+    <table class="table table-striped text-sm-left">
+        <thead class="thead-dark">
+            <tr>
+                <th>CEP</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th>Bairro</th>
+                <th>Rua</th>
+                <th>Número</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Endereco.Cep</td>
+                <td>@Model.Endereco.Estado</td>
+                <td>@Model.Endereco.Cidade</td>
+                <td>@Model.Endereco.Bairro</td>
+                <td>@Model.Endereco.Rua</td>
+                <td>@Model.Endereco.Numero</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
