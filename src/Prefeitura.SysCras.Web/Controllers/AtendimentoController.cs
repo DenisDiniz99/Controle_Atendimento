@@ -41,12 +41,12 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        public IActionResult Novo()
+        public IActionResult NovoAtendiemnto()
         {
             return View();
         }
 
-        public async Task<IActionResult> Novo(AtendimentoViewModel model, string returnUrl = null)
+        public async Task<IActionResult> NovoAtendimento(AtendimentoViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
 

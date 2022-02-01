@@ -44,15 +44,15 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             //Verifica se existe um usuário com o nome informado
             var user = await _userManager.FindByNameAsync(model.Nome);
+            if(user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Usuário ou Senha inválida!");
+                return View(model);
+            }
+
             //Tenta realizar login com o usuário e senha informados
             var result = await _signInManager.PasswordSignInAsync(user, model.Senha, model.LembrarLogin, true);
             //Verifica se existe cadastro de colaborador com o mesmo Id do usuário logado
-            var colaborador = _mapper.Map<ColaboradorViewModel>(await _colaboradorRepositorio.ObterPorId(Guid.Parse(user.Id)));
-            //Se não existir colaborador cadastrado, redireciona para o cadastro de colaborador
-            if(colaborador == null)
-            {
-                return RedirectToAction("Cadastrar", "Colaborador");
-            }
 
             //Verifica se houve falha durante o login
             if (!result.Succeeded)
@@ -66,10 +66,19 @@ namespace Prefeitura.SysCras.Web.Controllers
             {
                 ModelState.AddModelError(string.Empty, $"Usuário {model.Nome} temporariamente bloqueado por tentativas de acesso inválidas");
                 return View(model);
-            } 
+            }
 
-            
-            return RedirectToAction("Dashboard", "Home");
+            var colaborador = _mapper.Map<ColaboradorViewModel>(await _colaboradorRepositorio.ObterPorId(Guid.Parse(user.Id)));
+            //Se não existir colaborador cadastrado, redireciona para o cadastro de colaborador
+            if (colaborador == null)
+            {
+                return RedirectToAction("Perfil", "Colaborador");
+            }
+
+
+
+
+            return RedirectToAction("Perfil", "Colaborador");
         }
 
         [HttpGet]
@@ -116,5 +125,8 @@ namespace Prefeitura.SysCras.Web.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        
+        
     }
 }

@@ -180,11 +180,36 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             await _servico.Excluir(_mapper.Map<Colaborador>(model));
 
-            if (!OperacaoValida()) return BadRequest();
+            if (OperacaoValida())
+            {
+                var result = await (ExcluirPerfil(model.Id));
+                if (!result)
+                {
+                    await _servico.Adicionar(_mapper.Map<Colaborador>(model));
 
-            return RedirectToAction("Index");
+                    return BadRequest();
+                }
+
+                return RedirectToAction("Sair", "Usuario");
+            }
+
+            return BadRequest();
         }
 
+
+
+        //Método privado para excluir conta do usuário
+        private async Task<bool> ExcluirPerfil(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+                return true;
+
+            return false;
+        }
 
         //Método privado para pesquisar dados pelo Id
         private async Task<ColaboradorViewModel> ObterPorId(Guid id)
