@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
+using Prefeitura.SysCras.Web.Extensions;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,15 +15,24 @@ namespace Prefeitura.SysCras.Web.Controllers
     {
         private readonly IAtendimentoRepositorio _repositorio;
         private readonly IAtendimentoServico _servico;
+        private readonly IColaboradorRepositorio _colaboradorRepositorio;
+        private readonly IUser _user;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
 
         public AtendimentoController(IAtendimentoRepositorio repositorio,
                                         IAtendimentoServico servico,
+                                        IColaboradorRepositorio colaboradorRepositorio,
+                                        IUser user,
+                                        UserManager<IdentityUser> userManager,
                                         IMapper mapper,
                                         INotificador notificador) : base(notificador)
         {
             _repositorio = repositorio;
+            _colaboradorRepositorio = colaboradorRepositorio;
             _servico = servico;
+            _user = user;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
@@ -41,11 +52,31 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        public IActionResult NovoAtendiemnto()
+        public async Task<IActionResult> NovoAtendimento()
         {
-            return View();
+            if (string.IsNullOrEmpty(_user.NomeUsuario))
+                return NotFound();
+
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
+            
+            var colaborador = _mapper.Map<ColaboradorViewModel>(await _colaboradorRepositorio.ObterPorId(Guid.Parse(user.Id)));
+            if(colaborador == null)
+            {
+                return NotFound();
+            }
+
+            var model = new AtendimentoViewModel
+            {
+                ColaboradorId = colaborador.Id,
+                DataHoraAtendimento = DateTime.UtcNow.Date,
+                DataHoraAtualizacao = DateTime.UtcNow.Date,
+                StatusAtendimento = StatusAtendimento.Aberto,
+            };
+
+            return View(model);
         }
 
+        [HttpPost]
         public async Task<IActionResult> NovoAtendimento(AtendimentoViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -67,6 +98,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return RedirectToAction("Index");
         }
 
+
         public async Task<IActionResult> AtualizarStatus(Guid id)
         {
             var model = await ObterPorId(id);
@@ -76,6 +108,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public async Task<IActionResult> AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
         {
             var model = await ObterPorId(id);

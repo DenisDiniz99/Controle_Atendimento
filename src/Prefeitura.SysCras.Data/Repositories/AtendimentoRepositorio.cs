@@ -26,7 +26,7 @@ namespace Prefeitura.SysCras.Data.Repositories
 
         public async Task<IEnumerable<Atendimento>> ObterTodosPorColaborador(Guid colaboradorId)
         {
-            var result = await _dbSet.Where(a => a.ColaboradorId == colaboradorId).OrderBy(a => a.DataAtualizacao).ToListAsync();
+            var result = await _dbSet.Where(a => a.ColaboradorId == colaboradorId).OrderBy(a => a.DataHoraAtualizacao).ToListAsync();
             return result;
         }
 

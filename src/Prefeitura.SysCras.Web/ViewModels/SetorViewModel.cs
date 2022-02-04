@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Prefeitura.SysCras.Web.ViewModels
-{
+namespace Prefeitura.SysCras.Web.ViewModels 
+{ 
     public class SetorViewModel
     {
         [Key]

@@ -72,7 +72,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             //Se não existir colaborador cadastrado, redireciona para o cadastro de colaborador
             if (colaborador == null)
             {
-                return RedirectToAction("Perfil", "Colaborador");
+                return RedirectToAction("Cadastrar", "Colaborador");
             }
 
 
