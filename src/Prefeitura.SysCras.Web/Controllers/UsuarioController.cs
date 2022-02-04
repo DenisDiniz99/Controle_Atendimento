@@ -12,19 +12,16 @@ namespace Prefeitura.SysCras.Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IColaboradorRepositorio _colaboradorRepositorio;
         private readonly IMapper _mapper;
 
 
         public UsuarioController(INotificador notificador, 
                                     UserManager<IdentityUser> userManager, 
                                     SignInManager<IdentityUser> signInManager,
-                                    IColaboradorRepositorio colaboradorRepositorio,
                                     IMapper mapper) : base(notificador)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _colaboradorRepositorio = colaboradorRepositorio;
             _mapper = mapper;
         }
         
@@ -52,33 +49,25 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             //Tenta realizar login com o usuário e senha informados
             var result = await _signInManager.PasswordSignInAsync(user, model.Senha, model.LembrarLogin, true);
-            //Verifica se existe cadastro de colaborador com o mesmo Id do usuário logado
+           
 
             //Verifica se houve falha durante o login
             if (!result.Succeeded)
             {
+                //Verifica se o usuário esta bloqueado por tentativas incorretas de acesso
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError(string.Empty, $"Usuário {model.Nome} temporariamente bloqueado por tentativas de acesso inválidas");
+                    return View(model);
+                }
+
                 ModelState.AddModelError(string.Empty, "Usuário ou Senha inválida!");
                 return View(model);
             }
 
-            //Verifica se o usuário esta bloqueado por tentativas incorretas de acesso
-            if (result.IsLockedOut)
-            {
-                ModelState.AddModelError(string.Empty, $"Usuário {model.Nome} temporariamente bloqueado por tentativas de acesso inválidas");
-                return View(model);
-            }
+            if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Atendimentos");
 
-            var colaborador = _mapper.Map<ColaboradorViewModel>(await _colaboradorRepositorio.ObterPorId(Guid.Parse(user.Id)));
-            //Se não existir colaborador cadastrado, redireciona para o cadastro de colaborador
-            if (colaborador == null)
-            {
-                return RedirectToAction("Cadastrar", "Colaborador");
-            }
-
-
-
-
-            return RedirectToAction("Perfil", "Colaborador");
+            return LocalRedirect(returnUrl);
         }
 
         [HttpGet]

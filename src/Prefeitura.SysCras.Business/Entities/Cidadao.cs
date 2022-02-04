@@ -12,7 +12,7 @@ namespace Prefeitura.SysCras.Business.Entities
         public string Nis { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        public string TituloEleitor { get; set; }
+        public int TituloEleitor { get; set; }
         public string Nacionalidade { get; set; }
         public string Naturalidade { get; set; }
         public EEstadoCivil EstadoCivil { get; set; }

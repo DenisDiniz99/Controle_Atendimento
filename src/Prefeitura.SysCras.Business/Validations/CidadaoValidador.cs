@@ -55,11 +55,6 @@ namespace Prefeitura.SysCras.Business.Validations
                 .MaximumLength(11)
                 .WithMessage("O campo RG deve ter até 11 caracteres.");
 
-            //Validação do campo TituloEleitor
-            RuleFor(cidadao => cidadao.TituloEleitor)
-                .MaximumLength(12)
-                .WithMessage("O campo Título de Eleitor deve ter até 12 caracteres.");
-
             //Validação do campo Genero
             RuleFor(cidadao => cidadao.Genero)
                 .NotEmpty()

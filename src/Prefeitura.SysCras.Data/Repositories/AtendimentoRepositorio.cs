@@ -3,8 +3,6 @@ using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Data.Context;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Data.Repositories
@@ -23,13 +21,6 @@ namespace Prefeitura.SysCras.Data.Repositories
             _context.Atendimentos.Attach(atendimento).Property(p => p.StatusAtendimento).IsModified = true;
             await SaveChange();
         }
-
-        public async Task<IEnumerable<Atendimento>> ObterTodosPorColaborador(Guid colaboradorId)
-        {
-            var result = await _dbSet.Where(a => a.ColaboradorId == colaboradorId).OrderBy(a => a.DataHoraAtualizacao).ToListAsync();
-            return result;
-        }
-
 
     }
 }

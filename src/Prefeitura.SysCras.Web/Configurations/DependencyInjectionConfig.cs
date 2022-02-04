@@ -20,18 +20,14 @@ namespace Prefeitura.SysCras.Web.Configurations
             //Repositórios
             services.AddScoped<IAssuntoAtendimentoRepositorio, AssuntoAtendimentoRepositorio>();
             services.AddScoped<IAtendimentoRepositorio, AtendimentoRepositorio>();
-            services.AddScoped<ICargoRepositorio, CargoRepositorio>();
             services.AddScoped<ICidadaoRepositorio, CidadaoRepositorio>();
-            services.AddScoped<IColaboradorRepositorio, ColaboradorRepositorio>();
-            services.AddScoped<ISetorRepositorio, SetorRepositorio>();
+            services.AddScoped<ITipoAtendimentoRepositorio, TipoAtendimentoRepositorio>();
 
             //Serviços
             services.AddScoped<IAssuntoAtendimentoServico, AssuntoAtendimentoServico>();
             services.AddScoped<IAtendimentoServico, AtendimentoServico>();
-            services.AddScoped<ICargoServico, CargoServico>();
             services.AddScoped<ICidadaoServico, CidadaoServico>();
-            services.AddScoped<IColaboradorServico, ColaboradorServico>();
-            services.AddScoped<ISetorServico, SetorServico>();
+            services.AddScoped<ITipoAtendimentoServico, TipoAtendimentoServico>();
 
             //Notificador
             services.AddScoped<INotificador, Notificador>();

@@ -4,11 +4,8 @@ using Prefeitura.SysCras.Data.Context;
 
 namespace Prefeitura.SysCras.Data.Repositories
 {
-    public class CargoRepositorio : BaseRepositorio<Cargo>, ICargoRepositorio
+    public class TipoAtendimentoRepositorio : BaseRepositorio<TipoAtendimento>, ITipoAtendimentoRepositorio
     {
-        public CargoRepositorio(SysContext context) : base(context)
-        {
-
-        }
+        public TipoAtendimentoRepositorio(SysContext context) : base(context) { }
     }
 }
