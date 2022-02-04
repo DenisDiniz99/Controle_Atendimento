@@ -12,6 +12,7 @@ namespace Prefeitura.SysCras.Business.Entities
         public StatusAtendimento StatusAtendimento { get; set; }
         public string Observacao { get; set; }
 
+        public Guid UsuarioId { get; set; }
         public Guid TipoAtendimentoId { get; set; }
         public TipoAtendimento TipoAtendimento { get; set; }
         public Guid CidadaoId { get; set; }

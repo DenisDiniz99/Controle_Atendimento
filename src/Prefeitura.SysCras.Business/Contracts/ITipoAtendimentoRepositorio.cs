@@ -2,7 +2,7 @@
 
 namespace Prefeitura.SysCras.Business.Contracts
 {
-    public interface ICidadaoRepositorio : IRepositorio<Cidadao> 
+    public interface ITipoAtendimentoRepositorio : IRepositorio<TipoAtendimento>
     {
     }
 }

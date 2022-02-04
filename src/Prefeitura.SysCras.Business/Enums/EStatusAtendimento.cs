@@ -2,8 +2,8 @@
 {
     public enum StatusAtendimento
     {
-        Aberto,
-        Cancelado,
-        Finalizado
+        Aberto = 1,
+        Cancelado = 2,
+        Finalizado = 3
     }
 }

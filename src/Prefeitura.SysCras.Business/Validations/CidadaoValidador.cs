@@ -24,6 +24,11 @@ namespace Prefeitura.SysCras.Business.Validations
                 .MinimumLength(2)
                 .WithMessage("O Nome do Cidadão deve ter ao menos 2 caracteres");
 
+            //Validação do campo NomeSocial
+            RuleFor(cidadao => cidadao.NomeSocial)
+                .MaximumLength(50)
+                .WithMessage("O Nome do Nome Social deve ter até 50 caracteres");
+
             //Validação do campo Cpf
             RuleFor(cidadao => cidadao.Cpf)
                 .NotNull()
@@ -50,11 +55,27 @@ namespace Prefeitura.SysCras.Business.Validations
                 .MaximumLength(11)
                 .WithMessage("O campo RG deve ter até 11 caracteres.");
 
-            //Validação do campo Sexo
-            RuleFor(cidadao => cidadao.Sexo)
-                .NotEmpty()
-                .WithMessage("O campo Sexo não pode ser vazio");
+            //Validação do campo TituloEleitor
+            RuleFor(cidadao => cidadao.TituloEleitor)
+                .MaximumLength(12)
+                .WithMessage("O campo Título de Eleitor deve ter até 12 caracteres.");
 
+            //Validação do campo Genero
+            RuleFor(cidadao => cidadao.Genero)
+                .NotEmpty()
+                .WithMessage("O campo Gênero não pode ser vazio");
+
+            //Validação do campo Nacionalidade
+            RuleFor(cidadao => cidadao.Nacionalidade)
+                .MaximumLength(50)
+                .WithMessage("O campo Nacionalidade deve ter até 50 caracteres.");
+
+            //Validação do campo Naturalidade
+            RuleFor(cidadao => cidadao.Naturalidade)
+                .MaximumLength(50)
+                .WithMessage("O campo Naturalidade deve ter até 50 caracteres.");
+
+            
             //Validação do campo DataNasc
             RuleFor(cidadao => cidadao.DataNasc)
                 .NotNull()

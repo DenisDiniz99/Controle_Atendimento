@@ -7,11 +7,6 @@ namespace Prefeitura.SysCras.Business.Validations
     {
         public AtendimentoValidador()
         {
-            //Validação do campo TipoAtendimento
-            RuleFor(atendimento => atendimento.TipoAtendimento)
-                .NotEmpty()
-                .WithMessage("O Tipo de Atendimento não pode ser vazio.");
-
             //Validação do campo Descrição
             RuleFor(atendimento => atendimento.Descricao)
                 .NotNull()
