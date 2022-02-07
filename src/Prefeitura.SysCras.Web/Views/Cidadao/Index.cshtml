@@ -22,9 +22,11 @@
     <table class="table table-light text-sm-left">
         <thead>
             <tr>
-                <th>Código</th>
-                <th>Cidadão</th>
+                <th hidden="hidden">Código</th>
+                <th>Nome</th>
+                <th>Nome Social</th>
                 <th>CPF</th>
+                <th>Data de Cadastro</th>
                 <th>Situação</th>
                 <th></th>
             </tr>
@@ -33,9 +35,11 @@
             @foreach (var item in Model.ToList())
             {
                 <tr>
-                    <td>@item.Id</td>
+                    <td hidden="hidden">@item.Id</td>
                     <td>@item.Nome</td>
+                    <td>@item.NomeSocial</td>
                     <td>@item.Cpf</td>
+                    <td>@item.DataCad</td>
                     @{
                         if (item.Situacao)
                         {

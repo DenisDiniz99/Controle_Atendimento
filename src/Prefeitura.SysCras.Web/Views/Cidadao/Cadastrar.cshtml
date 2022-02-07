@@ -7,54 +7,107 @@
 <div class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
         <div class="card-body" style="width: 800px;">
-            <h5 class="card-title text-center text-secondary">
+            
+            <h5 class="card-title text-secondary">
+                <i class="fas fa-id-card"></i>
                 Cadastro de Cidadão
             </h5>
-            <hr />
             <vc:summary></vc:summary>
             <form asp-action="Cadastrar">
                 <div class="form-group">
-                    <label for="nome" class="form-label" title="Nome">Nome</label>
-                    <input asp-for="Nome" class="form-control form-text text-dark" placeholder="Nome do cidadão" id="nome" />
+                    <label for="nome" class="col-form-label-sm" title="Nome">Nome</label>
+                    <input asp-for="Nome" class="form-control form-control-sm form-text text-dark" placeholder="Nome do cidadão" id="nome" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="nis" class="form-label" title="NIS">NIS</label>
-                    <input asp-for="Nis" class="form-control form-text text-dark" placeholder="Número do NIS" id="nis" />
+                    <label for="nomeSocial" class="col-form-label-sm" title="Nome Social">Nome Social</label>
+                    <input asp-for="NomeSocial" class="form-control form-control-sm form-text text-dark" placeholder="Nome Social do cidadão" id="nomeSocial" />
+                    <span asp-validation-for="NomeSocial" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nis" class="col-form-label-sm" title="NIS">NIS</label>
+                    <input asp-for="Nis" class="form-control form-control-sm form-text text-dark" placeholder="Número do NIS" id="nis" />
                     <span asp-validation-for="Nis" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="cpf" class="form-label" title="CPF">CPF</label>
+                    <label for="cpf" class="col-form-label-sm" title="CPF">CPF</label>
                     <input asp-for="Cpf" class="form-control form-text text-dark" placeholder="Número do CPF" id="cpf" />
                     <span asp-validation-for="Cpf" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="rg" class="form-label" title="RG">RG</label>
-                    <input asp-for="Rg" class="form-control form-text text-dark" placeholder="Número do RG" id="rg" />
+                    <label for="rg" class="col-form-label-sm" title="RG">RG</label>
+                    <input asp-for="Rg" class="form-control form-control-sm form-text text-dark" placeholder="Número do RG" id="rg" />
                     <span asp-validation-for="Rg" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="sexo" class="form-label" title="Sexo">Sexo</label>
-                    <select class="form-select" aria-label="Sexo" asp-for="Sexo">
+                    <label for="titulo" class="col-form-label-sm" title="Título de Eleitor">Título de Eleitor</label>
+                    <input asp-for="TituloEleitor" class="form-control form-control-sm form-text text-dark" placeholder="Número do Título de Eleitor" id="titulo" />
+                    <span asp-validation-for="TituloEleitor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nacionalidade" class="col-form-label-sm" title="Nacionalidade">Nacionalidade</label>
+                    <input asp-for="Nacionalidade" class="form-control form-control-sm form-text text-dark" placeholder="Nacionalidade" id="nacionalidade" />
+                    <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="naturalidade" class="col-form-label-sm" title="Naturalidad">Naturalidade</label>
+                    <input asp-for="Naturalidade" class="form-control form-control-sm form-text text-dark" placeholder="Naturalidade" id="naturalidade" />
+                    <span asp-validation-for="Naturalidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="civil" class="col-form-label-sm" title="Estado Civil">Estado Civil</label>
+                    <select class="form-select form-select-sm" aria-label="EstadoCivil" asp-for="EstadoCivil">
+                        <option selected>Escolha uma opção</option>
+                        <option>Solteiro</option>
+                        <option>Casado</option>
+                        <option>Separado</option>
+                        <option>Divorciado</option>
+                        <option>Viúvo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gernero" class="col-form-label-sm" title="Gênero">Gênero</label>
+                    <select class="form-select form-select-sm" aria-label="Genero" asp-for="Genero">
                         <option selected>Escolha uma opção</option>
                         <option>Feminino</option>
                         <option>Masculino</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dataNasc" class="form-label" title="Data de Nascimento">Data de Nascimento</label>
-                    <input asp-for="DataNasc" class="form-control form-text text-dark" />
+                    <label for="raca" class="col-form-label-sm" title="Raça">Raça</label>
+                    <select class="form-select form-select-sm" aria-label="Raca" asp-for="Raca">
+                        <option selected>Escolha uma opção</option>
+                        <option>Branca</option>
+                        <option>Preta</option>
+                        <option>Parda</option>
+                        <option>Amarela</option>
+                        <option>Indígena</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numFilhos" class="col-form-label-sm" title="Número de Filhos">Número de Filhos</label>
+                    <input asp-for="NumFilhos" class="form-control form-control-sm form-text text-dark" />
+                    <span asp-validation-for="NumFilhos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dataNasc" class="col-form-label-sm" title="Data de Nascimento">Data de Nascimento</label>
+                    <input asp-for="DataNasc" class="form-control form-control-sm form-text text-dark" />
                     <span asp-validation-for="DataNasc" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="telefone" class="form-label" title="Telefone">Telefone(Fixo)</label>
-                    <input asp-for="TelefoneFixo" class="form-control form-text text-dark" placeholder="Número do telefone" id="telefone" />
+                    <label for="telefone" class="col-form-label-sm" title="Telefone">Telefone(Fixo)</label>
+                    <input asp-for="TelefoneFixo" class="form-control form-control-sm form-text text-dark" placeholder="Número do telefone" id="telefone" />
                     <span asp-validation-for="TelefoneFixo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="celular" class="form-label" title="Celular">Celular</label>
-                    <input asp-for="Celular" class="form-control form-text text-dark" placeholder="Número do celular" id="celular" />
+                    <label for="celular" class="col-form-label-sm" title="Celular">Celular</label>
+                    <input asp-for="Celular" class="form-control form-control-sm form-text text-dark" placeholder="Número do celular" id="celular" />
                     <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-form-label-sm" title="E-mail">E-mail</label>
+                    <input asp-for="Email" class="form-control form-control-sm form-text text-dark" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
@@ -70,16 +123,28 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="email" class="form-label" title="E-mail">E-mail</label>
-                    <input asp-for="Email" class="form-control form-text text-dark" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+
                 <hr />
-                <h5 class="card-title text-center text-secondary">
+                <h5 class="card-title text-secondary">
+                    <i class="fas fa-user-friends"></i>
+                    Filiação
+                </h5>
+                <div class="form-group">
+                    <label for="nomePai" class="col-form-label-sm" title="Nome do Pai">Nome do Pai</label>
+                    <input asp-for="Filiacao.NomePai" class="form-control form-control-sm form-text text-dark" placeholder="Nome do pai" id="nomePai" />
+                    <span asp-validation-for="Filiacao.NomePai" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="nomeMae" class="col-form-label-sm" title="Nome da Mãe">Nome da Mãe</label>
+                    <input asp-for="Filiacao.NomeMae" class="form-control form-control-sm form-text text-dark" placeholder="Nome da mãe" id="nomeMae" />
+                    <span asp-validation-for="Filiacao.NomeMae" class="text-danger"></span>
+                </div>
+
+                <hr />
+                <h5 class="card-title text-secondary">
+                    <i class="fas fa-map-marker-alt"></i>
                     Endereço
                 </h5>
-                <hr />
                 <partial name="_Endereco" />
                 <input type="submit" class="btn btn-sm btn-outline-primary btn-form" title="Cadastrar" />
                 <a class="btn btn-sm btn-outline-danger btn-form" asp-action="Index">Cancelar</a>

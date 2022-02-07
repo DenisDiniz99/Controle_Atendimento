@@ -2,7 +2,7 @@
 {
     public enum ERaca
     {
-        branco = 1,
+        branca = 1,
         preta = 2,
         parda = 3,
         amarela = 4,

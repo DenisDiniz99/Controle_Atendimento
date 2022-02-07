@@ -49,9 +49,9 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        public async Task<IActionResult> NovoAtendimento()
+        public IActionResult NovoAtendimento()
         {
-            if (string.IsNullOrEmpty(_user.NomeUsuario))
+            if (!_user.Autenticado())
                 return NotFound();
 
             return View();
@@ -76,7 +76,10 @@ namespace Prefeitura.SysCras.Web.Controllers
                 return View(model);
             }
 
-            return RedirectToAction("Index");
+            if(string.IsNullOrEmpty(returnUrl))
+                return RedirectToAction("Index");
+
+            return LocalRedirect("returnUrl");
         }
 
 

@@ -28,8 +28,7 @@ namespace Prefeitura.SysCras.Data.Maps
                 .HasMaxLength(15)
                 .IsRequired();
             builder.Property(c => c.TituloEleitor)
-                .HasColumnType("int")
-                .HasMaxLength(12);
+                .HasColumnType("int");
             builder.Property(c => c.Nacionalidade)
                 .HasColumnType("varchar")
                 .HasMaxLength(50);
