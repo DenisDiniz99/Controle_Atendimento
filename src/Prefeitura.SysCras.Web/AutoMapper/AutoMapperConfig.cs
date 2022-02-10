@@ -14,6 +14,7 @@ namespace Prefeitura.SysCras.Web.AutoMapper
             CreateMap<TipoAtendimentoViewModel, TipoAtendimento>().ReverseMap();
             CreateMap<CidadaoViewModel, Cidadao>().ReverseMap();
             CreateMap<EnderecoViewModel, Endereco>().ReverseMap();
+            CreateMap<FiliacaoViewModel, Filiacao>().ReverseMap();
         }
     }
 }

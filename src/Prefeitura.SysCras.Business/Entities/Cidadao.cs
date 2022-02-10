@@ -12,13 +12,13 @@ namespace Prefeitura.SysCras.Business.Entities
         public string Nis { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        public int TituloEleitor { get; set; }
+        public int? TituloEleitor { get; set; }
         public string Nacionalidade { get; set; }
         public string Naturalidade { get; set; }
         public EEstadoCivil EstadoCivil { get; set; }
         public EGenero Genero { get; set; }
         public ERaca Raca { get; set; }
-        public int NumFilhos { get; set; }
+        public int? NumFilhos { get; set; }
         public DateTime DataNasc { get; set; }
         public string TelefoneFixo { get; set; }
         public string Celular { get; set; }

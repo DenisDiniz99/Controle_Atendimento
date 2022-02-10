@@ -27,6 +27,9 @@ namespace Prefeitura.SysCras.Data.Maps
                 .HasColumnType("varchar")
                 .HasMaxLength(15)
                 .IsRequired();
+            builder.Property(c => c.Nis)
+                .HasColumnType("varchar")
+                .HasMaxLength(30);
             builder.Property(c => c.TituloEleitor)
                 .HasColumnType("int");
             builder.Property(c => c.Nacionalidade)
@@ -46,6 +49,7 @@ namespace Prefeitura.SysCras.Data.Maps
                 .IsRequired();
             builder.Property(c => c.NumFilhos)
                 .HasColumnType("int")
+                .HasDefaultValue(0)
                 .IsRequired();
             builder.Property(c => c.TelefoneFixo)
                 .HasColumnType("varchar")
@@ -65,29 +69,37 @@ namespace Prefeitura.SysCras.Data.Maps
             builder.OwnsOne(c => c.Filiacao, filiacao => 
             {
                 filiacao.Property(f => f.NomePai)
-                    .HasColumnType("varchar");
+                    .HasColumnType("varchar")
+                    .HasMaxLength(50);
                 filiacao.Property(f => f.NomeMae)
-                    .HasColumnType("varchar");
+                    .HasColumnType("varchar")
+                    .HasMaxLength(50);
             });
             builder.OwnsOne(c => c.Endereco, endereco =>
             {
                 endereco.Property(e => e.Rua)
                     .HasColumnType("varchar")
+                    .HasMaxLength(50)
                     .IsRequired();
                 endereco.Property(e => e.Numero)
                     .HasColumnType("varchar")
+                    .HasMaxLength(10)
                     .IsRequired();
                 endereco.Property(e => e.Bairro)
                     .HasColumnType("varchar")
+                    .HasMaxLength(50)
                     .IsRequired();
                 endereco.Property(e => e.Cidade)
                     .HasColumnType("varchar")
+                    .HasMaxLength(50)
                     .IsRequired();
                 endereco.Property(e => e.Cep)
                     .HasColumnType("varchar")
+                    .HasMaxLength(8)
                     .IsRequired();
                 endereco.Property(e => e.Estado)
                     .HasColumnType("varchar")
+                    .HasMaxLength(2)
                     .IsRequired();
             });
         }

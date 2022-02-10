@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prefeitura.SysCras.Data.Context;
 
 namespace Prefeitura.SysCras.Data.Migrations
 {
     [DbContext(typeof(SysContext))]
-    partial class SysContextModelSnapshot : ModelSnapshot
+    [Migration("20220209181917_Altera mapeamento campos NumFilhos e TituloEleitor")]
+    partial class AlteramapeamentocamposNumFilhoseTituloEleitor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace Prefeitura.SysCras.Data.Migrations
                     b.Property<string>("TituloAssunto")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -126,8 +128,7 @@ namespace Prefeitura.SysCras.Data.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nis")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -235,33 +236,27 @@ namespace Prefeitura.SysCras.Data.Migrations
 
                             b1.Property<string>("Bairro")
                                 .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("varchar(50)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("Cep")
                                 .IsRequired()
-                                .HasMaxLength(8)
-                                .HasColumnType("varchar(8)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("Cidade")
                                 .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("varchar(50)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("Estado")
                                 .IsRequired()
-                                .HasMaxLength(2)
-                                .HasColumnType("varchar(2)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("Numero")
                                 .IsRequired()
-                                .HasMaxLength(10)
-                                .HasColumnType("varchar(10)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("Rua")
                                 .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("varchar(50)");
+                                .HasColumnType("varchar");
 
                             b1.HasKey("CidadaoId");
 
@@ -277,12 +272,10 @@ namespace Prefeitura.SysCras.Data.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("NomeMae")
-                                .HasMaxLength(50)
-                                .HasColumnType("varchar(50)");
+                                .HasColumnType("varchar");
 
                             b1.Property<string>("NomePai")
-                                .HasMaxLength(50)
-                                .HasColumnType("varchar(50)");
+                                .HasColumnType("varchar");
 
                             b1.HasKey("CidadaoId");
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.Extensions;
@@ -14,12 +15,14 @@ namespace Prefeitura.SysCras.Web.Controllers
     public class AtendimentoController : BaseController
     {
         private readonly IAtendimentoRepositorio _repositorio;
+        private readonly ICidadaoRepositorio _cidadaoRepositorio;
         private readonly IAtendimentoServico _servico;
         private readonly IUser _user;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
 
         public AtendimentoController(IAtendimentoRepositorio repositorio,
+                                        ICidadaoRepositorio cidadaoRepositorio,
                                         IAtendimentoServico servico,
                                         IUser user,
                                         UserManager<IdentityUser> userManager,
@@ -27,6 +30,7 @@ namespace Prefeitura.SysCras.Web.Controllers
                                         INotificador notificador) : base(notificador)
         {
             _repositorio = repositorio;
+            _cidadaoRepositorio = cidadaoRepositorio;
             _servico = servico;
             _user = user;
             _userManager = userManager;
@@ -49,10 +53,13 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        public IActionResult NovoAtendimento()
+        public async  Task<IActionResult> NovoAtendimento()
         {
             if (!_user.Autenticado())
                 return NotFound();
+
+            var cidadaos = await ObterCidadaos();
+            ViewBag.CidadaoId = new SelectList(cidadaos, "Id", "Nome");
 
             return View();
         }
@@ -63,6 +70,9 @@ namespace Prefeitura.SysCras.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
 
             if (!ModelState.IsValid) return View(model);
+
+            model.DataHoraAtendimento = DateTime.UtcNow.Date;
+            model.DataHoraAtualizacao = DateTime.UtcNow.Date;
 
             await _servico.Adicionar(_mapper.Map<Atendimento>(model));
 
@@ -118,6 +128,12 @@ namespace Prefeitura.SysCras.Web.Controllers
         private async Task<AtendimentoViewModel> ObterPorId(Guid id)
         {
             return _mapper.Map<AtendimentoViewModel>(await _repositorio.ObterPorId(id));
+        }
+
+        //Método privado para retornar os cidadãos cadastrados
+        private async Task<IEnumerable<CidadaoViewModel>> ObterCidadaos()
+        {
+            return _mapper.Map<IEnumerable<CidadaoViewModel>>(await _cidadaoRepositorio.ObterTodos());
         }
     }
 }

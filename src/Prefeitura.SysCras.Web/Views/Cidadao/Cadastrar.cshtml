@@ -58,35 +58,35 @@
                     <label for="civil" class="col-form-label-sm" title="Estado Civil">Estado Civil</label>
                     <select class="form-select form-select-sm" aria-label="EstadoCivil" asp-for="EstadoCivil">
                         <option selected>Escolha uma opção</option>
-                        <option>Solteiro</option>
-                        <option>Casado</option>
-                        <option>Separado</option>
-                        <option>Divorciado</option>
-                        <option>Viúvo</option>
+                        <option value="1">Solteiro</option>
+                        <option value="2">Casado</option>
+                        <option value="3">Separado</option>
+                        <option value="4">Divorciado</option>
+                        <option value="5">Viúvo</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="gernero" class="col-form-label-sm" title="Gênero">Gênero</label>
                     <select class="form-select form-select-sm" aria-label="Genero" asp-for="Genero">
                         <option selected>Escolha uma opção</option>
-                        <option>Feminino</option>
-                        <option>Masculino</option>
+                        <option value="1">Feminino</option>
+                        <option value="2">Masculino</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="raca" class="col-form-label-sm" title="Raça">Raça</label>
                     <select class="form-select form-select-sm" aria-label="Raca" asp-for="Raca">
                         <option selected>Escolha uma opção</option>
-                        <option>Branca</option>
-                        <option>Preta</option>
-                        <option>Parda</option>
-                        <option>Amarela</option>
-                        <option>Indígena</option>
+                        <option value="1">Branca</option>
+                        <option value="2">Preta</option>
+                        <option value="3">Parda</option>
+                        <option value="4">Amarela</option>
+                        <option value="5">Indígena</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="numFilhos" class="col-form-label-sm" title="Número de Filhos">Número de Filhos</label>
-                    <input asp-for="NumFilhos" class="form-control form-control-sm form-text text-dark" />
+                    <input asp-for="NumFilhos" class="form-control form-control-sm form-text text-dark" placeholder="0" />
                     <span asp-validation-for="NumFilhos" class="text-danger"></span>
                 </div>
                 <div class="form-group">

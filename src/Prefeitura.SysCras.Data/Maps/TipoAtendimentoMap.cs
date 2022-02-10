@@ -10,9 +10,9 @@ namespace Prefeitura.SysCras.Data.Maps
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Tipo)
-                .IsRequired()
+                .HasColumnType("varchar")
                 .HasMaxLength(50)
-                .HasColumnType("varchar");
+                .IsRequired();
         }
     }
 }

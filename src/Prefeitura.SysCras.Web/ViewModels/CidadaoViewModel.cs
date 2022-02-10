@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Prefeitura.SysCras.Web.ViewModels
@@ -28,7 +27,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [StringLength(15, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 8)]
         public string Rg { get; set; }
 
-        public int TituloEleitor { get; set; }
+        public int? TituloEleitor { get; set; }
 
         [MaxLength(50, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Nacionalidade { get; set; }
@@ -42,9 +41,10 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public int Genero { get; set; }
 
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public int Raca { get; set; }
 
-        public int NumFilhos { get; set; }
+        public int? NumFilhos { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [DataType(DataType.Date, ErrorMessage = "O campo {0} está em um formato inválido.")]

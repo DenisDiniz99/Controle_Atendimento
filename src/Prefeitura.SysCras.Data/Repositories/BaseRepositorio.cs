@@ -20,30 +20,30 @@ namespace Prefeitura.SysCras.Data.Repositories
         }
 
 
-        public async Task Adicionar(T entidade)
+        public virtual async Task Adicionar(T entidade)
         {
             _dbSet.Add(entidade);
             await SaveChange();
         }
 
-        public async Task Atualizar(T entidade)
+        public virtual async Task Atualizar(T entidade)
         {
             _dbSet.Update(entidade);
             await SaveChange();
         }
 
-        public async Task Excluir(T entidade)
+        public virtual async Task Excluir(T entidade)
         {
             _dbSet.Remove(entidade);
             await SaveChange();
         }
 
-        public async Task<T> ObterPorId(Guid id)
+        public virtual async Task<T> ObterPorId(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> ObterTodos()
+        public virtual async Task<IEnumerable<T>> ObterTodos()
         {
             return await _dbSet.ToListAsync();
         }

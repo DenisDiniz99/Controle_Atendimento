@@ -5,72 +5,109 @@
 }
 
 <div class="container">
-    <h5 class="text-center text-secondary">Cidadão</h5>
-    <table class="table table-responsive table-light text-sm-left">
-        <thead class="thead-dark">
-            <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>NIS</th>
-                <th>CPF</th>
-                <th>RG</th>
-                <th>Gênero</th>
-                <th>Data Nasc.</th>
-                <th>Data Cad.</th>
-                <th>Telefone</th>
-                <th>Celular</th>
-                <th>Situação</th>
-                <th>E-mail</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.Id</td>
-                <td>@Model.Nome</td>
-                <td>@Model.Nis</td>
-                <td>@Model.Cpf</td>
-                <td>@Model.Rg</td>
-                <td>@Model.Genero</td>
-                <td>@Model.DataNasc</td>
-                <td>@Model.DataCad</td>
-                <td>@Model.TelefoneFixo</td>
-                <td>@Model.Celular</td>
-                @{
-                    if (Model.Situacao)
-                    {
-                        <td>Ativo</td>
+    <h5 class="text-secondary">
+        <i class="fas fa-id-card"></i>
+        Cidadão
+    </h5>
+    <div class="table-overflow">
+        <table class="table table-striped table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>NIS</th>
+                    <th>CPF</th>
+                    <th>RG</th>
+                    <th>Gênero</th>
+                    <th>Data Nasc.</th>
+                    <th>Data Cad.</th>
+                    <th>Telefone</th>
+                    <th>Celular</th>
+                    <th>Situação</th>
+                    <th>E-mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Id</td>
+                    <td>@Model.Nome</td>
+                    <td>@Model.Nis</td>
+                    <td>@Model.Cpf</td>
+                    <td>@Model.Rg</td>
+                    <td>@Model.Genero</td>
+                    <td>@Model.DataNasc</td>
+                    <td>@Model.DataCad</td>
+                    <td>@Model.TelefoneFixo</td>
+                    <td>@Model.Celular</td>
+                    @{
+                        if (Model.Situacao)
+                        {
+                            <td>Ativo</td>
+                        }
+                        else
+                        {
+                            <td>Inativo</td>
+                        }
                     }
-                    else
-                    {
-                        <td>Inativo</td>
-                    }
-                }
-                <td>@Model.Email</td>
-            </tr>
-        </tbody>
-    </table>
+                    <td>@Model.Email</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class="text-secondary">
+        <i class="fas fa-user-friends"></i>
+        Filiação
+    </h5>
+    <div class="table-overflow">
+        <table class="table table-striped table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Nome do Pai</th>
+                    <th>Nome da Mãe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Filiacao.NomePai</td>
+                    <td>@Model.Filiacao.NomeMae</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class="text-secondary">
+        <i class="fas fa-map-marker-alt"></i>
+        Endereço
+    </h5>
+    <div class="table-overflow">
+        <table class="table table-striped table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>CEP</th>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Rua</th>
+                    <th>Número</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Endereco.Cep</td>
+                    <td>@Model.Endereco.Estado</td>
+                    <td>@Model.Endereco.Cidade</td>
+                    <td>@Model.Endereco.Bairro</td>
+                    <td>@Model.Endereco.Rua</td>
+                    <td>@Model.Endereco.Numero</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
     <hr />
-    <h5 class="text-center text-secondary">Endereço</h5>
+
     <table class="table table-striped text-sm-left">
-        <thead class="thead-dark">
-            <tr>
-                <th>CEP</th>
-                <th>Estado</th>
-                <th>Cidade</th>
-                <th>Bairro</th>
-                <th>Rua</th>
-                <th>Número</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.Endereco.Cep</td>
-                <td>@Model.Endereco.Estado</td>
-                <td>@Model.Endereco.Cidade</td>
-                <td>@Model.Endereco.Bairro</td>
-                <td>@Model.Endereco.Rua</td>
-                <td>@Model.Endereco.Numero</td>
-            </tr>
-        </tbody>
     </table>
 </div>

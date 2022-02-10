@@ -57,7 +57,7 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            model.DataCad = DateTime.Now;
+            model.DataCad = DateTime.UtcNow.Date;
 
             await _servico.Adicionar(_mapper.Map<Cidadao>(model));
 

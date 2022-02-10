@@ -3,6 +3,8 @@ using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Data.Context;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Data.Repositories
@@ -12,6 +14,11 @@ namespace Prefeitura.SysCras.Data.Repositories
         public AtendimentoRepositorio(SysContext context) : base(context)
         {
 
+        }
+
+        public override async Task<IEnumerable<Atendimento>> ObterTodos()
+        {
+            return await _dbSet.OrderBy(a => a.DataHoraAtualizacao).ToListAsync();
         }
 
         public async Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)

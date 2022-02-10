@@ -11924,3 +11924,8 @@ textarea.form-control-lg {
 .btn-form{
     width: 173px;
 }
+
+.table-overflow{
+    max-height: 400px;
+    overflow-y: auto;
+}

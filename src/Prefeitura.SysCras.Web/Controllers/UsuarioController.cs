@@ -65,7 +65,7 @@ namespace Prefeitura.SysCras.Web.Controllers
                 return View(model);
             }
 
-            if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Atendimentos");
+            if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Atendimento");
 
             return LocalRedirect(returnUrl);
         }

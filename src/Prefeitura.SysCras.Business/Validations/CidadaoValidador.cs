@@ -55,10 +55,20 @@ namespace Prefeitura.SysCras.Business.Validations
                 .MaximumLength(11)
                 .WithMessage("O campo RG deve ter até 11 caracteres.");
 
+            //Validação do campo EstadoCivil
+            RuleFor(cidadao => cidadao.EstadoCivil)
+                .NotNull()
+                .WithMessage("O campo Estado Civil não pode ser vazio");
+
             //Validação do campo Genero
             RuleFor(cidadao => cidadao.Genero)
-                .NotEmpty()
+                .NotNull()
                 .WithMessage("O campo Gênero não pode ser vazio");
+
+            //Validação do campo Raca
+            RuleFor(cidadao => cidadao.Raca)
+                .NotNull()
+                .WithMessage("O campo Raça não pode ser vazio");
 
             //Validação do campo Nacionalidade
             RuleFor(cidadao => cidadao.Nacionalidade)
@@ -79,6 +89,11 @@ namespace Prefeitura.SysCras.Business.Validations
             RuleFor(cidadao => cidadao.DataNasc)
                 .NotEmpty()
                 .WithMessage("O campo Data de Nascimento não pode ser vazio.");
+
+            //Validação do campo Celular
+            RuleFor(cidadao => cidadao.Celular)
+                .NotNull()
+                .WithMessage("O campo Celular não pode ser nulo.");
 
             //Validação do campo E-mail
             RuleFor(cidadao => cidadao.Email)

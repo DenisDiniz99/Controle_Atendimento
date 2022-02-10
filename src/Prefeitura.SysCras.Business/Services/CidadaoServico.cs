@@ -27,7 +27,7 @@ namespace Prefeitura.SysCras.Business.Services
             //Senão, chama o repositório e adiciona um cidadao
             if (!ExecutaValidacao(new CidadaoValidador(), cidadao)) return;
 
-            if (await _cidadaoRepositorio.CidadaoExiste(cidadao.Cpf))
+            if (await _cidadaoRepositorio.CpfEmUso(cidadao.Cpf))
             {
                 Notificar("CPF já utilizado em outro registro");
                 return;
@@ -41,12 +41,10 @@ namespace Prefeitura.SysCras.Business.Services
         {
             //Executa o método de validação passando um novo Validador e uma Entidade
             //Se for encontrado erros na validação, retorna os mesmos
-            //Senão encontrar erros de validação, tenta verificar se já existe algum cidadão utilizando o cpf informado
-            //Se houver, notifica e retorna a notificação
             //Senão, chama o repositório e atualiza o cidadao
             if (!ExecutaValidacao(new CidadaoValidador(), cidadao)) return;
 
-            if (await _cidadaoRepositorio.CidadaoExiste(cidadao.Cpf))
+            if(await _cidadaoRepositorio.CpfEmUso(cidadao.Id, cidadao.Cpf))
             {
                 Notificar("CPF já utilizado em outro registro");
                 return;
