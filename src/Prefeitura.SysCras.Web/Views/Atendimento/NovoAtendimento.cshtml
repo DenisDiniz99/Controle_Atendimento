@@ -1,8 +1,9 @@
-﻿@model AtendimentoViewModel
+﻿@model AtendimentoViewModel 
 
 @{ 
     ViewData["Title"] = "Novo Atendimento";
 }
+
 
 <div class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
@@ -38,22 +39,15 @@
                 <h5 class="text-secondary">
                     <i class="fas fa-user-friends"></i> Cidadão
                 </h5>
-                <div class="col-5">
+                <div class="col-6">
+                    <!--Cidadão-->
                     <div class="form-group">
-                        <label for="pesq" class="col-form-label-sm" title="Cidadão">Pesquisar Cidadão</label>
-                        <input class="form-control form-control-sm form-text text-dark" placeholder="Digite o nome da pessoa à pesquisar" id="pesq" />
+                        <label for="cidadao" class="col-form-label-sm" title="Cidadão">Cidadão</label>
+                        <select class="form-select form-select-sm" aria-label="CidadaoId" asp-for="CidadaoId" asp-items="ViewBag.CidadaoId">
+                            <option selected>Escolha o cidadão</option>
+                        </select>
+                        <span asp-validation-for="CidadaoId" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="col-5">
-                    <div class="form-group">
-                        <label for="cidadao" class="col-form-label-sm" title="Cidadao">Nome do Cidadão</label>
-                        <input asp-for="CidadaoId" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="cidadao" />
-                    </div>
-                </div>
-                <div class="col-2 align-self-center">
-                    <button class="btn btn-success mt-3" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
                 </div>
             </div>
             <hr />
@@ -65,10 +59,10 @@
                     <!--TipoAtendimento-->
                     <div class="form-group">
                         <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
-                        <select class="form-select form-select-sm" aria-label="TipoAtendimento" asp-for="TipoAtendimento" asp-items="ViewBag.TipoId">
+                        <select class="form-select form-select-sm" aria-label="TipoAtendimentoId" asp-for="TipoAtendimentoId" asp-items="ViewBag.TipoId">
                             <option selected>Escolha um tipo atendimento</option>
                         </select>
-                        <span asp-validation-for="TipoAtendimento" class="text-danger"></span>
+                        <span asp-validation-for="TipoAtendimentoId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6">

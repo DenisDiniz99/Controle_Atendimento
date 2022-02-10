@@ -10,40 +10,36 @@ namespace Prefeitura.SysCras.Web.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [DisplayName("Data e Hora de Atendimento")]
         public DateTime DataHoraAtendimento { get; set; }
 
-        [DisplayName("Data e Hora de Atualização")]
         public DateTime DataHoraAtualizacao { get; set; }
 
-        [DisplayName("Tipo Atendimento")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public string TipoAtendimento { get; set; }
 
-        [DisplayName("Descrição")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
         public string Descricao { get; set; }
 
-        [DisplayName("Protocolo")]
         public int Protocolo { get; set; }
 
-        [DisplayName("Cidadão")]
-        public Guid CidadaoId { get; set; }
-        
-        [DisplayName("Assunto")]
-        public Guid AssuntoId { get; set; }
-        
-        [DisplayName("Colaborador")]
-        public Guid ColaboradorId { get; set; }
-        
-        [DisplayName("Status")]
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public StatusAtendimento StatusAtendimento { get; set; }
 
-        [DisplayName("Observação")]
-        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
+        [MaxLength(200, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Observacao { get; set; }
+
+        public Guid UsuarioId { get; set; }
+
+        [Required(ErrorMessage = "O campo Cidadão é obrigatório.")]
+        public Guid CidadaoId { get; set; }
+        
+        [Required(ErrorMessage = "O campo Assunto é obrigatório.")]
+        public Guid AssuntoId { get; set; }
+
+        [Required(ErrorMessage = "O campo Tipo de Atendimento é obrigatório.")]
+        public Guid TipoAtendimentoId { get; set; }
+
+        public CidadaoViewModel Cidadao { get; set; }
+        public AssuntoAtendimentoViewModel AssuntoAtendimento { get; set; }
+        public TipoAtendimentoViewModel TipoAtendimento { get; set; }
     }
 }

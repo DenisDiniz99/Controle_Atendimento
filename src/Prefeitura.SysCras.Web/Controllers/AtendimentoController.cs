@@ -66,7 +66,9 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             var tipos = await ObterTiposAtendimento();
             var assuntos = await ObterAssuntos();
+            var cidadaos = await ObterCidadaos();
 
+            ViewBag.CidadaoId = new SelectList(cidadaos, "Id", "Nome");
             ViewBag.TipoId = new SelectList(tipos, "Id", "Tipo");
             ViewBag.AssuntoId = new SelectList(assuntos, "Id", "TituloAssunto");
 
@@ -80,8 +82,13 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
+            var user = _userManager.FindByNameAsync(_user.NomeUsuario);
+
+            model.UsuarioId = Guid.Parse(user.Id.ToString());
             model.DataHoraAtendimento = DateTime.UtcNow.Date;
             model.DataHoraAtualizacao = DateTime.UtcNow.Date;
+            
+            
 
             await _servico.Adicionar(_mapper.Map<Atendimento>(model));
 
