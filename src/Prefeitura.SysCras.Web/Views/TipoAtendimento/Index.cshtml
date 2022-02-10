@@ -1,20 +1,20 @@
-﻿@model IEnumerable<AssuntoAtendimentoViewModel>
+﻿@model IEnumerable<TipoAtendimentoViewModel>
 
 @{ 
-    ViewData["Title"] = "Assuntos";
+    ViewData["Title"] = "Tipos de Atendimento";
 }
 
 <div class="container">
     <div class="row">
         <h5 class="text-secondary">
-            <i class="fas fa-comment"></i>
-            Assuntos
+            <i class="fas fa-comment-alt"></i>
+            Tipo de Atendimento
         </h5>
     </div>
     <div class="row mt-2">
         <div class="col-4">
             <a class="btn btn-sm btn-primary mb-2" asp-action="Cadastrar">
-                <i class="fas fa-plus-circle"></i>Novo Assunto
+                <i class="fas fa-plus-circle"></i>Novo Tipo de Atendimento
             </a>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th hidden="hidden">Código</th>
-                    <th>Assunto</th>
+                    <th>Tipo</th>
                     <th></th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                 {
                     <tr>
                         <td hidden="hidden">@item.Id</td>
-                        <td>@item.TituloAssunto</td>
+                        <td>@item.Tipo</td>
                         <td>
                             <div class="container justify-content-center">
                                 <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes">

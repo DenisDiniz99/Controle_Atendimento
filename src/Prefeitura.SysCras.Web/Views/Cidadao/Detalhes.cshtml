@@ -6,7 +6,7 @@
 
 <div class="container">
     <h5 class="text-secondary">
-        <i class="fas fa-id-card"></i>
+        <i class="fas fa-user-friends"></i>
         Cidadão
     </h5>
     <div class="table-overflow">
@@ -103,11 +103,14 @@
                 </tr>
             </tbody>
         </table>
+        <a class="btn btn-sm btn-primary btn-form mr-2" asp-action="Index" title="Index">
+            <i class="fas fa-caret-left"></i> Voltar
+        </a>
+        <a class="btn btn-sm btn-success btn-form mr-2" asp-action="Atualizar" asp-route-id="@Model.Id" title="Atualizar">
+            <i class="fas fa-edit"></i> Atualizar
+        </a>
+        <a class="btn btn-sm btn-danger btn-form" asp-action="Excluir" asp-route-id="@Model.Id" title="Excluir">
+            <i class="fas fa-trash-alt"></i> Excluir
+        </a>
     </div>
-
-
-    <hr />
-
-    <table class="table table-striped text-sm-left">
-    </table>
 </div>

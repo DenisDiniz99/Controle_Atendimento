@@ -1,7 +1,7 @@
-﻿@model AssuntoAtendimentoViewModel
+﻿@model TipoAtendimentoViewModel
 
 @{ 
-    ViewData["Title"] = "Atualização de Assunto";
+    ViewData["Title"] = "Atualização de Tipo de Atendimento";
 }
 
 <div class="d-flex justify-content-center mt-3">
@@ -9,14 +9,14 @@
         <div class="card-body" style="width: 800px;">
             <h5 class="card-title text-secondary">
                 <i class="fas fa-edit"></i>
-                Atualização de Assunto
+                Atualização de Tipo de Atendimento
             </h5>
             <vc:summary></vc:summary>
             <form asp-action="Atualizar">
                 <div class="form-group">
-                    <label for="titulo" class="col-form-label-sm" title="Assunto">Assunto</label>
-                    <input asp-for="TituloAssunto" class="form-control form-control-sm form-text text-dark" placeholder="Título do assunto" id="titulo" />
-                    <span asp-validation-for="TituloAssunto" class="text-danger"></span>
+                    <label for="tipo" class="col-form-label-sm" title="Tipo">Tipo</label>
+                    <input asp-for="Tipo" class="form-control form-control-sm form-text text-dark" placeholder="Tipo de atendimento" id="tipo" />
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
                 </div>
                 <input type="submit" class="btn btn-sm btn-success btn-form" title="Atualizar" />
                 <a type="button" class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>

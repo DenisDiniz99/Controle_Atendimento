@@ -65,7 +65,7 @@
                     <!--TipoAtendimento-->
                     <div class="form-group">
                         <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
-                        <select class="form-select form-select-sm" aria-label="TipoAtendimento" asp-for="TipoAtendimento">
+                        <select class="form-select form-select-sm" aria-label="TipoAtendimento" asp-for="TipoAtendimento" asp-items="ViewBag.TipoId">
                             <option selected>Escolha um tipo atendimento</option>
                         </select>
                         <span asp-validation-for="TipoAtendimento" class="text-danger"></span>
@@ -75,7 +75,7 @@
                     <!--Assunto-->
                     <div class="form-group">
                         <label for="assunto" class="col-form-label-sm" title="Assunto">Assunto</label>
-                        <select class="form-select form-select-sm" aria-label="AssuntoId" asp-for="AssuntoId">
+                        <select class="form-select form-select-sm" aria-label="AssuntoId" asp-for="AssuntoId" asp-items="ViewBag.AssuntoId">
                             <option selected>Escolha um assunto</option>
                         </select>
                         <span asp-validation-for="AssuntoId" class="text-danger"></span>

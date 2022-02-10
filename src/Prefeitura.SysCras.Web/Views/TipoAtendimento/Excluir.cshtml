@@ -1,7 +1,7 @@
-﻿@model AssuntoAtendimentoViewModel
+﻿@model TipoAtendimentoViewModel
 
 @{ 
-    ViewData["Title"] = "Exclusão de Assunto";
+    ViewData["Title"] = "Exclusão de Tipo de Atendimento";
 }
 
 <div class="d-flex justify-content-center mt-3">
@@ -9,7 +9,7 @@
         <div class="card-body" style="width: 800px;">
             <h5 class="card-title text-secondary">
                 <i class="fas fa-trash-alt"></i>
-                Exclusão de Assunto
+                Exclusão de Tipo de Atendimento
             </h5>
             <partial name="_MsgExcluirPartial" />
             <hr />
@@ -19,8 +19,8 @@
                     <input asp-for="Id" class="form-control form-control-sm form-text text-dark" id="id" readonly="readonly" />
                 </div>
                 <div class="form-group">
-                    <label for="titulo" class="col-form-label-sm" title="Assunto">Assunto</label>
-                    <input asp-for="TituloAssunto" class="form-control form-control-sm form-text text-dark" id="titulo" readonly="readonly" />
+                    <label for="tipo" class="col-form-label-sm" title="Tipo">Tipo</label>
+                    <input asp-for="Tipo" class="form-control form-control-sm form-text text-dark" id="tipo" readonly="readonly" />
                 </div>
                 <input type="submit" class="btn btn-sm btn-success btn-form" title="Excluir" />
                 <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>

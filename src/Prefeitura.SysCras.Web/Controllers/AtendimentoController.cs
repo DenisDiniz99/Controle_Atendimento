@@ -16,6 +16,8 @@ namespace Prefeitura.SysCras.Web.Controllers
     {
         private readonly IAtendimentoRepositorio _repositorio;
         private readonly ICidadaoRepositorio _cidadaoRepositorio;
+        private readonly ITipoAtendimentoRepositorio _tipoAtendimentoRepositorio;
+        private readonly IAssuntoAtendimentoRepositorio _assuntoAtendimentoRepositorio;
         private readonly IAtendimentoServico _servico;
         private readonly IUser _user;
         private readonly UserManager<IdentityUser> _userManager;
@@ -23,6 +25,8 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         public AtendimentoController(IAtendimentoRepositorio repositorio,
                                         ICidadaoRepositorio cidadaoRepositorio,
+                                        ITipoAtendimentoRepositorio tipoAtendimentoRepositorio,
+                                        IAssuntoAtendimentoRepositorio assuntoAtendimentoRepositorio,
                                         IAtendimentoServico servico,
                                         IUser user,
                                         UserManager<IdentityUser> userManager,
@@ -31,13 +35,15 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             _repositorio = repositorio;
             _cidadaoRepositorio = cidadaoRepositorio;
+            _tipoAtendimentoRepositorio = tipoAtendimentoRepositorio;
+            _assuntoAtendimentoRepositorio = assuntoAtendimentoRepositorio;
             _servico = servico;
             _user = user;
             _userManager = userManager;
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index(Guid id)
+        public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<AtendimentoViewModel>>(await _repositorio.ObterTodos()));
         }
@@ -58,8 +64,11 @@ namespace Prefeitura.SysCras.Web.Controllers
             if (!_user.Autenticado())
                 return NotFound();
 
-            var cidadaos = await ObterCidadaos();
-            ViewBag.CidadaoId = new SelectList(cidadaos, "Id", "Nome");
+            var tipos = await ObterTiposAtendimento();
+            var assuntos = await ObterAssuntos();
+
+            ViewBag.TipoId = new SelectList(tipos, "Id", "Tipo");
+            ViewBag.AssuntoId = new SelectList(assuntos, "Id", "TituloAssunto");
 
             return View();
         }
@@ -130,10 +139,22 @@ namespace Prefeitura.SysCras.Web.Controllers
             return _mapper.Map<AtendimentoViewModel>(await _repositorio.ObterPorId(id));
         }
 
-        //Método privado para retornar os cidadãos cadastrados
+        //Método privado para obter os cidadãos
         private async Task<IEnumerable<CidadaoViewModel>> ObterCidadaos()
         {
             return _mapper.Map<IEnumerable<CidadaoViewModel>>(await _cidadaoRepositorio.ObterTodos());
+        }
+
+        //Método privado para obter os tipos de atendimento
+        private async Task<IEnumerable<TipoAtendimentoViewModel>> ObterTiposAtendimento()
+        {
+            return _mapper.Map<IEnumerable<TipoAtendimentoViewModel>>(await _tipoAtendimentoRepositorio.ObterTodos());
+        }
+
+        //Método privado para obter os assuntos
+        private async Task<IEnumerable<AssuntoAtendimentoViewModel>> ObterAssuntos()
+        {
+            return _mapper.Map<IEnumerable<AssuntoAtendimentoViewModel>>(await _assuntoAtendimentoRepositorio.ObterTodos());
         }
     }
 }
