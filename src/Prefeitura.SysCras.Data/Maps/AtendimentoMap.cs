@@ -19,11 +19,9 @@ namespace Prefeitura.SysCras.Data.Maps
                 .IsRequired()
                 .HasMaxLength(500);
 
-            builder.OwnsOne(a => a.Protocolo, protocolo =>
-            {
-                protocolo.Property(p => p.NumProtocolo)
-                    .IsRequired();
-            });
+            builder.Property(a => a.Protocolo)
+                 .HasColumnType("int")
+                 .IsRequired();
 
             builder.Property(a => a.StatusAtendimento)
                 .IsRequired();

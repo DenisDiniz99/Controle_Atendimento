@@ -8,16 +8,15 @@ namespace Prefeitura.SysCras.Business.Entities
         public DateTime DataHoraAtendimento { get; set; }
         public DateTime DataHoraAtualizacao { get; set; }
         public string Descricao { get; set; }
-        public Protocolo Protocolo { get; set; }
+        public int Protocolo { get; set; }
         public StatusAtendimento StatusAtendimento { get; set; }
         public string Observacao { get; set; }
-
         public Guid UsuarioId { get; set; }
         public Guid TipoAtendimentoId { get; set; }
         public TipoAtendimento TipoAtendimento { get; set; }
         public Guid CidadaoId { get; set; }
         public Cidadao Cidadao { get; set; }
-        public Guid AssuntoId { get; set; }
+        public Guid AssuntoAtendimentoId { get; set; }
         public AssuntoAtendimento AssuntoAtendimento { get; set; }
     }
 }

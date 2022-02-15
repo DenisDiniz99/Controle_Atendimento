@@ -16,13 +16,14 @@ namespace Prefeitura.SysCras.Web.ViewModels
 
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [StringLength(2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.")]
+        [StringLength(500, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres.", MinimumLength = 2)]
         public string Descricao { get; set; }
 
+        [Required]
         public int Protocolo { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-        public StatusAtendimento StatusAtendimento { get; set; }
+        public int StatusAtendimento { get; set; }
 
         [MaxLength(200, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Observacao { get; set; }
@@ -33,7 +34,7 @@ namespace Prefeitura.SysCras.Web.ViewModels
         public Guid CidadaoId { get; set; }
         
         [Required(ErrorMessage = "O campo Assunto é obrigatório.")]
-        public Guid AssuntoId { get; set; }
+        public Guid AssuntoAtendimentoId { get; set; }
 
         [Required(ErrorMessage = "O campo Tipo de Atendimento é obrigatório.")]
         public Guid TipoAtendimentoId { get; set; }

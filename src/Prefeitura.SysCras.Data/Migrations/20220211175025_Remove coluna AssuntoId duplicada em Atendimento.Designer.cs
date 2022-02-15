@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prefeitura.SysCras.Data.Context;
 
 namespace Prefeitura.SysCras.Data.Migrations
 {
     [DbContext(typeof(SysContext))]
-    partial class SysContextModelSnapshot : ModelSnapshot
+    [Migration("20220211175025_Remove coluna AssuntoId duplicada em Atendimento")]
+    partial class RemovecolunaAssuntoIdduplicadaemAtendimento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,10 @@ namespace Prefeitura.SysCras.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AssuntoAtendimentoId")
+                    b.Property<Guid?>("AssuntoAtendimentoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssuntoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CidadaoId")
@@ -61,9 +66,6 @@ namespace Prefeitura.SysCras.Data.Migrations
                     b.Property<string>("Observacao")
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
-
-                    b.Property<int>("Protocolo")
-                        .HasColumnType("int");
 
                     b.Property<int>("StatusAtendimento")
                         .HasColumnType("int");
@@ -187,9 +189,7 @@ namespace Prefeitura.SysCras.Data.Migrations
                 {
                     b.HasOne("Prefeitura.SysCras.Business.Entities.AssuntoAtendimento", "AssuntoAtendimento")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("AssuntoAtendimentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssuntoAtendimentoId");
 
                     b.HasOne("Prefeitura.SysCras.Business.Entities.Cidadao", "Cidadao")
                         .WithMany("Atendimentos")
@@ -203,9 +203,27 @@ namespace Prefeitura.SysCras.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.OwnsOne("Prefeitura.SysCras.Business.ValueObjects.Protocolo", "Protocolo", b1 =>
+                        {
+                            b1.Property<Guid>("AtendimentoId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("NumProtocolo")
+                                .HasColumnType("int");
+
+                            b1.HasKey("AtendimentoId");
+
+                            b1.ToTable("Atendimentos");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AtendimentoId");
+                        });
+
                     b.Navigation("AssuntoAtendimento");
 
                     b.Navigation("Cidadao");
+
+                    b.Navigation("Protocolo");
 
                     b.Navigation("TipoAtendimento");
                 });

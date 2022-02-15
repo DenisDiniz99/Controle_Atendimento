@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.Extensions;
+using Prefeitura.SysCras.Web.Utils;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -82,13 +83,12 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            var user = _userManager.FindByNameAsync(_user.NomeUsuario);
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
 
             model.UsuarioId = Guid.Parse(user.Id.ToString());
-            model.DataHoraAtendimento = DateTime.UtcNow.Date;
-            model.DataHoraAtualizacao = DateTime.UtcNow.Date;
-            
-            
+            model.DataHoraAtendimento = DateTime.Now;
+            model.DataHoraAtualizacao = DateTime.Now;
+            model.Protocolo = GeradorProtocolo.NumProtocolo();
 
             await _servico.Adicionar(_mapper.Map<Atendimento>(model));
 

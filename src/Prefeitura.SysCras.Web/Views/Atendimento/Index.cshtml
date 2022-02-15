@@ -24,10 +24,12 @@
     <table class="table table-light text-sm-left">
         <thead>
             <tr>
-                <th>Código</th>
+                <th hidden="hidden">Código</th>
                 <th>Cidadão</th>
                 <th>Assunto</th>
-                <th>Status do Atendimento</th>
+                <th>Protocolo</th>
+                <th>Última Atualização</th>
+                <th>Situação do Atendimento</th>
                 <th></th>
             </tr>
         </thead>
@@ -35,10 +37,31 @@
             @foreach (var item in Model.ToList())
             {
                 <tr>
-                    <td>@item.Id</td>
-                    <td>@item.CidadaoId</td>
-                    <td>@item.AssuntoId</td>
-                    <td>@item.StatusAtendimento</td>
+                    <td hidden="hidden">@item.Id</td>
+                    <td>@item.Cidadao.Nome</td>
+                    <td>@item.AssuntoAtendimento.TituloAssunto</td>
+                    <td>@item.Protocolo</td>
+                    <td>@item.DataHoraAtualizacao</td>
+                    @{
+                        switch (item.StatusAtendimento)
+                        {
+                            case 1:
+                                <td>Aberto</td>
+                                break;
+
+                            case 2:
+                                <td>Cancelado</td>
+                                break;
+
+                            case 3:
+                                <td>Finalizado</td>
+                                break;
+
+                            default:
+                                <td>Aberto</td>
+                                break;
+                        }
+                    }
                     <td>
                         <div class="container justify-content-around">
                             <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id">

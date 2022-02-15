@@ -1,95 +1,135 @@
-﻿@model AtendimentoViewModel 
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 
-@{ 
+
+@model AtendimentoViewModel
+
+
+@{
     ViewData["Title"] = "Novo Atendimento";
 }
 
 
 <div class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
-        
+
         <div class="card-body" style="width: 800px">
             <h5 class="card-title text-secondary">
                 <i class="fas fa-comments"></i>
                 Novo Atendimento
             </h5>
             <vc:summary></vc:summary>
-            <div class="row bg-light">
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="nomeUsuario" class="col-form-label-sm" title="Usuário">Usuário</label>
-                        <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="nomeUsuario" />
+            <form asp-action="NovoAtendimento">
+                <div class="row bg-light">
+                    <div class="col-4">
+                        <!--Usuário logado-->
+                        <div class="form-group">
+                            <label for="nomeUsuario" class="col-form-label-sm" title="Usuário">Usuário</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="nomeUsuario" value="@User.Identity.Name" />
+                        </div>
+                    </div>
+                    <!--<div class="col-4">-->
+                        <!--Data do Atendimento-->
+                        <!--<div class="form-group">
+                            <label for="dataAtend" class="col-form-label-sm" title="Data">Data de Atendimento</label>
+                            <input asp-for="DataHoraAtendimento" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataAtend" />
+                        </div>
+                    </div>-->
+                    <div class="col-4">
+                        <!--Status Atendimento-->
+                        <div class="form-group">
+                            <label for="status" class="col-form-label-sm" title="Status">Situação do Atendimento</label>
+                            <select class="form-select form-select-sm" aria-label="StatusAtendimento" asp-for="StatusAtendimento">
+                                <option value="1" selected>Aberto</option>
+                                <option value="2">Cancelado</option>
+                                <option value="3">Finalizado</option>
+                            </select>
+                            <span asp-validation-for="StatusAtendimento" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="dataAtend" class="col-form-label-sm" title="Data">Data de Atendimento</label>
-                        <input asp-for="DataHoraAtendimento" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataAtend" />
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-user-friends"></i> Cidadão
+                    </h5>
+                    <div class="col-6">
+                        <!--Cidadão-->
+                        <div class="form-group">
+                            <label for="cidadao" class="col-form-label-sm" title="Cidadão">Cidadão</label>
+                            <select class="form-select form-select-sm" aria-label="CidadaoId" asp-for="CidadaoId" asp-items="ViewBag.CidadaoId">
+                                <option selected>Escolha o cidadão</option>
+                            </select>
+                            <span asp-validation-for="CidadaoId" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="form-group">
-                        <label for="dataAtua" class="col-form-label-sm" title="Data Atualização">Data de Atualização</label>
-                        <input asp-for="DataHoraAtualizacao" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataAtua" />
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-comment-dots"></i> Descrição do atendiemnto
+                    </h5>
+                    <div class="col-6">
+                        <!--TipoAtendimento-->
+                        <div class="form-group">
+                            <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
+                            <select class="form-select form-select-sm" aria-label="TipoAtendimentoId" asp-for="TipoAtendimentoId" asp-items="ViewBag.TipoId">
+                                <option selected>Escolha um tipo atendimento</option>
+                            </select>
+                            <span asp-validation-for="TipoAtendimentoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <!--Assunto-->
+                        <div class="form-group">
+                            <label for="assunto" class="col-form-label-sm" title="Assunto">Assunto</label>
+                            <select class="form-select form-select-sm" aria-label="AssuntoId" asp-for="AssuntoAtendimentoId" asp-items="ViewBag.AssuntoId">
+                                <option selected>Escolha um assunto</option>
+                            </select>
+                            <span asp-validation-for="AssuntoAtendimentoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <!--Descrição-->
+                        <div class="form-group">
+                            <label for="descricao" class="col-form-label-sm" title="Descrição">Descrição</label>
+                            <textarea asp-for="Descricao" class="form-control form-control-sm" id="descricao" rows="8" placeholder="Descreva os eventos do atendimento"></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+                        <!--Observação-->
+                        <div class="form-group">
+                            <label for="obervacao" class="col-form-label-sm" title="Observação">Observações</label>
+                            <textarea asp-for="Observacao" class="form-control form-control-sm" id="observacao" rows="3" placeholder="Informe as observações, se houver"></textarea>
+                            <span asp-validation-for="Observacao" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr />
-            <div class="row bg-light">
-                <h5 class="text-secondary">
-                    <i class="fas fa-user-friends"></i> Cidadão
-                </h5>
-                <div class="col-6">
-                    <!--Cidadão-->
-                    <div class="form-group">
-                        <label for="cidadao" class="col-form-label-sm" title="Cidadão">Cidadão</label>
-                        <select class="form-select form-select-sm" aria-label="CidadaoId" asp-for="CidadaoId" asp-items="ViewBag.CidadaoId">
-                            <option selected>Escolha o cidadão</option>
-                        </select>
-                        <span asp-validation-for="CidadaoId" class="text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-sm btn-success btn-form" title="Cadastrar" />
+                    <a class="btn btn-sm btn-danger btn-form" title="Cancelar" asp-action="Index">Cancelar</a>
                 </div>
-            </div>
-            <hr />
-            <div class="row bg-light">
-                <h5 class="text-secondary">
-                    <i class="fas fa-comment-dots"></i> Descrição do atendiemnto
-                </h5>
-                <div class="col-6">
-                    <!--TipoAtendimento-->
-                    <div class="form-group">
-                        <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
-                        <select class="form-select form-select-sm" aria-label="TipoAtendimentoId" asp-for="TipoAtendimentoId" asp-items="ViewBag.TipoId">
-                            <option selected>Escolha um tipo atendimento</option>
-                        </select>
-                        <span asp-validation-for="TipoAtendimentoId" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <!--Assunto-->
-                    <div class="form-group">
-                        <label for="assunto" class="col-form-label-sm" title="Assunto">Assunto</label>
-                        <select class="form-select form-select-sm" aria-label="AssuntoId" asp-for="AssuntoId" asp-items="ViewBag.AssuntoId">
-                            <option selected>Escolha um assunto</option>
-                        </select>
-                        <span asp-validation-for="AssuntoId" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-group">
-                        <label for="descricao" class="col-form-label-sm" title="Descrição">Descrição</label>
-                        <textarea class="form-control form-control-sm" id="descricao" rows="8" placeholder="Descreva os eventos do atendimento"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="obervacao" class="col-form-label-sm" title="Observação">Observações</label>
-                        <textarea class="form-control form-control-sm" id="observacao" rows="3" placeholder="Informe as observações, se houver"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <input asp-action="NovoAtendimento" class="btn btn-sm btn-primary" />
-                <a class="btn btn-sm btn-danger" title="Cancelar" asp-action="Index">Cancelar</a>
-            </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    // Função para formatar 1 em 01
+    const zeroFill = n => {
+        return ('0' + n).slice(-2);
+    }
+
+    // Cria intervalo
+    const interval = setInterval(() => {
+        // Pega o horário atual
+        const now = new Date();
+
+        // Formata a data conforme dd/mm/aaaa hh:ii:ss
+        const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
+
+        // Exibe na tela usando a div#data-hora
+        document.getElementById('dataAtend').innerHTML = dataHora;
+    }, 1000);
+
+</script>

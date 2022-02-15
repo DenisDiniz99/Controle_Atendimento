@@ -18,7 +18,10 @@ namespace Prefeitura.SysCras.Data.Repositories
 
         public override async Task<IEnumerable<Atendimento>> ObterTodos()
         {
-            return await _dbSet.OrderBy(a => a.DataHoraAtualizacao).ToListAsync();
+            return await _dbSet.OrderBy(a => a.DataHoraAtualizacao)
+                .Include(a => a.AssuntoAtendimento)
+                .Include(c => c.Cidadao)
+                .ToListAsync();
         }
 
         public async Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)

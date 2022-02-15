@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prefeitura.SysCras.Data.Context;
 
 namespace Prefeitura.SysCras.Data.Migrations
 {
     [DbContext(typeof(SysContext))]
-    partial class SysContextModelSnapshot : ModelSnapshot
+    [Migration("20220214171504_Refatora campo AssuntoAtendimentoId")]
+    partial class RefatoracampoAssuntoAtendimentoId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +63,6 @@ namespace Prefeitura.SysCras.Data.Migrations
                     b.Property<string>("Observacao")
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
-
-                    b.Property<int>("Protocolo")
-                        .HasColumnType("int");
 
                     b.Property<int>("StatusAtendimento")
                         .HasColumnType("int");
@@ -203,9 +202,27 @@ namespace Prefeitura.SysCras.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.OwnsOne("Prefeitura.SysCras.Business.ValueObjects.Protocolo", "Protocolo", b1 =>
+                        {
+                            b1.Property<Guid>("AtendimentoId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("NumProtocolo")
+                                .HasColumnType("int");
+
+                            b1.HasKey("AtendimentoId");
+
+                            b1.ToTable("Atendimentos");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AtendimentoId");
+                        });
+
                     b.Navigation("AssuntoAtendimento");
 
                     b.Navigation("Cidadao");
+
+                    b.Navigation("Protocolo");
 
                     b.Navigation("TipoAtendimento");
                 });
