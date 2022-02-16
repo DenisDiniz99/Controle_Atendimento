@@ -26,7 +26,7 @@ namespace Prefeitura.SysCras.Business.Services
         }
 
         //Método de serviço para atualizar o status do atendimento
-        public async Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
+        public async Task AtualizarStatus(Guid id, int statusAtendimento)
         {
             await _atendimentoRepositorio.AtualizarStatus(id, statusAtendimento);
         }

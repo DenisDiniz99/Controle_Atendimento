@@ -119,7 +119,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
+        public async Task<IActionResult> AtualizarStatus(Guid id, int statusAtendimento)
         {
             var model = await ObterPorId(id);
 

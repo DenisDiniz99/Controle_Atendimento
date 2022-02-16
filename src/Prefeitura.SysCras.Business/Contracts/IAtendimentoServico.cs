@@ -7,6 +7,6 @@ namespace Prefeitura.SysCras.Business.Contracts
     public interface IAtendimentoServico : IDisposable
     {
         Task Adicionar(Atendimento atendimento);
-        Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento);
+        Task AtualizarStatus(Guid id, int statusAtendimento);
     }
 }

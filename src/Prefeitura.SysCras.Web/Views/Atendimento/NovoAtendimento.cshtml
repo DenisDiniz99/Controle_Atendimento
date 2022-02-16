@@ -14,13 +14,13 @@
     <div class="card mx-auto">
 
         <div class="card-body" style="width: 800px">
-            <h5 class="card-title text-secondary">
-                <i class="fas fa-comments"></i>
-                Novo Atendimento
-            </h5>
             <vc:summary></vc:summary>
             <form asp-action="NovoAtendimento">
                 <div class="row bg-light">
+                    <h5 class="card-title text-secondary">
+                        <i class="fas fa-comments"></i>
+                        Novo Atendimento
+                    </h5>
                     <div class="col-4">
                         <!--Usuário logado-->
                         <div class="form-group">
@@ -28,13 +28,6 @@
                             <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="nomeUsuario" value="@User.Identity.Name" />
                         </div>
                     </div>
-                    <!--<div class="col-4">-->
-                        <!--Data do Atendimento-->
-                        <!--<div class="form-group">
-                            <label for="dataAtend" class="col-form-label-sm" title="Data">Data de Atendimento</label>
-                            <input asp-for="DataHoraAtendimento" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataAtend" />
-                        </div>
-                    </div>-->
                     <div class="col-4">
                         <!--Status Atendimento-->
                         <div class="form-group">
@@ -112,24 +105,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    // Função para formatar 1 em 01
-    const zeroFill = n => {
-        return ('0' + n).slice(-2);
-    }
-
-    // Cria intervalo
-    const interval = setInterval(() => {
-        // Pega o horário atual
-        const now = new Date();
-
-        // Formata a data conforme dd/mm/aaaa hh:ii:ss
-        const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
-
-        // Exibe na tela usando a div#data-hora
-        document.getElementById('dataAtend').innerHTML = dataHora;
-    }, 1000);
-
-</script>

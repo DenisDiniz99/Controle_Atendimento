@@ -73,6 +73,7 @@ html, body{
 
 body {
     margin: 0;
+    margin-bottom: 60px;
     font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
@@ -11910,10 +11911,12 @@ textarea.form-control-lg {
 
 .footer {
     position: fixed;
+    padding: 0;
+    margin-top: 20px;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    line-height: 60px;
 }
 
 .header-user{
@@ -11923,6 +11926,10 @@ textarea.form-control-lg {
 
 .btn-form{
     width: 173px;
+}
+
+.btn-new{
+    background-color: #2273e5;
 }
 
 .table-overflow{

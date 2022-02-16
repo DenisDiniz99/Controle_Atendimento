@@ -24,10 +24,10 @@ namespace Prefeitura.SysCras.Data.Repositories
                 .ToListAsync();
         }
 
-        public async Task AtualizarStatus(Guid id, StatusAtendimento statusAtendimento)
+        public async Task AtualizarStatus(Guid id, int statusAtendimento)
         {
             var atendimento = await _dbSet.FirstOrDefaultAsync(a => a.Id == id);
-            atendimento.StatusAtendimento = statusAtendimento;
+            atendimento.StatusAtendimento = (StatusAtendimento)statusAtendimento;
             _context.Atendimentos.Attach(atendimento).Property(p => p.StatusAtendimento).IsModified = true;
             await SaveChange();
         }
