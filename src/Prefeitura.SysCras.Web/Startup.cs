@@ -18,10 +18,10 @@ namespace Prefeitura.SysCras.Web
                 .AddJsonFile("appsettings.json", true, true)
                 .AddJsonFile($"appsettigns.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables();
-            if (!hostEnvironment.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
+            //if (hostEnvironment.IsDevelopment())
+            //{
+            //    builder.AddUserSecrets<Startup>();
+            //}
 
             Configuration = builder.Build();
         }
@@ -53,7 +53,8 @@ namespace Prefeitura.SysCras.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
