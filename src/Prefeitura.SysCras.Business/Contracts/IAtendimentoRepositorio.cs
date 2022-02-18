@@ -6,6 +6,6 @@ namespace Prefeitura.SysCras.Business.Contracts
 {
     public interface IAtendimentoRepositorio : IRepositorio<Atendimento>
     {
-        Task AtualizarStatus(Guid id, int statusAtendimento);
+        //Task AtualizarStatus(Guid id, int statusAtendimento, DateTime dataAtualizacao);
     }
 }

@@ -109,23 +109,40 @@ namespace Prefeitura.SysCras.Web.Controllers
         }
 
 
-        public async Task<IActionResult> AtualizarStatus(Guid id)
+        public async Task<IActionResult> Atualizar(Guid id)
         {
+            if (!_user.Autenticado()) return NotFound();
+
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
             var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
 
+            if (user.Id != model.UsuarioId.ToString()) return BadRequest();
+
+            var assunto = await ObterAssuntoAtendimentoCadastrado(model.AssuntoAtendimentoId);
+            var atendimento = await ObterTipoAtendimentoCadastrado(model.TipoAtendimentoId);
+            var cidadao = await ObterCidadaoCadastrado(model.CidadaoId);
+
+            ViewData["usuario"] = user.UserName;
+            ViewData["assunto"] = assunto.TituloAssunto;
+            ViewData["atendimento"] = atendimento.Tipo;
+            ViewData["cidadao"] = cidadao.Nome;
+
+            
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AtualizarStatus(Guid id, int statusAtendimento)
+        public async Task<IActionResult> Atualizar(Guid id, AtendimentoViewModel model)
         {
-            var model = await ObterPorId(id);
+            if (id != model.Id) return BadRequest();
 
-            if (model == null) return NotFound();
+            if (!ModelState.IsValid) return View(model);
 
-            await _servico.AtualizarStatus(id, statusAtendimento);
+            model.DataHoraAtualizacao = DateTime.Now;
+
+            await _servico.Atualizar(_mapper.Map<Atendimento>(model));
 
             if (!OperacaoValida())
             {
@@ -162,6 +179,24 @@ namespace Prefeitura.SysCras.Web.Controllers
         private async Task<IEnumerable<AssuntoAtendimentoViewModel>> ObterAssuntos()
         {
             return _mapper.Map<IEnumerable<AssuntoAtendimentoViewModel>>(await _assuntoAtendimentoRepositorio.ObterTodos());
+        }
+
+        //Método privado para obter tipo de atendimento cadastrado em um atendimento
+        private async Task<TipoAtendimentoViewModel> ObterTipoAtendimentoCadastrado(Guid id)
+        {
+            return _mapper.Map<TipoAtendimentoViewModel>(await _tipoAtendimentoRepositorio.ObterPorId(id));
+        }
+
+        //Método privado para obter assunto cadastrado em um atendimento
+        private async Task<AssuntoAtendimentoViewModel> ObterAssuntoAtendimentoCadastrado(Guid id)
+        {
+            return _mapper.Map<AssuntoAtendimentoViewModel>(await _assuntoAtendimentoRepositorio.ObterPorId(id));
+        }
+
+        //Método privado para obter cidadão cadastrado em um atendimento
+        private async Task<CidadaoViewModel> ObterCidadaoCadastrado(Guid id)
+        {
+            return _mapper.Map<CidadaoViewModel>(await _cidadaoRepositorio.ObterPorId(id));
         }
     }
 }

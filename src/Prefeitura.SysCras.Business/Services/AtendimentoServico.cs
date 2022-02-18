@@ -25,11 +25,18 @@ namespace Prefeitura.SysCras.Business.Services
             await _atendimentoRepositorio.Adicionar(atendimento);
         }
 
-        //Método de serviço para atualizar o status do atendimento
-        public async Task AtualizarStatus(Guid id, int statusAtendimento)
+        //Método de serviço para atualizar o atendimento
+        public async Task Atualizar(Atendimento atendimento)
         {
-            await _atendimentoRepositorio.AtualizarStatus(id, statusAtendimento);
+            if (!ExecutaValidacao(new AtendimentoValidador(), atendimento)) return;
+            await _atendimentoRepositorio.Atualizar(atendimento);
         }
+
+        //Método de serviço para atualizar o status do atendimento
+        //public async Task AtualizarStatus(Guid id, int statusAtendimento, DateTime dataAtualizacao)
+        //{
+        //    await _atendimentoRepositorio.AtualizarStatus(id, statusAtendimento, dataAtualizacao);
+        //}
 
         public void Dispose()
         {

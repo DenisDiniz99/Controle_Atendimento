@@ -65,7 +65,8 @@ namespace Prefeitura.SysCras.Data.Maps
             builder.Property(c => c.Situacao)
                 .IsRequired();
             builder.Property(c => c.Email)
-                .HasColumnType("varchar");
+                .HasColumnType("varchar")
+                .HasMaxLength(100);
             builder.OwnsOne(c => c.Filiacao, filiacao => 
             {
                 filiacao.Property(f => f.NomePai)

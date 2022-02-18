@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="table-overflow">
-        <table class="table table-striped table-sm">
+        <table class="table table-sm">
             <thead>
                 <tr>
                     <th hidden="hidden">Código</th>
@@ -34,14 +34,14 @@
                         <td hidden="hidden">@item.Id</td>
                         <td>@item.Tipo</td>
                         <td>
-                            <div class="container justify-content-center">
-                                <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-sm btn-primary mr-2" asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes">
                                     <span class="fas fa-search"></span>
                                 </a>
-                                <a class="btn btn-sm btn-outline-primary mr-2" asp-action="Atualizar" asp-route-id="@item.Id" title="Atualizar">
+                                <a class="btn btn-sm btn-success mr-2" asp-action="Atualizar" asp-route-id="@item.Id" title="Atualizar">
                                     <span class="fas fa-edit"></span>
                                 </a>
-                                <a class="btn btn-sm btn-outline-primary" asp-action="Excluir" asp-route-id="@item.Id" title="Excluir">
+                                <a class="btn btn-sm btn-danger" asp-action="Excluir" asp-route-id="@item.Id" title="Excluir">
                                     <span class="fas fa-trash-alt"></span>
                                 </a>
                             </div>

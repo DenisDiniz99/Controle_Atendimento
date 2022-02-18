@@ -7,16 +7,16 @@
 @{
     if (Model == null)
     {
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h2 class="text-secondary mb-2">Ooops! Ocorreu um erro, mas não se preocupe. Nosso time será avisado e iremos corrigir em breve!</h2>
-            </div>
-            <div class="col-6">
-                <img class="img-fluid rounded" src="~/img/erro.jpg" alt="Erro encontrado" />
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="text-secondary mb-2">Ooops! Ocorreu um erro, mas não se preocupe. Nosso time será avisado e iremos corrigir em breve!</h2>
+                </div>
+                <div class="col-6">
+                    <img class="img-fluid rounded" src="~/img/erro.png" alt="Erro encontrado" />
+                </div>
             </div>
         </div>
-    </div>
     }
     else
     {
@@ -24,11 +24,21 @@
             <div class="row">
                 <div class="col-6">
                     <h1 class="text-secondary mb-2">@Model.StatusCode</h1>
-                    <h2 class="text-secondary mb-2">@Model.Titulo</h2>
-                    <h3 class="text-secondary">@Model.Mensagem</h3>
+                    <h3 class="text-secondary mb-2">@Model.Titulo</h3>
+                    <h5 class="text-secondary">@Model.Mensagem</h5>
                 </div>
                 <div class="col-6">
-                    <img class="img-fluid rounded" src="~/img/erro.jpg" alt="Erro na página" />
+                    @{
+                        if (Model.StatusCode == 404)
+                        {
+                            <img class="img-fluid rounded" src="~/img/404.png" alt="Erro na página" />
+                        }
+                        else
+                        {
+                            <img class="img-fluid rounded" src="~/img/erro.png" alt="Erro na página" />
+                        }
+
+                    }
                 </div>
             </div>
         </div>

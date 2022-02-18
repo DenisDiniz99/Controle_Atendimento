@@ -13,18 +13,19 @@
     </div>
     <div class="row mt-2">
         <div class="col-4">
-            <a class="btn btn-sm btn-success mb-2" asp-action="NovoAtendimento">
+            <a class="btn btn-sm btn-primary mb-2" asp-action="NovoAtendimento">
                 <i class="fas fa-plus-circle"></i> Adicionar atendimento
             </a>
         </div>
     </div>
-    <table class="table table-light text-sm-left">
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th hidden="hidden">Código</th>
                 <th>Cidadão</th>
                 <th>Assunto</th>
                 <th>Protocolo</th>
+                <th>Data do Atendimento</th>
                 <th>Última Atualização</th>
                 <th>Situação do Atendimento</th>
                 <th></th>
@@ -38,6 +39,7 @@
                     <td>@item.Cidadao.Nome</td>
                     <td>@item.AssuntoAtendimento.TituloAssunto</td>
                     <td>@item.Protocolo</td>
+                    <td>@item.DataHoraAtendimento</td>
                     <td>@item.DataHoraAtualizacao</td>
                     @{
                         switch (item.StatusAtendimento)
@@ -60,11 +62,11 @@
                         }
                     }
                     <td>
-                        <div class="container justify-content-around">
+                        <div class="d-flex justify-content-end">
                             <a class="btn btn-sm btn-primary mr-1" asp-action="Detalhes" asp-route-id="@item.Id">
                                 <span class="fas fa-search"></span>
                             </a>
-                            <a class="btn btn-sm btn-warning mr-1" asp-action="AtualizarStatus" asp-route-id="@item.Id">
+                            <a class="btn btn-sm btn-success mr-1" asp-action="Atualizar" asp-route-id="@item.Id">
                                 <span class="fas fa-edit"></span>
                             </a>
                         </div>

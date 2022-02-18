@@ -306,6 +306,7 @@ svg {
 }
 
 table {
+    font-size: 14px;
     caption-side: bottom;
     border-collapse: collapse;
 }

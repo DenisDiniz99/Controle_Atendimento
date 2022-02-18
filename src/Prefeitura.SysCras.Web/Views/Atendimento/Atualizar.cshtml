@@ -1,0 +1,125 @@
+﻿@model AtendimentoViewModel
+
+
+@{
+    ViewData["Title"] = "Atualização do Atendimento";
+}
+
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width: 800px">
+            <vc:summary></vc:summary>
+            <form asp-action="Atualizar">
+                <div class="row bg-light">
+                    <h5 class="card-title text-secondary">
+                        <i class="fas fa-edit"></i>
+                        Atualização de Atendimento
+                    </h5>
+                    <!--Usuário ID -->
+                    <div class="form-group" hidden="hidden">
+                        <label for="usuarioId" class="col-form-label-sm" title="Usuário">Usuário</label>
+                        <input asp-for="UsuarioId" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="usuarioId" />
+                    </div>
+                    <div class="col-3">
+                        <!--Usuário logado-->
+                        <div class="form-group">
+                            <label for="nomeUsuario" class="col-form-label-sm" title="Usuário">Usuário</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="nomeUsuario" value="@ViewData["usuario"]" />
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!--Protocolo-->
+                        <div class="form-group">
+                            <label for="protocolo" class="col-form-label-sm" title="Protocolo">Protocolo</label>
+                            <input asp-for="Protocolo" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="protocolo" />
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!--DataAtendimento-->
+                        <div class="form-group">
+                            <label for="dataCad" class="col-form-label-sm" title="Data Cadastro">Data do Atendimento</label>
+                            <input asp-for="DataHoraAtendimento" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataCad" />
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!--Status Atendimento-->
+                        <div class="form-group">
+                            <label for="status" class="col-form-label-sm" title="Status">Situação do Atendimento</label>
+                            <select class="form-select form-select-sm" aria-label="StatusAtendimento" asp-for="StatusAtendimento">
+                                <option value="1" selected>Aberto</option>
+                                <option value="2">Cancelado</option>
+                                <option value="3">Finalizado</option>
+                            </select>
+                            <span asp-validation-for="StatusAtendimento" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-user-friends"></i> Cidadão
+                    </h5>
+                    <!--Cidadão Id-->
+                    <div class="form-group" hidden="hidden">
+                        <label for="cidadaoId" class="col-form-label-sm" title="Cidadão">Cidadão</label>
+                        <input asp-for="CidadaoId" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="cidadaoId" />
+                    </div>
+                    <div class="col-6">
+                        <!--Cidadão-->
+                        <div class="form-group">
+                            <label for="cidadao" class="col-form-label-sm" title="Cidadão">Cidadão</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="cidadao" value="@ViewData["cidadao"]" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-comment-dots"></i> Descrição do atendiemnto
+                    </h5>
+                    <!--TipoAtendimentoID-->
+                    <div class="form-group" hidden="hidden">
+                        <label for="tipoId" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
+                        <input asp-for="TipoAtendimentoId" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="tipoId" />
+                    </div>
+                    <div class="col-6">
+                        <!--TipoAtendimento-->
+                        <div class="form-group">
+                            <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="tipoAtend" value="@ViewData["atendimento"]" />
+                        </div>
+                    </div>
+                    <!--AssuntoId-->
+                    <div class="form-group" hidden="hidden">
+                        <label for="assuntoId" class="col-form-label-sm" title="Assunto">Assunto</label>
+                        <input asp-for="AssuntoAtendimentoId" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="assuntoId" />
+                    </div>
+                    <div class="col-6">
+                        <!--Assunto-->
+                        <div class="form-group">
+                            <label for="assunto" class="col-form-label-sm" title="Assunto">Assunto</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="assunto" value="@ViewData["assunto"]" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <!--Descrição-->
+                        <div class="form-group">
+                            <label for="descricao" class="col-form-label-sm" title="Descrição">Descrição</label>
+                            <textarea asp-for="Descricao" class="form-control form-control-sm" id="descricao" rows="8" readonly="readonly"></textarea>
+                        </div>
+                        <!--Observação-->
+                        <div class="form-group">
+                            <label for="obervacao" class="col-form-label-sm" title="Observação">Observações</label>
+                            <textarea asp-for="Observacao" class="form-control form-control-sm" id="observacao" rows="3" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-sm btn-success btn-form" title="Cadastrar" />
+                    <a class="btn btn-sm btn-danger btn-form" title="Cancelar" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
