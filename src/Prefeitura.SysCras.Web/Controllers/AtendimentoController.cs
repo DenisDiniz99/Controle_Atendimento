@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
 {
+    [Authorize]
     public class AtendimentoController : BaseController
     {
         private readonly IAtendimentoRepositorio _repositorio;
@@ -52,9 +54,35 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         public async Task<IActionResult> Detalhes(Guid id)
         {
+            if (!_user.Autenticado()) return NotFound();
+
+            var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
             var model = await ObterPorId(id);
 
             if (model == null) return NotFound();
+
+            if (user.Id != model.UsuarioId.ToString()) return BadRequest();
+
+            var assunto = await ObterAssuntoAtendimentoCadastrado(model.AssuntoAtendimentoId);
+            var atendimento = await ObterTipoAtendimentoCadastrado(model.TipoAtendimentoId);
+            var cidadao = await ObterCidadaoCadastrado(model.CidadaoId);
+            var statusAtendimento = "";
+
+            if (model.StatusAtendimento == 1)
+                statusAtendimento = "Aberto";
+            if (model.StatusAtendimento == 2)
+                statusAtendimento = "Cancelado";
+            if (model.StatusAtendimento == 3)
+                statusAtendimento = "Finalizado";
+
+            
+
+            ViewData["usuario"] = user.UserName;
+            ViewData["assunto"] = assunto.TituloAssunto;
+            ViewData["atendimento"] = atendimento.Tipo;
+            ViewData["cidadao"] = cidadao.Nome;
+            ViewData["status"] = statusAtendimento;
+
 
             return View(model);
         }

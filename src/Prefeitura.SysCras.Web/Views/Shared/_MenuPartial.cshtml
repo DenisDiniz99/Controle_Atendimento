@@ -14,14 +14,20 @@
     }
     else
     {
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-action="Index" asp-controller="Atendimento">Atendimentos</a>
+        <li class="nav-item mr-4">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bars"></i> Menu
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Assunto">Assuntos</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Atendimento">Atendimentos</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="Cidadao">Cidadãos</a>
+                    <a class="dropdown-item" asp-action="Index" asp-controller="TipoAtendimento">Tipos Atendimento</a>
+                </div>
+            </div>
         </li>
-        
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-action="Index" asp-controller="Cidadao">Cidadãos</a>
-        </li>
-        
+
         <li class="nav-item">
             <a class="nav-link text-white">
                 @User.Identity.Name <i class="fas fa-user"></i>

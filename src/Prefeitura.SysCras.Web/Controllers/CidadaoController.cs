@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Prefeitura.SysCras.Web.Controllers
 {
+    [Authorize]
     public class CidadaoController : BaseController
     {
         private readonly ICidadaoRepositorio _repositorio;

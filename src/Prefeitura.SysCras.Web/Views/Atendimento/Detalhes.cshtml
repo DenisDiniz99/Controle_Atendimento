@@ -1,5 +1,111 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model AtendimentoViewModel
+
+
 @{
+    ViewData["Title"] = "Detalhes do Atendimento";
 }
+
+
+<div class="d-flex justify-content-center mt-3">
+    <div class="card mx-auto">
+        <div class="card-body" style="width: 800px">
+            <vc:summary></vc:summary>
+            <form>
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-comments"></i>
+                        Detalhes do Atendimento
+                    </h5>
+                    <div class="col-3">
+                        <!--Usuário-->
+                        <div class="form-group">
+                            <label for="nomeUsuario" class="col-form-label-sm" title="Usuário">Usuário</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="nomeUsuario" value="@ViewData["usuario"]" />
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!--Protocolo-->
+                        <div class="form-group">
+                            <label for="protocolo" class="col-form-label-sm" title="Protocolo">Protocolo</label>
+                            <input asp-for="Protocolo" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="protocolo" />
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <!--Status Atendimento-->
+                        <div class="form-group">
+                            <label for="status" class="col-form-label-sm" title="Status">Situação do Atendimento</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="status" value="@ViewData["status"]" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light">
+                    <div class="row">
+                        <div class="col-6">
+                            <!--DataAtendimento-->
+                            <div class="form-group">
+                                <label for="dataCad" class="col-form-label-sm" title="Data Cadastro">Data do Atendimento</label>
+                                <input asp-for="DataHoraAtendimento" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataCad" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <!--DataAtualização-->
+                            <div class="form-group">
+                                <label for="dataAtu" class="col-form-label-sm" title="Data Atualização">Data da Última Atualização</label>
+                                <input asp-for="DataHoraAtualizacao" class="form-control form-control-sm form-text text-dark" readonly="readonly" id="dataAtu" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-user-friends"></i> Cidadão
+                    </h5>
+                    <div class="col-6">
+                        <!--Cidadão-->
+                        <div class="form-group">
+                            <label for="cidadao" class="col-form-label-sm" title="Cidadão">Cidadão</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="cidadao" value="@ViewData["cidadao"]" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row bg-light">
+                    <h5 class="text-secondary">
+                        <i class="fas fa-comment-dots"></i> Descrição do atendiemnto
+                    </h5>
+                    <div class="col-6">
+                        <!--TipoAtendimento-->
+                        <div class="form-group">
+                            <label for="tipoAtend" class="col-form-label-sm" title="Tipo">Tipo de Atendimento</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="tipoAtend" value="@ViewData["atendimento"]" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <!--Assunto-->
+                        <div class="form-group">
+                            <label for="assunto" class="col-form-label-sm" title="Assunto">Assunto</label>
+                            <input class="form-control form-control-sm form-text text-dark" readonly="readonly" id="assunto" value="@ViewData["assunto"]" />
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <!--Descrição-->
+                        <div class="form-group">
+                            <label for="descricao" class="col-form-label-sm" title="Descrição">Descrição</label>
+                            <textarea asp-for="Descricao" class="form-control form-control-sm" id="descricao" rows="8" readonly="readonly"></textarea>
+                        </div>
+                        <!--Observação-->
+                        <div class="form-group">
+                            <label for="obervacao" class="col-form-label-sm" title="Observação">Observações</label>
+                            <textarea asp-for="Observacao" class="form-control form-control-sm" id="observacao" rows="3" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-sm btn-success btn-form" title="Atualizar" asp-action="Atualizar" asp-route-id="@Model.Id">Atualizar</a>
+                    <a class="btn btn-sm btn-danger btn-form" title="Cancelar" asp-action="Index">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
