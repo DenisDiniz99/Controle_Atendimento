@@ -34,7 +34,16 @@
                     <td>@Model.Nis</td>
                     <td>@Model.Cpf</td>
                     <td>@Model.Rg</td>
-                    <td>@Model.Genero</td>
+                    @{
+                        if (Model.Genero == 1)
+                        {
+                            <td>Masculino</td>
+                        }
+                        else
+                        {
+                            <td>Feminino</td>
+                        }
+                    }
                     <td>@Model.DataNasc</td>
                     <td>@Model.DataCad</td>
                     <td>@Model.TelefoneFixo</td>

@@ -23,8 +23,14 @@
                     <label for="senha" class="col-form-label"></label>
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-form mr-1">Entrar</button>
-                <a class="btn btn-outline-primary" style="width: 173px" asp-action="Registro" asp-controller="Usuario">Nova Conta</a>
+                <div class="form-check mb-4">
+                    <input asp-for="LembrarLogin" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Lembrar meu acesso!
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success btn-form mr-1">Entrar</button>
+                <a class="btn btn-primary" style="width: 173px" asp-action="Registro" asp-controller="Usuario">Nova Conta</a>
             </form>
         </div>
     </div>

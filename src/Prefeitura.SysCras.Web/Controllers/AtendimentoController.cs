@@ -114,8 +114,8 @@ namespace Prefeitura.SysCras.Web.Controllers
             var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
 
             model.UsuarioId = Guid.Parse(user.Id.ToString());
-            model.DataHoraAtendimento = DateTime.Now;
-            model.DataHoraAtualizacao = DateTime.Now;
+            model.DataHoraAtendimento = DateTime.UtcNow;
+            model.DataHoraAtualizacao = DateTime.UtcNow;
             model.Protocolo = GeradorProtocolo.NumProtocolo();
 
             await _servico.Adicionar(_mapper.Map<Atendimento>(model));

@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Prefeitura.SysCras.Business.Entities;
+using Prefeitura.SysCras.Business.Validations.Documentos;
 
 namespace Prefeitura.SysCras.Business.Validations
 {
@@ -38,9 +39,11 @@ namespace Prefeitura.SysCras.Business.Validations
                 .NotEmpty()
                 .WithMessage("O campo CPF não pode ser vazio.");
 
-            RuleFor(cidadao => cidadao.Cpf)
-                .MaximumLength(11)
-                .WithMessage("O campo CPF deve ter até 11 caracteres.");
+            RuleFor(cidadao => cidadao.Cpf.Length)
+                  .Equal(CpfValidation.CpfSize).WithMessage("O campo CPF deve conter 11 caracteres");
+
+            RuleFor(cidadao => CpfValidation.Validate(cidadao.Cpf))
+               .Equal(true).WithMessage("O campo Documento (CPF) não é válido");
 
             //Validação do campo Rg
             RuleFor(cidadao => cidadao.Rg)

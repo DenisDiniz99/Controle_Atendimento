@@ -29,15 +29,16 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white">
-                @User.Identity.Name <i class="fas fa-user"></i>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link text-white" asp-action="Sair" asp-controller="Usuario">
-                Sair <i class="fas fa-sign-out-alt"></i>
-            </a>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuConta" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.Name <i class="fas fa-user"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuConta">
+                    <a class="dropdown-item" asp-action="Sair" asp-controller="Usuario">
+                        Sair <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
         </li>
     }
 </ul>
