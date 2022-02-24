@@ -78,8 +78,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>@Model.Filiacao.NomePai</td>
-                    <td>@Model.Filiacao.NomeMae</td>
+                    @{
+                        if (Model.Filiacao is null)
+                        {
+                            <td></td>
+                            <td></td>
+                        }
+                        else
+                        {
+                            <td>@Model.Filiacao.NomePai</td>
+                            <td>@Model.Filiacao.NomeMae</td>
+                        }
+                    }
+
                 </tr>
             </tbody>
         </table>

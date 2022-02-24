@@ -23,5 +23,6 @@ namespace Prefeitura.SysCras.Data.Repositories
         {
             return await _dbSet.AnyAsync(c => c.Id != id && c.Cpf == cpf);
         }
+
     }
 }

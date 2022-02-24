@@ -38,9 +38,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
-
-            return View(model);
+            return model == null ? NotFound() : (IActionResult)View(model);
         }
 
 
@@ -82,9 +80,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
-
-            return View(model);
+            return model == null ? NotFound() : (IActionResult)View(model);
         }
 
 
