@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
 using Prefeitura.SysCras.Web.ViewModels;
@@ -55,7 +56,8 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) 
+                return View(model);
 
             model.DataCad = DateTime.UtcNow;
 
@@ -88,9 +90,11 @@ namespace Prefeitura.SysCras.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Atualizar(Guid id, CidadaoViewModel model)
         {
-            if (id != model.Id) return BadRequest();
+            if (id != model.Id) 
+                return BadRequest();
 
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) 
+                return View(model);
 
             await _servico.Atualizar(_mapper.Map<Cidadao>(model));
 
@@ -113,7 +117,8 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
+            if (model == null) 
+                return NotFound();
 
             return View(model);
         }
@@ -125,20 +130,33 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
+            if (model == null) 
+                return NotFound();
 
-            await _servico.Excluir(_mapper.Map<Cidadao>(model));
+            try
+            {
+                await _servico.Excluir(_mapper.Map<Cidadao>(model));
+            }
+            catch(DbUpdateException)
+            {
+                return BadRequest();
+            }
 
-            if (!OperacaoValida()) return BadRequest();
+            if (!OperacaoValida()) 
+                return BadRequest();
 
             return RedirectToAction("Index");
         }
 
+
+        #region Métodos Privados
 
         //Método privado para pesquisar dados pelo Id
         private async Task<CidadaoViewModel> ObterPorId(Guid id)
         {
             return _mapper.Map<CidadaoViewModel>(await _repositorio.ObterPorId(id));
         }
+
+        #endregion
     }
 }

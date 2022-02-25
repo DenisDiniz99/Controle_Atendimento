@@ -54,14 +54,17 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         public async Task<IActionResult> Detalhes(Guid id)
         {
-            if (!_user.Autenticado()) return NotFound();
+            if (!_user.Autenticado()) 
+                return NotFound();
 
             var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
+            if (model == null) 
+                return NotFound();
 
-            if (user.Id != model.UsuarioId.ToString()) return BadRequest();
+            if (user.Id != model.UsuarioId.ToString()) 
+                return BadRequest();
 
             var assunto = await ObterAssuntoAtendimentoCadastrado(model.AssuntoAtendimentoId);
             var atendimento = await ObterTipoAtendimentoCadastrado(model.TipoAtendimentoId);
@@ -109,7 +112,8 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) 
+                return View(model);
 
             var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
 
@@ -139,14 +143,17 @@ namespace Prefeitura.SysCras.Web.Controllers
 
         public async Task<IActionResult> Atualizar(Guid id)
         {
-            if (!_user.Autenticado()) return NotFound();
+            if (!_user.Autenticado()) 
+                return NotFound();
 
             var user = await _userManager.FindByNameAsync(_user.NomeUsuario);
             var model = await ObterPorId(id);
 
-            if (model == null) return NotFound();
+            if (model == null) 
+                return NotFound();
 
-            if (user.Id != model.UsuarioId.ToString()) return BadRequest();
+            if (user.Id != model.UsuarioId.ToString()) 
+                return BadRequest();
 
             var assunto = await ObterAssuntoAtendimentoCadastrado(model.AssuntoAtendimentoId);
             var atendimento = await ObterTipoAtendimentoCadastrado(model.TipoAtendimentoId);
@@ -164,9 +171,11 @@ namespace Prefeitura.SysCras.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Atualizar(Guid id, AtendimentoViewModel model)
         {
-            if (id != model.Id) return BadRequest();
+            if (id != model.Id) 
+                return BadRequest();
 
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             model.DataHoraAtualizacao = DateTime.Now;
 
@@ -185,6 +194,7 @@ namespace Prefeitura.SysCras.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        #region Métodos Privados
         //Método privado para pesquisar dados pelo Id
         private async Task<AtendimentoViewModel> ObterPorId(Guid id)
         {
@@ -226,5 +236,8 @@ namespace Prefeitura.SysCras.Web.Controllers
         {
             return _mapper.Map<CidadaoViewModel>(await _cidadaoRepositorio.ObterPorId(id));
         }
+
+
+        #endregion
     }
 }

@@ -31,13 +31,16 @@ namespace Prefeitura.SysCras.Data.Maps
                 .HasMaxLength(200);
 
             builder.HasOne(a => a.TipoAtendimento)
-                .WithMany(x => x.Atendimentos);
+                .WithMany(x => x.Atendimentos)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(a => a.AssuntoAtendimento)
-                .WithMany(x => x.Atendimentos);
+                .WithMany(x => x.Atendimentos)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(a => a.Cidadao)
-                .WithMany(x => x.Atendimentos);
+                .WithMany(x => x.Atendimentos)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -40,6 +40,11 @@ namespace Prefeitura.SysCras.Web.Controllers
                     model.Titulo = "Ops! Acesso negado!";
                     model.Mensagem = "Desculpe, mas você não tem permissão para acessar este recurso. Em caso de dúvidas, entre em contato com o suporte!";
                     break;
+                case 400:
+                    model.StatusCode = id;
+                    model.Titulo = "Ops! Requisição inválida!";
+                    model.Mensagem = "Desculpe, mas ocorreu um erro durante a requisição. Em caso de dúvidas, entre em contato com o suporte!";
+                    break;
                 default:
                     model.StatusCode = 500;
                     model.Titulo = "Ops! Ocorreu um erro!";

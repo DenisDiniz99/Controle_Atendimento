@@ -22,6 +22,8 @@ namespace Prefeitura.SysCras.Data.Context
             //Resolve o mapeametno no DbContext
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SysContext).Assembly);
 
+            
+
             base.OnModelCreating(modelBuilder);
         }
     }
