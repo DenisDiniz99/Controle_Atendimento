@@ -27,27 +27,27 @@ namespace Prefeitura.SysCras.Web.Controllers
             {
                 case 500:
                     model.StatusCode = id;
-                    model.Titulo = "Ops! Ocorreu um erro!";
+                    model.Titulo = "Internal Server Error";
                     model.Mensagem = "Desculpe, mas ocorreu um erro. Tente novamente mais tarde. Em caso de dúvidas, entre em contato com o suporte!";
                     break;
                 case 404:
                     model.StatusCode = id;
-                    model.Titulo = "Ops! Página não encontrada!";
+                    model.Titulo = "Not Found";
                     model.Mensagem = "Desculpe, mas a página não pode ser encontrada! Em caso de dúvidas, entre em contato com o suporte!";
                     break;
                 case 403:
                     model.StatusCode = id;
-                    model.Titulo = "Ops! Acesso negado!";
+                    model.Titulo = "Forbidden";
                     model.Mensagem = "Desculpe, mas você não tem permissão para acessar este recurso. Em caso de dúvidas, entre em contato com o suporte!";
                     break;
                 case 400:
                     model.StatusCode = id;
-                    model.Titulo = "Ops! Requisição inválida!";
+                    model.Titulo = "Bad Request";
                     model.Mensagem = "Desculpe, mas ocorreu um erro durante a requisição. Em caso de dúvidas, entre em contato com o suporte!";
                     break;
                 default:
                     model.StatusCode = 500;
-                    model.Titulo = "Ops! Ocorreu um erro!";
+                    model.Titulo = "Internal Server Error";
                     model.Mensagem = "Desculpe, mas ocorreu um erro. Tente novamente mais tarde. Em caso de dúvidas entre em contato com o suporte!";
                     break;
             }
