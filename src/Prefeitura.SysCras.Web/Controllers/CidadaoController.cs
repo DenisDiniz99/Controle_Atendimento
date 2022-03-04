@@ -17,6 +17,7 @@ namespace Prefeitura.SysCras.Web.Controllers
         private readonly ICidadaoRepositorio _repositorio;
         private readonly ICidadaoServico _servico;
         private readonly IMapper _mapper;
+        
 
         public CidadaoController(ICidadaoRepositorio repositorio, ICidadaoServico servico,
                                     IMapper mapper, INotificador notificador) : base(notificador)
@@ -147,7 +148,6 @@ namespace Prefeitura.SysCras.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
 
         #region Métodos Privados
 

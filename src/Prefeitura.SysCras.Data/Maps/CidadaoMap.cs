@@ -78,7 +78,7 @@ namespace Prefeitura.SysCras.Data.Maps
             });
             builder.OwnsOne(c => c.Endereco, endereco =>
             {
-                endereco.Property(e => e.Rua)
+                endereco.Property(e => e.Logradouro)
                     .HasColumnType("varchar")
                     .HasMaxLength(50)
                     .IsRequired();

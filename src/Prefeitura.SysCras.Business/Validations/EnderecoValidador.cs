@@ -7,10 +7,10 @@ namespace Prefeitura.SysCras.Business.Validations
     { 
         public EnderecoValidador()
         {
-            //Validação do campo Rua
-            RuleFor(endereco => endereco.Rua)
+            //Validação do campo Logradouro
+            RuleFor(endereco => endereco.Logradouro)
                 .MaximumLength(50)
-                .WithMessage("A Rua deve ter até 50 caracteres.");
+                .WithMessage("A Logradouro deve ter até 50 caracteres.");
 
             //Validação do campo Numero
             RuleFor(endereco => endereco.Numero)

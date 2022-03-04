@@ -39,9 +39,9 @@
 <div class="row bg-light">
     <div class="col-6">
         <div class="form-group">
-            <label asp-for="Endereco.Rua" class="col-form-label-sm"></label>
-            <input asp-for="Endereco.Rua" class="form-control form-control-sm form-text text-dark" />
-            <span asp-validation-for="Endereco.Rua" class="text-danger"></span>
+            <label asp-for="Endereco.Logradouro" class="col-form-label-sm"></label>
+            <input asp-for="Endereco.Logradouro" class="form-control form-control-sm form-text text-dark" />
+            <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
         </div>
     </div>
     <div class="col-6">
@@ -52,3 +52,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    BuscaCep();
+</script>

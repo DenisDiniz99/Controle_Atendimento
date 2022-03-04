@@ -41,6 +41,7 @@ namespace Prefeitura.SysCras.Web.Configurations
             //AspNetUser: classe que obtem dados do usuário logado
             services.AddScoped<IUser, AspNetUser>();
 
+
             return services;
         }
     }

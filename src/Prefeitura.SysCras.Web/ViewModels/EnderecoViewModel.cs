@@ -1,31 +1,30 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Prefeitura.SysCras.Web.ViewModels
 {
     public class EnderecoViewModel
     {
-        [DisplayName("Rua")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [MaxLength(50, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
-        public string Rua { get; set; }
+        public string Logradouro { get; set; }
 
-        [DisplayName("Número")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [MaxLength(10, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Numero { get; set; }
 
-        [DisplayName("Bairro")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [MaxLength(50, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Bairro { get; set; }
 
-        [DisplayName("Cidade")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [MaxLength(50, ErrorMessage = "O campo {0} deve conter até {1} caracteres.")]
         public string Cidade { get; set; }
 
-        [DisplayName("CEP")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [StringLength(8, ErrorMessage = "O campo {0} deve conter {1} caracteres.", MinimumLength = 8)]
         public string Cep { get; set; }
 
-        [DisplayName("Estado")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
         [StringLength(2, ErrorMessage = "O campo {0} deve conter {1} caracteres.", MinimumLength = 2)]
         public string Estado { get; set; }
     }
