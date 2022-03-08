@@ -45,6 +45,7 @@ function BuscaCep() {
                                 $("#Endereco_Bairro").val(dados.bairro);
                                 $("#Endereco_Cidade").val(dados.localidade);
                                 $("#Endereco_Estado").val(dados.uf);
+                                $("Endereco_Bairro").focus();
                             } //end if.
                             else {
                                 //CEP pesquisado não foi encontrado.
