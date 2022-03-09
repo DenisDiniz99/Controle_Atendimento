@@ -10,19 +10,15 @@ namespace Prefeitura.SysCras.Business.Validations
             //Validação do campo TituloAssunto
             RuleFor(cargo => cargo.TituloAssunto)
                 .NotNull()
-                .WithMessage("O Título do Assunto não pode ser nulo.");
-
-            RuleFor(cargo => cargo.TituloAssunto)
-                .NotEmpty()
-                .WithMessage("O Título do Assunto não pode ser vazio.");
+                .WithMessage("O Título do Assunto deve ser informado");
 
             RuleFor(cargo => cargo.TituloAssunto)
                 .MaximumLength(50)
-                .WithMessage("O Título do Assunto deve ter até 50 caracteres.");
+                .WithMessage("O Título do Assunto deve ter até 50 caracteres");
 
             RuleFor(cargo => cargo.TituloAssunto)
                 .MinimumLength(2)
-                .WithMessage("O Título do Assunto deve ter ao menos 2 caracteres.");
+                .WithMessage("O Título do Assunto deve ter ao menos 2 caracteres");
         }
     }
 }

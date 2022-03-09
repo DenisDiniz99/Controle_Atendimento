@@ -11,11 +11,7 @@ namespace Prefeitura.SysCras.Business.Validations
             //Validação do campo Nome
             RuleFor(cidadao => cidadao.Nome)
                 .NotNull()
-                .WithMessage("O Nome do Cidadão não pode ser nulo");
-
-            RuleFor(cidadao => cidadao.Nome)
-                .NotEmpty()
-                .WithMessage("O Nome do Cidadão não pode ser vazio");
+                .WithMessage("O Nome do Cidadão deve ser informado");
 
             RuleFor(cidadao => cidadao.Nome)
                 .MaximumLength(50)
@@ -33,75 +29,63 @@ namespace Prefeitura.SysCras.Business.Validations
             //Validação do campo Cpf
             RuleFor(cidadao => cidadao.Cpf)
                 .NotNull()
-                .WithMessage("O CPF não pode ser nulo.");
-
-            RuleFor(cidadao => cidadao.Cpf)
-                .NotEmpty()
-                .WithMessage("O campo CPF não pode ser vazio.");
+                .WithMessage("O CPF deve ser informado");
 
             RuleFor(cidadao => cidadao.Cpf.Length)
-                  .Equal(CpfValidation.CpfSize).WithMessage("O campo CPF deve conter 11 caracteres");
+                  .Equal(CpfValidation.CpfSize).WithMessage("O CPF deve conter 11 caracteres");
 
             RuleFor(cidadao => CpfValidation.Validate(cidadao.Cpf))
-               .Equal(true).WithMessage("O campo Documento (CPF) não é válido");
+               .Equal(true).WithMessage("O CPF informado não é válido");
 
             //Validação do campo Rg
             RuleFor(cidadao => cidadao.Rg)
                 .NotNull()
-                .WithMessage("O campo RG não pode ser nulo.");
-
-            RuleFor(cidadao => cidadao.Rg)
-                .NotEmpty()
-                .WithMessage("O campo RG não pode ser vazio.");
+                .WithMessage("O RG deve ser informado");
 
             RuleFor(cidadao => cidadao.Rg)
                 .MaximumLength(11)
-                .WithMessage("O campo RG deve ter até 11 caracteres.");
+                .WithMessage("O RG deve ter até 11 caracteres");
 
             //Validação do campo EstadoCivil
             RuleFor(cidadao => cidadao.EstadoCivil)
                 .NotNull()
-                .WithMessage("O campo Estado Civil não pode ser vazio");
+                .WithMessage("O Estado Civil deve ser informado");
 
             //Validação do campo Genero
             RuleFor(cidadao => cidadao.Genero)
                 .NotNull()
-                .WithMessage("O campo Gênero não pode ser vazio");
+                .WithMessage("O Gênero deve ser informado");
 
             //Validação do campo Raca
             RuleFor(cidadao => cidadao.Raca)
                 .NotNull()
-                .WithMessage("O campo Raça não pode ser vazio");
+                .WithMessage("A Raça deve ser informada");
 
             //Validação do campo Nacionalidade
             RuleFor(cidadao => cidadao.Nacionalidade)
                 .MaximumLength(50)
-                .WithMessage("O campo Nacionalidade deve ter até 50 caracteres.");
+                .WithMessage("A Nacionalidade deve ter até 50 caracteres");
 
             //Validação do campo Naturalidade
             RuleFor(cidadao => cidadao.Naturalidade)
                 .MaximumLength(50)
-                .WithMessage("O campo Naturalidade deve ter até 50 caracteres.");
+                .WithMessage("A Naturalidade deve ter até 50 caracteres");
 
             
             //Validação do campo DataNasc
             RuleFor(cidadao => cidadao.DataNasc)
                 .NotNull()
-                .WithMessage("O campo Data de Nascimento não pode ser nulo.");
-
-            RuleFor(cidadao => cidadao.DataNasc)
-                .NotEmpty()
-                .WithMessage("O campo Data de Nascimento não pode ser vazio.");
+                .WithMessage("A Data de Nascimento deve ser informada");
 
             //Validação do campo Celular
             RuleFor(cidadao => cidadao.Celular)
                 .NotNull()
-                .WithMessage("O campo Celular não pode ser nulo.");
+                .WithMessage("O Número do Celular deve ser informado");
 
             //Validação do campo E-mail
             RuleFor(cidadao => cidadao.Email)
                 .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
-                .WithMessage("E-mail em formato incorreto.");
+                .WithMessage("E-mail em formato incorreto");
 
             //Validação do campo Endereco
             RuleFor(cidadao => cidadao.Endereco)

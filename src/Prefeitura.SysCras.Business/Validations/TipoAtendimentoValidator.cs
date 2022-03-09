@@ -8,7 +8,7 @@ namespace Prefeitura.SysCras.Business.Validations
         public TipoAtendimentoValidator()
         {
             RuleFor(t => t.Tipo)
-                .NotEmpty().WithMessage("O campo Tipo de Atendimento não pode ser vazio");
+                .NotNull().WithMessage("A Descrição deve ser informada informado");
         }
     }
 }
