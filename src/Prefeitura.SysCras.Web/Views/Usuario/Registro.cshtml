@@ -4,38 +4,55 @@
     ViewData["Title"] = "Registrar";
 }
 
-<div class="d-flex justify-content-center mt-3">
+<div class="d-flex justify-content-center mt-lg-5">
     <div class="card mx-auto" style="width: 400px">
         <div class="card-body">
-            <h5 class="card-title text-center text-secondary">
+            <h2 class="card-title text-center text-secondary mb-lg-4">
                 Nova Conta
-            </h5>
-            <hr />
+            </h2>
+
             <vc:summary></vc:summary>
             <form method="post">
-                <div class="form-group">
-                    <input asp-for="Email" class="form-control form-text text-dark" placeholder="E-mail" id="email" />
-                    <label for="email" class="col-form-label"></label>
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="email"><i class="fas fa-at"></i></span>
+                    </div>
+                    <input asp-for="Email" class="form-control" placeholder="E-mail" aria-describedby="email" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Nome" class="form-control form-text text-dark" placeholder="Nome de usuário" id="nome" />
-                    <label for="nome" class="col-form-label"></label>
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="user"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input asp-for="Nome" class="form-control" placeholder="Usuário" id="nome" aria-describedby="user" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Senha" class="form-control form-text text-dark" placeholder="Senha" id="password" />
-                    <label for="senha" class="col-form-label"></label>
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="passwd"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input asp-for="Senha" class="form-control" placeholder="Senha" aria-describedby="passwd" />
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="ConfirmeSenha" class="form-control form-text text-dark" placeholder="Confirme sua Senha" id="password" />
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="confirmPasswd"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input asp-for="ConfirmeSenha" class="form-control" placeholder="Confirme sua Senha" aria-describedby="confirmPasswd" />
                     <label for="senha" class="col-form-label"></label>
                     <span asp-validation-for="ConfirmeSenha" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-primary mr-1" style="width: 173px">Registrar</button>
-                <a class="link-primary ml-4" style="width: 173px" asp-action="Login" asp-controller="Usuario">Já possui uma conta ?</a>
+                <div class="form-group">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-form">Registrar</button>
+                    </div>
+                </div>
             </form>
+        </div>
+        <div class="card-footer bg-transparent">
+            <div class="d-flex justify-content-center">
+                Já possui uma conta? <a class="link-primary" asp-action="Login" asp-controller="Usuario"> Acesse aqui!</a>
+            </div>
         </div>
     </div>
 </div>

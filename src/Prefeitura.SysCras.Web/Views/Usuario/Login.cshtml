@@ -4,34 +4,46 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="d-flex justify-content-center mt-3">
+<div class="d-flex justify-content-center mt-lg-5">
     <div class="card mx-auto" style="width: 400px">
         <div class="card-body">
-            <h5 class="card-title text-center text-secondary">
-                Entrar
-            </h5>
-            <hr />
+            <h2 class="card-title text-center text-secondary mb-lg-4">
+                Login
+            </h2>
+        
             <vc:summary></vc:summary>
             <form method="post">
-                <div class="form-group">
-                    <input asp-for="Nome" class="form-control form-text text-dark" placeholder="Nome de usuário" id="nome" />
-                    <label for="nome" class="col-form-label"></label>
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="user"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input asp-for="Nome" class="form-control" placeholder="Usuário" id="nome" aria-describedby="user" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input asp-for="Senha" class="form-control form-text text-dark" placeholder="Senha de acesso" id="password" />
-                    <label for="senha" class="col-form-label"></label>
+                <div class="input-group form-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="passwd"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input asp-for="Senha" class="form-control" placeholder="Senha" id="password" aria-describedby="passwd" />
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
                 <div class="form-check mb-4">
                     <input asp-for="LembrarLogin" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label class="form-check-label text-secondary" for="flexCheckDefault">
                         Lembrar meu acesso!
                     </label>
                 </div>
-                <button type="submit" class="btn btn-success btn-form mr-1">Entrar</button>
-                <a class="btn btn-primary" style="width: 173px" asp-action="Registro" asp-controller="Usuario">Nova Conta</a>
+                <div class="form-group">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-form">Entrar</button>
+                    </div>
+                </div>
             </form>
+        </div>
+        <div class="card-footer bg-transparent">
+            <div class="d-flex justify-content-center">
+                Ainda não possui uma conta? <a class="link-primary" asp-action="Registro" asp-controller="Usuario">Registre-se!</a>
+            </div>
         </div>
     </div>
 </div>

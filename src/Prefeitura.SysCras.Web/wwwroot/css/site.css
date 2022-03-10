@@ -11926,7 +11926,11 @@ textarea.form-control-lg {
 }
 
 .btn-form{
-    width: 173px;
+    width: 175px;
+}
+
+.btn-form-user{
+    width: 200px;
 }
 
 .btn-new{
