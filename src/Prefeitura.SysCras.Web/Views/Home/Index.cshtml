@@ -3,28 +3,21 @@
 }
 
 <div class="container">
-
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
-        <div class="col-lg-7">
-            <img class="img-fluid rounded mb-4 mb-lg-0" src="~/img/banner-1.png" alt="Banner-Inicio" />
+        <div class="col-lg-6">
+            <div class="jumbotron jumbotron-fluid bg-transparent">
+                <h2 class="display-2">Bem-vindo</h2>
+                <hr class="my-4" />
+                <p class="lead text-justify">
+                    Este é o SysCras - Sistema para controle de atendimento do CRAS.
+                    Caso tenha dúvidas sobre como utiliza-lo, entre em contato com o departamento de informática!
+                </p>
+                <a class="btn btn-primary btn-form" asp-action="Sobre">Sobre o sistema</a>
+                <a class="btn btn-danger btn-form" asp-action="Privacidade">Nossa privacidade</a>
+            </div>
         </div>
-        <div class="col-lg-5">
-            <h1 class="font-weight-light">Sistema de Atendimento</h1>
-            <p>
-                O SysCras é um sistema para controle de atendimento à usuários do CRAS. 
-                Seu uso é exclusivo da Prefeitura Municipal de Capetinga-MG.
-                Para maiores informações, entre em contato com o Departamento de Informática da Prefeitura de Capetinga.
-            </p>
-            <a class="btn btn-primary" asp-action="Sobre">Sobre o sistema</a>
-        </div>
-    </div>
-
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body">
-            <p class="text-white m-0">
-                <i class="fas fa-exclamation-triangle"></i>
-                Atenção! Para uso do sistema de atendimento, solicite sempre ao cidadão os seus documentos e endereço.
-            </p>
+        <div class="col-lg-6">
+            <img class="img-fluid rounded ml-lg-3 pl-lg-2" src="~/img/banner-3.png" alt="Banner Home Page" />
         </div>
     </div>
 </div>

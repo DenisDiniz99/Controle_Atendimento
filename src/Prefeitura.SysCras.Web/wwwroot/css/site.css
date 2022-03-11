@@ -65,6 +65,11 @@ html, body{
     padding: 0;
 }
 
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     :root {
         scroll-behavior: smooth;
@@ -11941,3 +11946,4 @@ textarea.form-control-lg {
     max-height: 400px;
     overflow-y: auto;
 }
+
