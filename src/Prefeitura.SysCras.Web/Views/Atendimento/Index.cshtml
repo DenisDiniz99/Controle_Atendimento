@@ -63,12 +63,23 @@
                     }
                     <td>
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-sm btn-primary mr-1" asp-action="Detalhes" asp-route-id="@item.Id">
+                            <a class="btn btn-sm btn-primary mr-1" title="Detalhes do atendimento" asp-action="Detalhes" asp-route-id="@item.Id">
                                 <span class="fas fa-search"></span>
                             </a>
-                            <a class="btn btn-sm btn-success mr-1" asp-action="Atualizar" asp-route-id="@item.Id">
-                                <span class="fas fa-edit"></span>
-                            </a>
+                            @{
+                                if (item.StatusAtendimento == 1)
+                                {
+                                    <a class="btn btn-sm btn-success mr-1" title="Atualização de atendimento" asp-action="Atualizar" asp-route-id="@item.Id">
+                                        <span class="fas fa-edit"></span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-sm btn-success disabled mr-1" title="Atualização não disponível" href="#" >
+                                        <span class="fas fa-edit"></span>
+                                    </a>
+                                }
+                            }
                         </div>
                     </td>
                 </tr>

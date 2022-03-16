@@ -7,19 +7,24 @@
 <div  class="d-flex justify-content-center mt-3">
     <div class="card mx-auto">
         <div class="card-body" style="width:800px">
-            <h5 class="card-title text-secondary">
-                <i class="fas fa-comment-dots"></i>
-                Cadastro de Tipo de Atendimento
-            </h5>
+            
             <vc:summary></vc:summary>
             <form asp-action="Cadastrar">
-                <div class="form-group">
-                    <label for="tipo" class="col-form-label-sm" title="Tipo">Tipo</label>
-                    <input asp-for="Tipo" class="form-control form-control-sm form-text text-dark" placeholder="Tipo de atendimento" id="tipo"/>
-                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                <div class="row bg-light">
+                    <h5 class="card-title text-secondary">
+                        <i class="fas fa-comment-dots"></i>
+                        Cadastro de Tipo de Atendimento
+                    </h5>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="tipo" class="col-form-label-sm" title="Tipo">Tipo</label>
+                            <input asp-for="Tipo" class="form-control form-control-sm form-text text-dark" placeholder="Tipo de atendimento" id="tipo" />
+                            <span asp-validation-for="Tipo" class="text-danger"></span>
+                        </div>
+                        <input type="submit" class="btn btn-sm btn-success btn-form mr-2" title="Cadastrar" />
+                        <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>
+                    </div>
                 </div>
-                <input type="submit" class="btn btn-sm btn-success btn-form mr-2" title="Cadastrar" />
-                <a class="btn btn-sm btn-danger btn-form" asp-action="Index">Cancelar</a>
             </form>
         </div>
     </div>
