@@ -1,1 +1,35 @@
-﻿<h1>Sobre</h1>
+﻿@{ 
+    ViewData["Title"] = "Sobre";
+}
+
+<div class="container">
+    <div class="card border-0">
+        <h2 class="card-title text-center text-secondary">Sobre</h2>
+        <div class="card-body">
+            <p class="lead text-justify">
+                Este sistema foi desenvolvido pelo Departamento de Informática da Prefeitura Municipal de Capetinga-MG
+                em parceria com a Secretaria Municipal de Assistência Social, com o objetivo de elevar o atendimento do
+                CRAS a nível de controle. Com o SysCras, é possível automatizar as seguintes tarefas:
+            </p>
+            <ul>
+                <li>Cadastro de Cidadão</li>
+                <li>Cadastro de Assuntos do atendimento</li>
+                <li>Cadastro de Tipo de Atendimento</li>
+                <li>Cadastro de Atendimentos</li>
+            </ul>
+            <p class="lead text-justify">
+                Todos os cadastros podem ser facilmente mantidos. É possível atualizar dados cadastrados, verificar detalhes
+                de um cadastro específico ou até mesmo excluir um cadastro que não é mais necessário. Lembramos também, que os
+                atendimentos não podem ser excluídos diretamente pelos usuários do sistema. Apenas pode ser alterado o Status 
+                de um atendimento.
+                Para mais informações, entre em contato com a Secretaria Municipal de Assistência Social ou o Departamento de Informática
+                da Prefeitura de Capetinga.
+            </p>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-primary btn-form" asp-action="Index">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prefeitura.SysCras.Business.Contracts;
 using Prefeitura.SysCras.Business.Entities;
+using Prefeitura.SysCras.Web.Utils;
 using Prefeitura.SysCras.Web.ViewModels;
 using System;
 using System.Collections.Generic;

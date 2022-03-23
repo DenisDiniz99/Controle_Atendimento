@@ -18,6 +18,11 @@ namespace Prefeitura.SysCras.Web.Controllers
             return View();
         }
 
+        public IActionResult Privacidade()
+        {
+            return View();
+        }
+
         [Route("erro/{id:length(3,3)}")]
         public IActionResult Erro(int id)
         {
