@@ -29,51 +29,22 @@ namespace Prefeitura.SysCras.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            //Identity
+            services.AddIdentityConfig(Configuration);
 
-            services.AddRazorPages();
+            //WebMvc
+            services.AddWebMvcConfig();
 
             //Contexto
             services.AddAppConfig(Configuration);
 
             //Injeção de Dependência
-            services.AddDependencyInjectionConfig();
-
-            //Identity
-            services.AddIdentityConfig(Configuration);
-
-            
+            services.AddDependencyInjectionConfig();   
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/erro/500");
-                app.UseStatusCodePagesWithRedirects("/erro/{0}");
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseGlobalizationConfig();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    "default",
-                    "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+            app.UseWebMvcConfig(env);
         }
     }
 }

@@ -7,14 +7,12 @@ namespace Prefeitura.SysCras.Web.Configurations
 {
     public static class AppConfig
     {
-        public static IServiceCollection AddAppConfig(this IServiceCollection services, IConfiguration configuration)
+        public static void AddAppConfig(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<SysContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-
-            return services;
         }
     }
 }

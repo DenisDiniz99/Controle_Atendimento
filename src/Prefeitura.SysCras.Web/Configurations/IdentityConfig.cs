@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +10,7 @@ namespace Prefeitura.SysCras.Web.Configurations
 {
     public static class IdentityConfig
     {
-        public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
+        public static void AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -52,8 +53,12 @@ namespace Prefeitura.SysCras.Web.Configurations
                 options.AccessDeniedPath = "/Usuario/AcessoNegado";
                 options.SlidingExpiration = true;
             });
+        }
 
-            return services;
+        public static void UseIdentityConfig(this IApplicationBuilder app)
+        {
+            app.UseAuthentication();
+            app.UseAuthorization();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Prefeitura.SysCras.Web.Configurations
 {
     public static class DependencyInjectionConfig
     {
-        public static IServiceCollection AddDependencyInjectionConfig(this IServiceCollection services)
+        public static void AddDependencyInjectionConfig(this IServiceCollection services)
         {
             //Contexto
             services.AddScoped<SysContext>();
@@ -40,9 +40,6 @@ namespace Prefeitura.SysCras.Web.Configurations
 
             //AspNetUser: classe que obtem dados do usuário logado
             services.AddScoped<IUser, AspNetUser>();
-
-
-            return services;
         }
     }
 }
